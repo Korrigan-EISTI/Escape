@@ -1,11 +1,12 @@
 package main;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Escape extends Application {
@@ -17,16 +18,19 @@ public class Escape extends Application {
 		stage.setTitle("Hello World!");
 		VBox root = new VBox();
 		root.getStyleClass().add("root");
-		TextField text = new TextField();
-		text.getStyleClass().add("text");
-		root.getChildren().add(text);
-		ListView<String> list = new ListView<>(FXCollections.observableArrayList("set","tes"));
-		list.getStyleClass().add("list");
-		root.getChildren().add(list);
-		Scene scene = new Scene(root,300,300);
-		scene.getStylesheets().add("test.css");
+		Canvas canvas = new Canvas(1000, 600);
+
+		final GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc.setFill(Color.GRAY);
+		gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+		root.getChildren().add(canvas);
+		HBox bottom = new HBox();
+		bottom.getStyleClass().add("bottom");
+		root.getChildren().add(bottom);
+		Scene scene = new Scene(root,1000,700);
+		scene.getStylesheets().add("resources/test.css");
 		stage.setScene(scene);
-		stage.setResizable(true);
 		stage.show();
 	}
 }
