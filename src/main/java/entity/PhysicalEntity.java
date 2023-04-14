@@ -1,4 +1,4 @@
-package main.entity;
+package main.java.entity;
 
 public class PhysicalEntity extends Entity{
     private double w;

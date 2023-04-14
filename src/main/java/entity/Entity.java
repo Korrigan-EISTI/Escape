@@ -1,4 +1,4 @@
-package main.entity;
+package main.java.entity;
 
 public abstract class Entity {
     private double x;
