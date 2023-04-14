@@ -7,13 +7,14 @@ public class Map {
     private final Image[] images;
     private final int w,h;
     public Map(){
-        w=500;
-        h=200;
+        w=200;
+        h=80;
         blocks=new int[h][w];
         images = new Image[]{new Image("file:/home/martin/Documents/JAVA/Escape/src/main/resources/blocks/crate.png")};
         for (int x=0;x<w;x++){
             for (int y=0;y<h;y++){
-                if(Math.random()<0.2){
+                double p = (double) (h - y) /h;
+                if(Math.random()< p*p*p*p*p || y==0){
                     blocks[y][x]=1;
                 }
             }
@@ -21,6 +22,9 @@ public class Map {
     }
 
     public int getBlock(int x,int y) {
+        if(x<0 || y<0 || x>=w || y>=h){
+            return 0;
+        }
         return blocks[y][x];
     }
 

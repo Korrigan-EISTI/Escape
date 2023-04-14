@@ -1,10 +1,12 @@
 package main.java.entity;
 
+import main.java.Map;
+
 public abstract class Entity {
-    private double x;
-    private double y;
-    private double vx;
-    private double vy;
+    protected double x;
+    protected double y;
+    protected double vx;
+    protected double vy;
 
     public Entity(double x, double y, double vx, double vy) {
         this.x = x;
@@ -45,7 +47,7 @@ public abstract class Entity {
         this.vy = vy;
     }
 
-    public void tick(){
+    public void tick(Map map){
         x += vx;
         y += vy;
     }

@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import main.java.entity.Player;
 
 public class Escape extends Application {
 	private Canvas canvas;
@@ -20,6 +21,7 @@ public class Escape extends Application {
 	private Renderer renderer;
 	private Map map;
 	private Input input;
+	private Player player;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -30,15 +32,16 @@ public class Escape extends Application {
 		stage.setTitle("Hello World!");
 		VBox root = new VBox();
 		root.getStyleClass().add("root");
-		canvas = new Canvas(1000, 600);
+		Scene scene = new Scene(root,1600,900);
+		canvas = new Canvas(scene.getWidth(), scene.getHeight()-100);
 		map = new Map();
 		renderer = new Renderer(canvas);
 		camera = new Camera(100, 100);
+		player = new Player(2000,3000);
 		root.getChildren().add(canvas);
 		HBox bottom = new HBox();
 		bottom.getStyleClass().add("bottom");
 		root.getChildren().add(bottom);
-		Scene scene = new Scene(root,1000,700);
 		input = new Input(scene);
 		scene.getStylesheets().add("main/resources/test.css");
 		stage.setScene(scene);
@@ -53,20 +56,20 @@ public class Escape extends Application {
 	}
 
 	private void tick(ActionEvent actionEvent) {
-		camera.tick();
-		renderer.render(map,camera);
 		if(input.keyPressed(KeyCode.RIGHT)){
-			camera.setTarget_x(camera.getX()+50);
+			player.setVx(5);
 		}
 		if(input.keyPressed(KeyCode.LEFT)){
-			camera.setTarget_x(camera.getX()-50);
+			player.setVx(-5);
 		}
-		if(input.keyPressed(KeyCode.UP)){
-			camera.setTarget_y(camera.getY()+50);
+		if(input.keyPressed(KeyCode.UP) && player.isOnGround()){
+			player.setVy(10);
 		}
-		if(input.keyPressed(KeyCode.DOWN)){
-			camera.setTarget_y(camera.getY()-50);
-		}
+		player.tick(map);
+		camera.setTarget_x(player.getX());
+		camera.setTarget_y(player.getY());
+		camera.tick();
+		renderer.render(map,camera,player);
 	}
 
 }

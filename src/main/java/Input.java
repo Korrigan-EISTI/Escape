@@ -8,7 +8,7 @@ public class Input {
     private boolean[] keyBoardState;
 
     public Input(Scene scene){
-        keyBoardState=new boolean[256];
+        keyBoardState=new boolean[KeyCode.values().length];
         scene.setOnKeyPressed((KeyEvent event) -> {
             keyBoardState[event.getCode().ordinal()] = true;
         });
