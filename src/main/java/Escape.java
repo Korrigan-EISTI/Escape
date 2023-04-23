@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -36,8 +35,8 @@ public class Escape extends Application {
 		canvas = new Canvas(scene.getWidth(), scene.getHeight()-100);
 		map = new Map();
 		renderer = new Renderer(canvas);
-		camera = new Camera(100, 100);
-		player = new Player(2000,3000);
+		camera = new Camera(100, 200);
+		player = new Player(100,200);
 		root.getChildren().add(canvas);
 		HBox bottom = new HBox();
 		bottom.getStyleClass().add("bottom");
@@ -57,16 +56,16 @@ public class Escape extends Application {
 
 	private void tick(ActionEvent actionEvent) {
 		if(input.keyPressed(KeyCode.RIGHT)){
-			player.setVx(5);
+			player.setVx(player.getVx()+0.1);
 		}
 		if(input.keyPressed(KeyCode.LEFT)){
-			player.setVx(-5);
+			player.setVx(player.getVx()-0.1);
 		}
 		if(input.keyPressed(KeyCode.UP) && player.isOnGround()){
-			player.setVy(10);
+			player.setVy(0.5);
 		}
 		player.tick(map);
-		camera.setTarget_x(player.getX());
+		camera.setTarget_x(player.getX()+player.getWidth()/2);
 		camera.setTarget_y(player.getY());
 		camera.tick();
 		renderer.render(map,camera,player);

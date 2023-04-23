@@ -31,6 +31,7 @@ public class Camera {
         return target_x;
     }
 
+    
     public void setTarget_x(double target_x) {
         this.target_x = target_x;
     }

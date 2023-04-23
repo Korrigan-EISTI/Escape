@@ -5,7 +5,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class Input {
-    private boolean[] keyBoardState;
+    private final boolean[] keyBoardState;
 
     public Input(Scene scene){
         keyBoardState=new boolean[KeyCode.values().length];
