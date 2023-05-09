@@ -17,6 +17,7 @@ import javafx.util.Duration;
 import main.java.entity.Entity;
 import main.java.entity.Monster;
 import main.java.entity.Player;
+import main.java.entity.NonPlayableCharacter;
 
 public class Escape extends Application {
 	
@@ -46,9 +47,10 @@ public class Escape extends Application {
 		camera = new Camera(100, 200);
 		root.getChildren().add(canvas);
 		
-		player = new Player(100,200);
-		monster = new Monster(122,56);
+		player = new Player(9, 51);
+		monster = new Monster(9,51);
 		entities = new ArrayList<Entity>();
+		entities.add(new NonPlayableCharacter(25, 51));
 		entities.add(player);
 		entities.add(monster);
 		

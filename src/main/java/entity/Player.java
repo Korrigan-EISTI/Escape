@@ -33,7 +33,7 @@ public class Player extends PhysicalEntity{
             vx-=0.07;
         }
         if(input.keyPressed(KeyCode.UP) && (on_ground || climbing)){
-            vy=0.3;
+            vy=0.35;
         }
         if(input.keyPressed(KeyCode.DOWN) && climbing){
             vy=-0.3;

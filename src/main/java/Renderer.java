@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import main.java.entity.Entity;
+import main.java.entity.Monster;
 import main.java.entity.Player;
 
 import java.util.ArrayList;
@@ -17,7 +18,8 @@ public class Renderer {
     private final GraphicsContext gc;
     private final Image[] block_images;
     private final Image player_image;
-    private  final Image monster_image;
+    private final Image monster_image;
+    private final Image npc_image;
     public static final int block_size = 64;
 
     public Renderer(Canvas canvas){
@@ -25,7 +27,8 @@ public class Renderer {
         gc = this.canvas.getGraphicsContext2D();
         gc.setImageSmoothing(false);
         player_image = new Image("file:src/main/resources/player.png");
-        monster_image = new Image("file:src/main/resources/monster.png", 20, 20, false, false);
+        monster_image = new Image("file:src/main/resources/monster.png");
+        npc_image = new Image("file:src/main/resources/pnj.png");
         block_images = new Image[Map.BLOCK_PROPERTIES.size()];
         for (int i=0;i<Map.BLOCK_PROPERTIES.size();i++){
             String path = Map.BLOCK_PROPERTIES.get((short)i).imagePath();
@@ -53,8 +56,10 @@ public class Renderer {
             Image choosen_image;
             if (entity instanceof Player) {
                 choosen_image = player_image;
-            } else {
+            } else if (entity instanceof Monster){
                 choosen_image = monster_image;
+            }else {
+            	choosen_image = npc_image;
             }
             gc.drawImage(choosen_image, canvas.getWidth() / 2 + (entity.getX() - camera.getX()) * block_size, canvas.getHeight() / 2 - player_image.getHeight() - (entity.getY() - camera.getY()) * block_size);
         }
