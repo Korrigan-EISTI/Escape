@@ -1,12 +1,14 @@
 package main.java.entity;
 
-import main.java.Input;
 import main.java.Map;
 
 public class PhysicalEntity extends Entity{
+	
     private final double w;
     private final double h;
     private boolean on_ground;
+    private int life;
+    
     public PhysicalEntity(double x, double y, double vx, double vy, double w, double h) {
         super(x, y, vx, vy);
         this.w = w;
@@ -113,4 +115,12 @@ public class PhysicalEntity extends Entity{
     public double getHeight() {
         return h;
     }
+
+	public int getLife() {
+		return life;
+	}
+
+	public void setLife(int life) {
+		this.life = life;
+	}
 }

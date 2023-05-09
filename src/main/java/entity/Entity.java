@@ -3,6 +3,7 @@ package main.java.entity;
 import main.java.Map;
 
 public abstract class Entity {
+	
     protected double x;
     protected double y;
     protected double vx;
