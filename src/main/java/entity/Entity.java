@@ -1,5 +1,6 @@
 package main.java.entity;
 
+import javafx.scene.image.Image;
 import main.java.Map;
 
 public abstract class Entity {
@@ -7,7 +8,11 @@ public abstract class Entity {
     protected double y;
     protected double vx;
     protected double vy;
-    static public String image_path;
+    static public final String image_path = null;
+    static public final double image_offset_x = 0;
+    static public final double image_offset_y = 0;
+    static public final double image_scale = 1;
+
 
     public Entity(double x, double y, double vx, double vy) {
         this.x = x;
@@ -51,5 +56,20 @@ public abstract class Entity {
     public void tick(Map map){
         x += vx;
         y += vy;
+    }
+    public Image getImage(){
+        return null;
+    }
+    public double getImageOffsetX(){
+        return 0;
+    }
+    public double getImageOffsetY(){
+        return 0;
+    }
+    public double getImageSizeX(){
+        return 1;
+    }
+    public double getImageSizeY(){
+        return 1;
     }
 }

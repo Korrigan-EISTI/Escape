@@ -1,11 +1,13 @@
 package main.java.entity;
 
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import main.java.Input;
 import main.java.Map;
 
 public class Player extends PhysicalEntity{
     protected boolean climbing;
+    private static final Image image = new Image("file:src/main/resources/player.png");
 
     public Player(double x, double y) {
         super(x, y, 0, 0, (double) 20 /24, (double) 20 /24);
@@ -37,5 +39,9 @@ public class Player extends PhysicalEntity{
         if(input.keyPressed(KeyCode.DOWN) && climbing){
             vy=-0.3;
         }
+    }
+    @Override
+    public Image getImage(){
+        return image;
     }
 }

@@ -1,5 +1,6 @@
 package main.java.entity;
 
+import javafx.scene.image.Image;
 import main.java.Input;
 import main.java.Map;
 
@@ -125,8 +126,15 @@ public abstract class PhysicalEntity extends Entity{
     public double getWidth() {
         return w;
     }
-
     public double getHeight() {
+        return h;
+    }
+    @Override
+    public double getImageSizeX(){
+        return w;
+    }
+    @Override
+    public double getImageSizeY(){
         return h;
     }
 }
