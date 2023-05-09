@@ -5,6 +5,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class Input {
+	
     private final boolean[] keyBoardState;
 
     public Input(Scene scene){
@@ -16,6 +17,7 @@ public class Input {
             keyBoardState[event.getCode().ordinal()] = false;
         });
     }
+    
     public boolean keyPressed(KeyCode key){
         return keyBoardState[key.ordinal()];
     }

@@ -1,6 +1,7 @@
 package main.java;
 
 public class Camera {
+	
     private double x,y;
     private double target_x,target_y;
 

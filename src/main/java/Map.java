@@ -1,9 +1,6 @@
 package main.java;
 
-import javafx.scene.image.Image;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
@@ -13,9 +10,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class Map {
+	
     public static BlockProperties BLOCK_PROPERTIES=new BlockProperties();
     private short[][] blocks;
     private final int w,h;
+    
     public Map(){
         Document doc = null;
         try {
@@ -38,6 +37,7 @@ public class Map {
             }
         }
     }
+    
     public short getBlock(int x,int y) {
         if(x<0 || y<0 || x>=w || y>=h){
             return 0;

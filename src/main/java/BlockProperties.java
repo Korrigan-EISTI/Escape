@@ -1,15 +1,16 @@
 package main.java;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class BlockProperties {
+	
     public record BlockProperty(String imagePath,boolean solid){};
     private final ArrayList<BlockProperty> properties;
+    
     public BlockProperties(){
         properties = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/blocks.csv"))) {
@@ -22,9 +23,11 @@ public class BlockProperties {
             throw new RuntimeException(e);
         }
     }
+    
     public BlockProperty get(short i){
         return properties.get(i);
     }
+    
     public int size(){
         return properties.size();
     }
