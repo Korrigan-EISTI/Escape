@@ -1,7 +1,6 @@
 package main.java.entity;
 
 import javafx.scene.input.KeyCode;
-import main.java.BlockProperties;
 import main.java.Input;
 import main.java.Map;
 
