@@ -46,7 +46,7 @@ public class Renderer {
         }
         for (Entity entity : entities) {
             if (entity.getImage()!=null){
-                gc.drawImage(entity.getImage(), canvas.getWidth() / 2 + (entity.getX() - camera.getX()) * block_size, canvas.getHeight() / 2 - entity.getImageSizeY()*block_size - (entity.getY() - camera.getY()) * block_size, entity.getImageSizeX()*block_size, entity.getImageSizeY()*block_size);
+                gc.drawImage(entity.getImage(), canvas.getWidth() / 2 + (entity.getX() + entity.getImageOffsetX() - camera.getX()) * block_size, canvas.getHeight() / 2 - entity.getImageSizeY()*block_size - (entity.getY()  + entity.getImageOffsetY() - camera.getY()) * block_size, entity.getImageSizeX()*block_size, entity.getImageSizeY()*block_size);
             }
         }
     }
