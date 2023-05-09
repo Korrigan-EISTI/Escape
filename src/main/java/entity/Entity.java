@@ -3,11 +3,11 @@ package main.java.entity;
 import main.java.Map;
 
 public abstract class Entity {
-	
     protected double x;
     protected double y;
     protected double vx;
     protected double vy;
+    static public String image_path;
 
     public Entity(double x, double y, double vx, double vy) {
         this.x = x;

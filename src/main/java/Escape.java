@@ -74,20 +74,11 @@ public class Escape extends Application {
 	}
 
 	private void tick(ActionEvent actionEvent) {
-		if(input.keyPressed(KeyCode.RIGHT)){
-			player.setVx(player.getVx()+0.1);
-		}
-		if(input.keyPressed(KeyCode.LEFT)){
-			player.setVx(player.getVx()-0.1);
-		}
-		if(input.keyPressed(KeyCode.UP) && player.isOnGround()){
-			player.setVy(0.5);
-		}
+		player.handleInput(input);
 		player.tick(map);
 		camera.setTarget_x(player.getX()+player.getWidth()/2);
 		camera.setTarget_y(player.getY());
 		camera.tick();
 		renderer.render(map,camera,entities);
 	}
-
 }
