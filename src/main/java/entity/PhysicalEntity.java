@@ -108,10 +108,10 @@ public abstract class PhysicalEntity extends Entity{
             }
         }
         vx*=0.7;
-        int top_x = (int)Math.floor(x);
-        int bottom_x = (int)Math.ceil(x+w)-1;
-        int top_y = (int)Math.ceil(y+h)-1;
+        int bottom_x = (int)Math.floor(x);
+        int top_x = (int)Math.ceil(x+w)-1;
         int bottom_y = (int)Math.floor(y);
+        int top_y = (int)Math.ceil(y+h)-1;
         Arrays.fill(touched, (short) 0);
         int i=0;
         for(int j=bottom_x;j<=top_x;j++) {
