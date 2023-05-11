@@ -5,8 +5,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -24,7 +26,11 @@ public class TakeTheChest extends Application {
 	private Environment environment;
 	private Input input;
 	private Player player;
+<<<<<<< HEAD:src/main/java/TakeTheChest.java
 	private ProgressBar life;
+=======
+	private LifeBar playerLifeBar;
+>>>>>>> 7a2c048 (Inventaire):src/main/java/Escape.java
 
 	public static void main(String[] args) {
 		launch(args);
@@ -35,9 +41,10 @@ public class TakeTheChest extends Application {
 
 		VBox root = new VBox();
 		root.getStyleClass().add("root");
-		Scene scene = new Scene(root,1600,900);
+		Scene scene = new Scene(root,1000,750);
 
 		canvas = new Canvas(scene.getWidth(), scene.getHeight()-100);
+		canvas.setFocusTraversable(true);
 		environment = new Environment();
 		renderer = new Renderer(canvas);
 		camera = new Camera(100, 200);
@@ -47,11 +54,19 @@ public class TakeTheChest extends Application {
 		environment.addEntity(player);
 		environment.addEntity(new Monster(43,51));
 		environment.addEntity(new NonPlayableCharacter(25, 51));
-
-		life = new ProgressBar(1);
-		life.setPrefSize(scene.getWidth(), scene.getHeight()/4);
-		life.setStyle("-fx-accent: green;");
-		HBox bottom = new HBox(life);
+		playerLifeBar = new LifeBar(player);
+		playerLifeBar.getLifeBar().setPrefSize(scene.getWidth()/2, scene.getHeight()/4);
+		playerLifeBar.setLifeBarColor("green");
+		HBox inventory = new HBox();
+		for (int i = 0; i < 3; i++) {
+			Button inv = new Button("");
+			inv.setPrefSize(50, 50);
+			inventory.getChildren().add(inv);
+		}
+		inventory.setPrefWidth(scene.getWidth()/2);
+		inventory.setAlignment(Pos.CENTER);
+		inventory.setSpacing(75);
+		HBox bottom = new HBox(playerLifeBar.getLifeBar(), inventory);
 		root.getChildren().add(bottom);
 
 		input = new Input(scene);
@@ -79,9 +94,9 @@ public class TakeTheChest extends Application {
 		camera.tick();
 		renderer.render(camera,environment);
 
-		life.setProgress(player.getLife());
-		if(life.getProgress() < (double)0.01) System.exit(0);
-		if(life.getProgress()<0.3) life.setStyle("-fx-accent: red;");
-		else if(life.getProgress()<0.6) life.setStyle("-fx-accent: orange;");
+		playerLifeBar.getLifeBar().setProgress(player.getLife());
+		if(playerLifeBar.getLifeBar().getProgress() < (double)0.01) System.exit(0);
+		if(playerLifeBar.getLifeBar().getProgress()<0.3) playerLifeBar.setLifeBarColor("red");
+		else if(playerLifeBar.getLifeBar().getProgress()<0.6) playerLifeBar.setLifeBarColor("orange");
 	}
 }
