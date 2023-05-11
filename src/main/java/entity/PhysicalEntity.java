@@ -1,8 +1,6 @@
 package main.java.entity;
 
-import javafx.scene.image.Image;
-import main.java.Input;
-import main.java.Map;
+import main.java.Environment;
 
 import java.util.Arrays;
 
@@ -20,7 +18,7 @@ public abstract class PhysicalEntity extends Entity{
     }
 
     @Override
-    public void tick(Map map) {
+    public void tick(Environment environment) {
         vy-=0.02;
         on_ground=false;
         if(vx<0){
@@ -32,7 +30,7 @@ public abstract class PhysicalEntity extends Entity{
             while (check_x>end_x && !hit){
                 check_x-=1;
                 for (int i = start_y;i<=end_y;i++){
-                    hit = hit || Map.BLOCK_PROPERTIES.get(map.getBlock(check_x,i)).solid();
+                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(check_x,i)).solid();
                 }
             }
             if(hit){
@@ -52,7 +50,7 @@ public abstract class PhysicalEntity extends Entity{
             while (scan_x<end_x && !hit){
                 scan_x+=1;
                 for (int i = start_y;i<=end_y;i++){
-                    hit = hit || Map.BLOCK_PROPERTIES.get(map.getBlock(scan_x,i)).solid();
+                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid();
                 }
             }
             if(hit){
@@ -72,7 +70,7 @@ public abstract class PhysicalEntity extends Entity{
             while (scan_y>end_y && !hit){
                 scan_y-=1;
                 for (int i = start_x;i<=end_x;i++){
-                    hit = hit || Map.BLOCK_PROPERTIES.get(map.getBlock(i,scan_y)).solid();
+                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,scan_y)).solid();
                 }
             }
             if(hit){
@@ -93,7 +91,7 @@ public abstract class PhysicalEntity extends Entity{
             while (check_y<end_y && !hit){
                 check_y+=1;
                 for (int i = start_x;i<=end_x;i++){
-                    hit = hit || Map.BLOCK_PROPERTIES.get(map.getBlock(i,check_y)).solid();
+                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,check_y)).solid();
                 }
             }
             if(hit){
@@ -105,18 +103,19 @@ public abstract class PhysicalEntity extends Entity{
             }
         }
         vx*=0.7;
-        int top_x = (int)Math.floor(x);
-        int bottom_x = (int)Math.ceil(x+w)-1;
-        int top_y = (int)Math.ceil(y+h)-1;
+        int bottom_x = (int)Math.floor(x);
+        int top_x = (int)Math.ceil(x+w)-1;
         int bottom_y = (int)Math.floor(y);
+        int top_y = (int)Math.ceil(y+h)-1;
         Arrays.fill(touched, (short) 0);
         int i=0;
         for(int j=bottom_x;j<=top_x;j++) {
             for (int k = bottom_y; k <= top_y; k++) {
-                touched[i]=map.getBlock(j,k);
+                touched[i]= environment.getBlock(j,k);
                 i++;
             }
         }
+        super.tick(environment);
     }
 
     public boolean isOnGround() {

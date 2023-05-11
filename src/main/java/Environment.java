@@ -1,9 +1,7 @@
 package main.java;
 
-import javafx.scene.image.Image;
+import main.java.entity.Entity;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
@@ -11,12 +9,17 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class Map {
+public class Environment {
     public static BlockProperties BLOCK_PROPERTIES=new BlockProperties();
-    private short[][] blocks;
+    private final short[][] blocks;
     private final int w,h;
-    public Map(){
+    private ArrayList<Entity> entities;
+    private ArrayList<Entity> addedEntities;
+    public Environment(){
+        entities = new ArrayList<>();
+        addedEntities = new ArrayList<>();
         Document doc = null;
         try {
             doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File("src/main/resources/maps/map.tmx"));
@@ -57,5 +60,23 @@ public class Map {
 
     public int getHeight() {
         return h;
+    }
+    public void addEntity(Entity entity){
+        addedEntities.add(entity);
+    }
+
+    public void tickEntities(){
+        entities.addAll(addedEntities);
+        addedEntities.clear();
+        for (Entity entity : entities) {
+            entity.tick(this);
+        }
+        entities.removeIf(Entity::destroyed);
+    }
+    public int getEntityCount(){
+        return entities.size();
+    }
+    public Entity getEntity(int i){
+        return entities.get(i);
     }
 }

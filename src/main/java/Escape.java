@@ -9,26 +9,25 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.java.entity.Entity;
 import main.java.entity.Monster;
-import main.java.entity.Player;
 import main.java.entity.NonPlayableCharacter;
+import main.java.entity.Player;
+import main.java.entity.projectile.Bullet;
 
 public class Escape extends Application {
 	
 	private Canvas canvas;
 	private Camera camera;
 	private Renderer renderer;
-	private Map map;
+	private Environment environment;
 	private Input input;
 	private Player player;
 	private Monster monster;
-	private ArrayList<Entity> entities;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -42,17 +41,16 @@ public class Escape extends Application {
 		Scene scene = new Scene(root,1600,900);
 		
 		canvas = new Canvas(scene.getWidth(), scene.getHeight()-100);
-		map = new Map();
+		environment = new Environment();
 		renderer = new Renderer(canvas);
-		camera = new Camera(100, 200);
+		camera = new Camera(9, 51);
 		root.getChildren().add(canvas);
-		
+
 		player = new Player(9, 51);
 		monster = new Monster(9,51);
-		entities = new ArrayList<Entity>();
-		entities.add(new NonPlayableCharacter(25, 51));
-		entities.add(player);
-		entities.add(monster);
+		environment.addEntity(player);
+		environment.addEntity(monster);
+		environment.addEntity(new NonPlayableCharacter(9,51));
 		
 		HBox bottom = new HBox();
 		bottom.getStyleClass().add("bottom");
@@ -77,10 +75,10 @@ public class Escape extends Application {
 
 	private void tick(ActionEvent actionEvent) {
 		player.handleInput(input);
-		player.tick(map);
+		environment.tickEntities();
 		camera.setTarget_x(player.getX()+player.getWidth()/2);
 		camera.setTarget_y(player.getY());
 		camera.tick();
-		renderer.render(map,camera,entities);
+		renderer.render(environment,camera);
 	}
 }

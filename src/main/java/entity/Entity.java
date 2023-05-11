@@ -1,13 +1,14 @@
 package main.java.entity;
 
 import javafx.scene.image.Image;
-import main.java.Map;
+import main.java.Environment;
 
 public abstract class Entity {
     protected double x;
     protected double y;
     protected double vx;
     protected double vy;
+    private boolean destroy=false;
     static public final String image_path = null;
     static public final double image_offset_x = 0;
     static public final double image_offset_y = 0;
@@ -53,9 +54,10 @@ public abstract class Entity {
         this.vy = vy;
     }
 
-    public void tick(Map map){
-        x += vx;
-        y += vy;
+    public void tick(Environment environment){
+        if(x<-100 || x> environment.getWidth()+100 || y<-100 || y> environment.getHeight()+100){
+            destroy();
+        }
     }
     public Image getImage(){
         return null;
@@ -71,5 +73,11 @@ public abstract class Entity {
     }
     public double getImageSizeY(){
         return 1;
+    }
+    public boolean destroyed() {
+        return destroy;
+    }
+    public void destroy() {
+        this.destroy = true;
     }
 }

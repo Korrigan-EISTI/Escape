@@ -2,8 +2,8 @@ package main.java.entity;
 
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import main.java.Environment;
 import main.java.Input;
-import main.java.Map;
 
 public class Player extends PhysicalEntity{
     protected boolean climbing;
@@ -14,11 +14,11 @@ public class Player extends PhysicalEntity{
     }
 
     @Override
-    public void tick(Map map) {
-        super.tick(map);
+    public void tick(Environment environment) {
+        super.tick(environment);
         climbing=false;
         for (short block : touched){
-            climbing=climbing || Map.BLOCK_PROPERTIES.get(block).climbable();
+            climbing=climbing || Environment.BLOCK_PROPERTIES.get(block).climbable();
         }
         if(climbing){
             vx=0;
@@ -33,8 +33,11 @@ public class Player extends PhysicalEntity{
         if(input.keyPressed(KeyCode.LEFT)){
             vx-=0.07;
         }
-        if(input.keyPressed(KeyCode.UP) && (on_ground || climbing)){
-            vy=0.35;
+        if(input.keyPressed(KeyCode.UP) && on_ground){
+            vy=0.45;
+        }
+        if(input.keyPressed(KeyCode.UP) && climbing){
+            vy=0.3;
         }
         if(input.keyPressed(KeyCode.DOWN) && climbing){
             vy=-0.3;
