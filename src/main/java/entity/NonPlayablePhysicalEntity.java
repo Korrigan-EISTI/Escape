@@ -19,14 +19,9 @@ public class NonPlayablePhysicalEntity extends PhysicalEntity{
     @Override
     public void tick(Environment environment){
         int rand = new Random().nextInt(100);
-        if(rand==99 || rand== 98 || rand == 97){
-            vy=0.3;
-        }
-        if(rand>0 && rand<5){
-            vx=-0.3;
-        }
-        if(rand>=5 && rand<10){
-            vx=0.3;
+        if(rand>=10 && rand<20){
+            double dir = new Random().nextDouble(360);
+            environment.addEntity(new Bullet(x+w/2,y+2*h/3,Math.cos(dir),Math.sin(dir)));
         }
         super.tick(environment);
     }

@@ -47,7 +47,7 @@ public class TakeTheChest extends Application {
 
 		player = new Player(9, 51);
 		environment.addEntity(player);
-		environment.addEntity(new Monster(43,51));
+		environment.generateMonsters();
 		environment.addEntity(new NonPlayableCharacter(25, 51));
 		playerLifeBar = new LifeBar(player);
 		playerLifeBar.getLifeBar().setPrefSize(scene.getWidth()/2, scene.getHeight()/4);

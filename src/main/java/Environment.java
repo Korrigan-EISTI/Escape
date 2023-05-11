@@ -1,10 +1,10 @@
 package main.java;
 
 import main.java.entity.Entity;
+import main.java.entity.Monster;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
@@ -71,6 +71,24 @@ public class Environment {
     
     public void addEntity(Entity entity){
         addedEntities.add(entity);
+    }
+    
+    public void generateMonsters(){
+    	addedEntities.add(new Monster(39,51));
+    	addedEntities.add(new Monster(56,46));
+    	addedEntities.add(new Monster(75,53));
+    	addedEntities.add(new Monster(74,68));
+    	addedEntities.add(new Monster(82,64));
+    	addedEntities.add(new Monster(67,64));
+    	addedEntities.add(new Monster(68,81));
+    	addedEntities.add(new Monster(75,70));
+    	addedEntities.add(new Monster(81,72));
+    	addedEntities.add(new Monster(81,76));
+    	addedEntities.add(new Monster(86,88));
+    	addedEntities.add(new Monster(72,82));
+    	addedEntities.add(new Monster(78,82));
+    	addedEntities.add(new Monster(75,84));
+    	addedEntities.add(new Monster(115,33));
     }
 
     public void tickEntities(){
