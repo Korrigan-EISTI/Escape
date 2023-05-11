@@ -7,8 +7,11 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -38,9 +41,10 @@ public class Escape extends Application {
 		
 		VBox root = new VBox();
 		root.getStyleClass().add("root");
-		Scene scene = new Scene(root,1600,900);
+		Scene scene = new Scene(root,1000,750);
 		
 		canvas = new Canvas(scene.getWidth(), scene.getHeight()-100);
+		canvas.setFocusTraversable(true);
 		environment = new Environment();
 		renderer = new Renderer(canvas);
 		camera = new Camera(9, 51);
@@ -52,7 +56,19 @@ public class Escape extends Application {
 		environment.addEntity(monster);
 		environment.addEntity(new NonPlayableCharacter(9,51));
 		
-		HBox bottom = new HBox();
+		ProgressBar life = new ProgressBar(1);
+		life.setPrefSize(scene.getWidth()/2, scene.getHeight()/4);
+		life.setStyle("-fx-accent: green;");
+		HBox inventory = new HBox();
+		for (int i = 0; i < 3; i++) {
+			Button inv = new Button();
+			inv.setPrefSize(50, 50);
+			inventory.getChildren().add(inv);
+		}
+		inventory.setAlignment(Pos.CENTER);
+		inventory.setPrefWidth(scene.getWidth()/2);
+		inventory.setSpacing(75);
+		HBox bottom = new HBox(life, inventory);
 		bottom.getStyleClass().add("bottom");
 		root.getChildren().add(bottom);
 		
