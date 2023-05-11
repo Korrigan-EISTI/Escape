@@ -1,5 +1,7 @@
 package main.java.entity;
 
+import java.util.ArrayList;
+
 import javafx.scene.input.KeyCode;
 import main.java.Input;
 import main.java.Map;
@@ -34,7 +36,7 @@ public class Player extends PhysicalEntity{
             vy=0;
         }
     }
-    public void handleInput(Input input){
+    public void handleInput(Input input, ArrayList<Arrow> arrows){
 
         if(input.keyPressed(KeyCode.RIGHT)){
             vx+=0.07;
@@ -47,6 +49,12 @@ public class Player extends PhysicalEntity{
         }
         if(input.keyPressed(KeyCode.DOWN) && climbing){
             vy=-0.3;
+        }
+        if(input.keyPressed(KeyCode.A)){
+        	arrows.add(new Arrow(this.getX()-this.getWidth(),this.getY(),-0.5,null));
+        }
+        if(input.keyPressed(KeyCode.E)){
+        	arrows.add(new Arrow(this.getX()+this.getWidth(),this.getY(),0.5,null));
         }
     }
 }
