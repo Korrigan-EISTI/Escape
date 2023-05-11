@@ -80,7 +80,7 @@ public class Escape extends Application {
 
 	private void tick(ActionEvent actionEvent) {
 		
-		player.handleInput(input);
+		player.handleInput(input, arrows);
 		Monster monster = null;
 		
 		for (Entity entity: entities) {
@@ -108,7 +108,7 @@ public class Escape extends Application {
 		renderer.render(map,camera,entities,arrows);
 		
 		life.setProgress(player.getLife());
-		if(life.getProgress() <= 0) System.exit(0);
+		if(life.getProgress() < (double)0.01) System.exit(0);
 		if(life.getProgress()<0.3) life.setStyle("-fx-accent: red;");
 		else if(life.getProgress()<0.6) life.setStyle("-fx-accent: orange;");
 	}
