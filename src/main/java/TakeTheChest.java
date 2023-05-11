@@ -25,11 +25,7 @@ public class TakeTheChest extends Application {
 	private Environment environment;
 	private Input input;
 	private Player player;
-<<<<<<< HEAD:src/main/java/TakeTheChest.java
-	private ProgressBar life;
-=======
 	private LifeBar playerLifeBar;
->>>>>>> 7a2c048 (Inventaire):src/main/java/Escape.java
 
 	public static void main(String[] args) {
 		launch(args);
@@ -86,7 +82,7 @@ public class TakeTheChest extends Application {
 	}
 
 	private void tick(ActionEvent actionEvent) {
-		player.handleInput(input);
+		player.handleInput(input,environment);
 		environment.tickEntities();
 		camera.setTarget_x(player.getX()+player.getWidth()/2);
 		camera.setTarget_y(player.getY());

@@ -11,13 +11,15 @@ public abstract class PhysicalEntity extends Entity{
     protected double h;
     protected boolean on_ground;
     protected short[] touched;
+    protected double life;
     
-    public PhysicalEntity(double x, double y, double vx, double vy, double w, double h) {
+    public PhysicalEntity(double x, double y, double vx, double vy, double w, double h,double life) {
         super(x, y, vx, vy);
         this.w=w;
         this.h=h;
         on_ground = false;
         touched = new short[(int)(Math.ceil(w+1)*Math.ceil(h+10))];
+        this.life = life;
     }
 
     @Override
@@ -129,6 +131,20 @@ public abstract class PhysicalEntity extends Entity{
     }
     public double getHeight() {
         return h;
+    }
+
+    public double getLife() {
+        return life;
+    }
+
+    public void setLife(double d) {
+        this.life = d;
+    }
+    public void damage(double d) {
+        this.life -= d;
+    }
+    public void heal(double d) {
+        this.life += d;
     }
     @Override
     public double getImageSizeX(){

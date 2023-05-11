@@ -2,10 +2,12 @@ package main.java.entity.projectile;
 
 import javafx.scene.image.Image;
 import main.java.Environment;
+import main.java.entity.Player;
 
 public class Arrow extends Projectile {
 
-	private static Image image = new Image("file:src/main/resources/right_arrow.png");
+	private static Image imageLeft = new Image("file:src/main/resources/arrow_left.png");
+	private static Image imageRight = new Image("file:src/main/resources/arrow_right.png");
 
 	private int hit;
 
@@ -24,21 +26,29 @@ public class Arrow extends Projectile {
 
 	public void tick(Environment environment) {
 		super.tick(environment);
+		for (int i = 0;i<environment.getEntityCount();i++){
+			if(environment.getEntity(i) instanceof Player){
+				Player player = (Player)environment.getEntity(i);
+				if(x>player.getX() && x<player.getX()+player.getWidth() && y>player.getY() && y<player.getY()+player.getHeight() ){
+					player.damage(0.1);
+				}
+			}
+		}
 	}
 
 	public Image getImage(){
-		return image;
+		return vx>0?imageRight:imageLeft;
 	}
 	public double getImageOffsetX(){
-		return 0;
+		return vx>0?-1:0;
 	}
 	public double getImageOffsetY(){
-		return -.5;
+		return -0.1;
 	}
 	public double getImageSizeX(){
 		return 1;
 	}
 	public double getImageSizeY(){
-		return 1;
+		return 0.1;
 	}
 }

@@ -13,7 +13,7 @@ public class Renderer {
     private final Canvas canvas;
     private final GraphicsContext gc;
     private final Image[] block_images;
-    public static final int scale = 24;
+    public static final int scale = 64;
 
     public Renderer(Canvas canvas){
     	
