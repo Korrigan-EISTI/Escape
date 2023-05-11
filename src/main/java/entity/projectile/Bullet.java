@@ -8,7 +8,7 @@ public class Bullet extends Projectile{
     private static final Image image = new Image("file:src/main/resources/bullet.png");
 
     public Bullet(double x, double y, double vx, double vy) {
-        super(x, y, vx, vy,0.1);
+        super(x, y, vx, vy);
     }
     @Override
     protected Particle spawnParticle(double x, double y){

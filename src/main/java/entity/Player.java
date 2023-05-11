@@ -1,15 +1,16 @@
 package main.java.entity;
 
-import java.util.ArrayList;
-
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import main.java.Environment;
 import main.java.Input;
-import main.java.Map;
 
 public class Player extends PhysicalEntity{
-	
+
+    private static final Image image = new Image("file:src/main/resources/player.png");
 	private double life;
     protected boolean climbing;
+
 
     public Player(double x, double y) {
         super(x, y, 0, 0, (double) 20 /24, (double) 20 /24);
@@ -25,18 +26,18 @@ public class Player extends PhysicalEntity{
 	}
 
 	@Override
-    public void tick(Map map) {
-        super.tick(map);
+    public void tick(Environment environment) {
+        super.tick(environment);
         climbing=false;
         for (short block : touched){
-            climbing=climbing || Map.BLOCK_PROPERTIES.get(block).climbable();
+            climbing=climbing || Environment.BLOCK_PROPERTIES.get(block).climbable();
         }
         if(climbing){
             vx=0;
             vy=0;
         }
     }
-    public void handleInput(Input input, ArrayList<Arrow> arrows){
+    public void handleInput(Input input){
 
         if(input.keyPressed(KeyCode.RIGHT)){
             vx+=0.07;
@@ -49,12 +50,16 @@ public class Player extends PhysicalEntity{
         }
         if(input.keyPressed(KeyCode.DOWN) && climbing){
             vy=-0.3;
-        }
+        }/*
         if(input.keyPressed(KeyCode.A)){
         	arrows.add(new Arrow(this.getX()-this.getWidth(),this.getY(),-0.5,null));
         }
         if(input.keyPressed(KeyCode.E)){
         	arrows.add(new Arrow(this.getX()+this.getWidth(),this.getY(),0.5,null));
-        }
+        }*/
+    }
+    @Override
+    public Image getImage(){
+        return image;
     }
 }

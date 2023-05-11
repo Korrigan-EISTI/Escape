@@ -1,6 +1,7 @@
 package main.java.entity;
 
-import main.java.Map;
+import javafx.scene.image.Image;
+import main.java.Environment;
 
 public abstract class Entity {
 	
@@ -8,16 +9,13 @@ public abstract class Entity {
     protected double y;
     protected double vx;
     protected double vy;
-    protected final double w;
-    protected final double h;
+    private boolean destroyed = false;
 
-    public Entity(double x, double y, double vx, double vy, double w, double h) {
+    public Entity(double x, double y, double vx, double vy) {
         this.x = x;
         this.y = y;
         this.vx = vx;
         this.vy = vy;
-        this.w = w;
-        this.h = h;
     }
 
     public double getX() {
@@ -51,17 +49,34 @@ public abstract class Entity {
     public void setVy(double vy) {
         this.vy = vy;
     }
-
-    public double getWidth() {
-        return w;
-    }
-
-    public double getHeight() {
-        return h;
-    }
     
-    public void tick(Map map){
-        x += vx;
-        y += vy;
+    public void tick(Environment environment){
+        if (x<-100 || x>environment.getWidth()+100 || y<-100 || y>environment.getHeight()+100){
+            destroy();
+        }
+    }
+
+    public boolean destroyed() {
+        return destroyed;
+    }
+
+    public void destroy() {
+        this.destroyed = true;
+    }
+
+    public Image getImage(){
+        return null;
+    }
+    public double getImageOffsetX(){
+        return 0;
+    }
+    public double getImageOffsetY(){
+        return 0;
+    }
+    public double getImageSizeX(){
+        return 1;
+    }
+    public double getImageSizeY(){
+        return 1;
     }
 }

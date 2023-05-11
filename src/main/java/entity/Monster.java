@@ -1,28 +1,14 @@
 package main.java.entity;
 
-import main.java.Map;
+import javafx.scene.image.Image;
 
 public class Monster extends NonPlayablePhysicalEntity{
-	
-	private int shoot;
-
-    public Monster(double x, double y) {
-        super(x, y);
-        this.shoot = 0;
-    }
-    
-    public int getShoot() {
-		return shoot;
+	private static final Image image = new Image("file:src/main/resources/monster.png");
+	public Monster(double x, double y) {
+		super(x, y);
 	}
-
-	public void setShoot(int shoot) {
-		this.shoot = shoot;
+	@Override
+	public Image getImage(){
+		return image;
 	}
-    
-    @Override
-    public void tick(Map map) {
-    	super.tick(map);
-    	int r = (int) (Math.random()*150);
-    	this.setShoot(r);
-    }
 }
