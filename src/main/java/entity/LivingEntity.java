@@ -36,12 +36,9 @@ public class LivingEntity extends PhysicalEntity{
     public void tick(Environment environment){
 
         if(life < 0.001) destroy();
+        vy-=0.02;
+        vx*=0.7;
     	super.tick(environment);
-//        int rand = new Random().nextInt(100);
-//        if(rand>=10 && rand<20){
-//            double dir = new Random().nextDouble(360);
-//            environment.addEntity(new Bullet(x+w/2,y+2*h/3,Math.cos(dir),Math.sin(dir)));
-//        }
         
     }
 }

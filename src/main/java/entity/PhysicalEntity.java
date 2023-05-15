@@ -5,8 +5,6 @@ import main.java.Environment;
 import java.util.Arrays;
 
 public abstract class PhysicalEntity extends Entity{
-	
-
     protected double w;
     protected double h;
     protected boolean on_ground;
@@ -33,8 +31,6 @@ public abstract class PhysicalEntity extends Entity{
     public void tick(Environment environment) {
 
     	setLast_shot(getLast_shot()-1);
-    	
-        vy-=0.02;
         on_ground=false;
         if(vx<0){
             int check_x = (int)Math.floor(x);
@@ -117,7 +113,6 @@ public abstract class PhysicalEntity extends Entity{
                 y+=vy;
             }
         }
-        vx*=0.7;
         int bottom_x = (int)Math.floor(x);
         int top_x = (int)Math.ceil(x+w)-1;
         int bottom_y = (int)Math.floor(y);
