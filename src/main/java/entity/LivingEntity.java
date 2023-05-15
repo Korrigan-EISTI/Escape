@@ -7,11 +7,25 @@ import main.java.Environment;
 
 public class LivingEntity extends PhysicalEntity{
 
+    double life;
+    public LivingEntity(double x, double y) {
+        super(x, y, 0, 0, (double) 20/24, (double) 20/24);
+        life = 1;
+    }
+    public double getLife() {
+        return life;
+    }
+    public void setLife(double life) {
+        this.life = life;
+    }
+    public void damage(double d) {
+        life-=d;
+    }
+    public void heal(double d) {
+        life+=d;
+    }
     private static final Image image = new Image("file:src/main/resources/pnj.png");
 
-    public LivingEntity(double x, double y) {
-    	super(x, y, 0, 0, (double) 20/24, (double) 20/24);
-    }
     
     @Override
     public Image getImage(){
@@ -20,6 +34,8 @@ public class LivingEntity extends PhysicalEntity{
     
     @Override
     public void tick(Environment environment){
+
+        if(life < 0.001) destroy();
     	super.tick(environment);
 //        int rand = new Random().nextInt(100);
 //        if(rand>=10 && rand<20){

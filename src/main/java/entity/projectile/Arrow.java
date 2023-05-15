@@ -2,6 +2,7 @@ package main.java.entity.projectile;
 
 import javafx.scene.image.Image;
 import main.java.Environment;
+import main.java.entity.LivingEntity;
 import main.java.entity.PhysicalEntity;
 
 public class Arrow extends Projectile {
@@ -26,11 +27,10 @@ public class Arrow extends Projectile {
 	public void tick(Environment environment) {
 		super.tick(environment);
 		for (int i = 0;i<environment.getEntityCount();i++){
-			if(environment.getEntity(i) instanceof PhysicalEntity){
-				PhysicalEntity physicalEntity = (PhysicalEntity)environment.getEntity(i);
-				if(x>physicalEntity.getX() && x<physicalEntity.getX()+physicalEntity.getWidth() && y>physicalEntity.getY() && y<physicalEntity.getY()+physicalEntity.getHeight() ){
-					if(isShotFromPlayer()) physicalEntity.damage(0.25);
-					else physicalEntity.damage(0.1);
+			if(environment.getEntity(i) instanceof LivingEntity livingEntity){
+				if(x>livingEntity.getX() && x<livingEntity.getX()+livingEntity.getWidth() && y>livingEntity.getY() && y<livingEntity.getY()+livingEntity.getHeight() ){
+					if(isShotFromPlayer()) livingEntity.damage(0.25);
+					else livingEntity.damage(0.1);
 					destroy();
 				}
 			}

@@ -6,13 +6,13 @@ import main.java.Environment;
 import main.java.Input;
 import main.java.entity.projectile.Arrow;
 
-public class Player extends PhysicalEntity{
+public class Player extends LivingEntity{
 
     private static final Image image = new Image("file:src/main/resources/player.png");
     protected boolean climbing;
 
     public Player(double x, double y) {
-        super(x, y, 0, 0, (double) 20/24,(double) 20/24);
+        super(x, y);
         setLast_shot(60);
     }
 

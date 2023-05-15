@@ -61,7 +61,7 @@ public class Renderer {
                     gc.setFill(Color.LIGHTGRAY);
                     gc.fillRect(canvas.getWidth() / 2 + (livingEntity.getX() + entity.getImageOffsetX() - camera.getX() - .15 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale - (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 0.95) * scale,(livingEntity.getImageSizeX()+.3)* scale, .2 * scale);
                     gc.setFill(Color.GREEN);
-                    gc.fillRect(canvas.getWidth() / 2 + (livingEntity.getX() + entity.getImageOffsetX() - camera.getX() - .1 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale - (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 1) * scale,(livingEntity.getImageSizeX()+.2)* scale * livingEntity.getLifebar().getLife(), .1 * scale);
+                    gc.fillRect(canvas.getWidth() / 2 + (livingEntity.getX() + entity.getImageOffsetX() - camera.getX() - .1 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale - (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 1) * scale,(livingEntity.getImageSizeX()+.2)* scale * livingEntity.getLife(), .1 * scale);
                 }
             }
         }
