@@ -10,10 +10,14 @@ public class Player extends LivingEntity{
 
     private static final Image image = new Image("file:src/main/resources/player.png");
     protected boolean climbing;
+    private boolean allowToShoot;
+    private boolean hasKey;
 
     public Player(double x, double y) {
         super(x, y);
         setLast_shot(60);
+        allowToShoot = true;
+        hasKey = false;
     }
 
 	@Override
@@ -40,16 +44,18 @@ public class Player extends LivingEntity{
         if(input.keyPressed(KeyCode.UP) && (on_ground || climbing)){
             vy=0.35;
         }
-        if(input.keyPressed(KeyCode.DOWN) && climbing){
-            vy=-0.3;
-        }
-        if(input.keyPressed(KeyCode.A) && getLast_shot()<=0){
-        	environment.addEntity(new Arrow(x-w/2,y+2*h/3,-0.5, true));
-        	setLast_shot(30);
-        }
-        if(input.keyPressed(KeyCode.E) && getLast_shot()<=0){
-            environment.addEntity(new Arrow(x+3*w/2,y+2*h/3,0.5, true));
-            setLast_shot(30);
+        if (allowToShoot) {
+        	if(input.keyPressed(KeyCode.DOWN) && climbing){
+                vy=-0.3;
+            }
+            if(input.keyPressed(KeyCode.A) && getLast_shot()<=0){
+            	environment.addEntity(new Arrow(x-w/2,y+2*h/3,-0.5, true));
+            	setLast_shot(30);
+            }
+            if(input.keyPressed(KeyCode.E) && getLast_shot()<=0){
+                environment.addEntity(new Arrow(x+3*w/2,y+2*h/3,0.5, true));
+                setLast_shot(30);
+            }
         }
     }
     
@@ -57,4 +63,21 @@ public class Player extends LivingEntity{
     public Image getImage(){
         return image;
     }
+    
+    public void setAllowToShoot(boolean b) {
+    	this.allowToShoot = b;
+    }
+    
+    public boolean isAllowToShoot() {
+    	return this.allowToShoot;
+    }
+
+	public boolean hasKey() {
+		return hasKey;
+	}
+
+	public void setHasKey(boolean hasKey) {
+		this.hasKey = hasKey;
+	}
+    
 }

@@ -1,7 +1,10 @@
 package main.java;
 
 import main.java.entity.Entity;
+import main.java.entity.Key;
 import main.java.entity.Monster;
+import main.java.entity.Player;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
@@ -18,6 +21,7 @@ public class Environment {
     private final int map_width, map_height;
     private ArrayList<Entity> entities;
     private ArrayList<Entity> addedEntities;
+    private Player player;
     
     public Environment(){
     	
@@ -47,6 +51,7 @@ public class Environment {
             }
         }
     }
+    
     
     public short getBlock(int x,int y) {
     	
@@ -93,8 +98,22 @@ public class Environment {
     	addedEntities.add(new Monster(75,84));
     	addedEntities.add(new Monster(115,33));
     }
+    
+    public void generateItems() {
+    	addedEntities.add(new Key(168, 63));
+    }
+    
+    public Player getPlayer() {
+		return player;
+	}
 
-    public void tickEntities(){
+	public void setPlayer(Player player) {
+		this.player = player;
+		addEntity(player);
+	}
+
+
+	public void tickEntities(){
     	
         entities.addAll(addedEntities);
         addedEntities.clear();

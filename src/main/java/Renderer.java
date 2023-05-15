@@ -60,7 +60,9 @@ public class Renderer {
                 if(entity instanceof LivingEntity livingEntity){
                     gc.setFill(Color.LIGHTGRAY);
                     gc.fillRect(canvas.getWidth() / 2 + (livingEntity.getX() + entity.getImageOffsetX() - camera.getX() - .15 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale - (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 0.95) * scale,(livingEntity.getImageSizeX()+.3)* scale, .2 * scale);
-                    gc.setFill(Color.GREEN);
+                    if (livingEntity.getLife()<=0.3) gc.setFill(Color.RED);
+                    else if (livingEntity.getLife()<=0.6) gc.setFill(Color.ORANGE);
+                    else gc.setFill(Color.GREEN);
                     gc.fillRect(canvas.getWidth() / 2 + (livingEntity.getX() + entity.getImageOffsetX() - camera.getX() - .1 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale - (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 1) * scale,(livingEntity.getImageSizeX()+.2)* scale * livingEntity.getLife(), .1 * scale);
                 }
             }
