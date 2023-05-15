@@ -1,6 +1,7 @@
 package main.java.entity;
 
 import main.java.Environment;
+import main.java.LifeBar;
 
 import java.util.Arrays;
 
@@ -11,19 +12,32 @@ public abstract class PhysicalEntity extends Entity{
     protected double h;
     protected boolean on_ground;
     protected short[] touched;
-    protected double life;
+    protected LifeBar lifebar;
+    private int last_shot;
     
-    public PhysicalEntity(double x, double y, double vx, double vy, double w, double h,double life) {
+    public PhysicalEntity(double x, double y, double vx, double vy, double w, double h) {
         super(x, y, vx, vy);
-        this.w=w;
-        this.h=h;
-        on_ground = false;
-        touched = new short[(int)(Math.ceil(w+1)*Math.ceil(h+10))];
-        this.life = life;
+        this.w = w;
+        this.h = h;
+        this.on_ground = false;
+        this.touched = new short[(int)(Math.ceil(w+1)*Math.ceil(h+10))];
+        this.lifebar = new LifeBar();
     }
 
-    @Override
+    public int getLast_shot() {
+		return last_shot;
+	}
+
+	public void setLast_shot(int last_shot) {
+		this.last_shot = last_shot;
+	}
+
+	@Override
     public void tick(Environment environment) {
+    	
+    	if(lifebar.getLife() <= 0.01) destroy();
+    	setLast_shot(getLast_shot()-1);
+    	
         vy-=0.02;
         on_ground=false;
         if(vx<0){
@@ -132,19 +146,28 @@ public abstract class PhysicalEntity extends Entity{
     public double getHeight() {
         return h;
     }
+    
+    public LifeBar getLifebar() {
+        return lifebar;
+    }
+
+    public void setLife(LifeBar l) {
+        this.lifebar = l;
+    }
 
     public double getLife() {
-        return life;
+        return lifebar.getLife();
     }
 
     public void setLife(double d) {
-        this.life = d;
+        this.lifebar.setLife(d);;
     }
+    
     public void damage(double d) {
-        this.life -= d;
+        this.lifebar.setLife(this.lifebar.getLife()-d);
     }
     public void heal(double d) {
-        this.life += d;
+    	this.lifebar.setLife(this.lifebar.getLife()+d);
     }
     @Override
     public double getImageSizeX(){

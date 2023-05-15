@@ -9,13 +9,11 @@ import main.java.entity.projectile.Arrow;
 public class Player extends PhysicalEntity{
 
     private static final Image image = new Image("file:src/main/resources/player.png");
-	private double life;
     protected boolean climbing;
 
-
     public Player(double x, double y) {
-        super(x, y, 0, 0, (double) 20 /24, (double) 20 /24,1);
-        life = 1;
+        super(x, y, 0, 0, (double) 20/24,(double) 20/24);
+        setLast_shot(60);
     }
 
 	@Override
@@ -30,6 +28,7 @@ public class Player extends PhysicalEntity{
             vy=0;
         }
     }
+	
     public void handleInput(Input input,Environment environment){
 
         if(input.keyPressed(KeyCode.RIGHT)){
@@ -44,13 +43,16 @@ public class Player extends PhysicalEntity{
         if(input.keyPressed(KeyCode.DOWN) && climbing){
             vy=-0.3;
         }
-        if(input.keyPressed(KeyCode.A)){
-        	environment.addEntity(new Arrow(x+w/2,y+2*h/2,-1));
+        if(input.keyPressed(KeyCode.A) && getLast_shot()<=0){
+        	environment.addEntity(new Arrow(x-w/2,y+2*h/3,-0.5, true));
+        	setLast_shot(30);
         }
-        if(input.keyPressed(KeyCode.E)){
-            environment.addEntity(new Arrow(x+w/2,y+2*h/2,1));
+        if(input.keyPressed(KeyCode.E) && getLast_shot()<=0){
+            environment.addEntity(new Arrow(x+3*w/2,y+2*h/3,0.5, true));
+            setLast_shot(30);
         }
     }
+    
     @Override
     public Image getImage(){
         return image;

@@ -3,23 +3,31 @@ package main.java.entity;
 import javafx.scene.image.Image;
 import main.java.Environment;
 import main.java.entity.projectile.Arrow;
-import main.java.entity.projectile.Bullet;
 
 import java.util.Random;
 
-public class Monster extends NonPlayablePhysicalEntity{
+public class Monster extends LivingEntity {
+	
 	private static final Image image = new Image("file:src/main/resources/monster.png");
+	
+	
 	public Monster(double x, double y) {
-		super(x, y,10);
+		super(x, y);
 	}
+	
 	@Override
 	public void tick(Environment environment){
-		int rand = new Random().nextInt(100);
-		if(rand<10){
+		
+		super.tick(environment);
+		
+		if(getLast_shot()<=0){
+			setLast_shot(60);
 			double dir = new Random().nextInt(2);
-			environment.addEntity(new Arrow(x+w/2,y+2*h/3,(double)(dir*2-1)/2));
+			if(dir==0) environment.addEntity(new Arrow(x-w/2,y+2*h/3,-0.5, false));
+			if(dir==1) environment.addEntity(new Arrow(x+3*w/2,y+2*h/3,0.5, false));
 		}
 	}
+
 	@Override
 	public Image getImage(){
 		return image;

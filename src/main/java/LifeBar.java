@@ -1,18 +1,15 @@
 package main.java;
 
 import javafx.scene.control.ProgressBar;
-import main.java.entity.Entity;
 
 public class LifeBar {
 	
 	private ProgressBar lifeBar;
-	private int life;
-	private Entity parent;
+	private double life;
 	
-	public LifeBar(Entity parent) {
-		this.parent = parent;
+	public LifeBar() {
 		lifeBar = new ProgressBar(1);
-		life = 100;
+		life = 1;
 	}
 
 	public ProgressBar getLifeBar() {
@@ -23,20 +20,12 @@ public class LifeBar {
 		this.lifeBar = lifeBar;
 	}
 
-	public int getLife() {
+	public double getLife() {
 		return life;
 	}
 
-	public void setLife(int life) {
+	public void setLife(double life) {
 		this.life = life;
-	}
-
-	public Entity getParent() {
-		return parent;
-	}
-
-	public void setParent(Entity parent) {
-		this.parent = parent;
 	}
 	
 	public void setLifeBarColor(String color) {

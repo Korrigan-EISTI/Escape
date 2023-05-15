@@ -5,8 +5,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import main.java.entity.Entity;
+import main.java.entity.LivingEntity;
 import main.java.entity.particle.Particle;
-
 import java.util.Objects;
 
 public class Renderer {
@@ -33,7 +33,7 @@ public class Renderer {
     
     public void render(Camera camera,Environment environment){
     	
-        gc.setFill(Color.GRAY);
+        gc.setFill(Color.LIGHTBLUE);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         
         int start_x = (int) Math.floor(camera.getX() - canvas.getWidth() / (scale *2));
@@ -57,6 +57,12 @@ public class Renderer {
                 }
                 gc.drawImage(entity.getImage(), canvas.getWidth() / 2 + (entity.getX() + entity.getImageOffsetX() - camera.getX()) * scale, canvas.getHeight() / 2 - entity.getImageSizeY()* scale - (entity.getY()  + entity.getImageOffsetY() - camera.getY()) * scale, entity.getImageSizeX()* scale, entity.getImageSizeY()* scale);
                 gc.setGlobalAlpha(1);
+                if(entity instanceof LivingEntity livingEntity){
+                    gc.setFill(Color.LIGHTGRAY);
+                    gc.fillRect(canvas.getWidth() / 2 + (livingEntity.getX() + entity.getImageOffsetX() - camera.getX() - .15 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale - (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 0.95) * scale,(livingEntity.getImageSizeX()+.3)* scale, .2 * scale);
+                    gc.setFill(Color.GREEN);
+                    gc.fillRect(canvas.getWidth() / 2 + (livingEntity.getX() + entity.getImageOffsetX() - camera.getX() - .1 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale - (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 1) * scale,(livingEntity.getImageSizeX()+.2)* scale * livingEntity.getLifebar().getLife(), .1 * scale);
+                }
             }
         }
 	}

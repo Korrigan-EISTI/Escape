@@ -24,16 +24,19 @@ public class Environment {
         entities = new ArrayList<>();
         addedEntities = new ArrayList<>();
         Document doc = null;
+        
         try {
             doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File("src/main/resources/maps/map.tmx"));
         }
         catch (ParserConfigurationException | SAXException | IOException ignored) {
         }
+        
         Node info = doc.getElementsByTagName("map").item(0);
         map_width=Short.parseShort(info.getAttributes().getNamedItem("width").getTextContent());
         map_height=Short.parseShort(info.getAttributes().getNamedItem("height").getTextContent());
         blocks= new short[map_height][map_width];
         String data = doc.getElementsByTagName("data").item(0).getTextContent().trim();
+        
         int y=map_height;
         for (String row : data.split("\n")){
             y--;
@@ -77,10 +80,10 @@ public class Environment {
     	addedEntities.add(new Monster(39,51));
     	addedEntities.add(new Monster(56,46));
     	addedEntities.add(new Monster(75,53));
-    	addedEntities.add(new Monster(74,68));
+    	addedEntities.add(new Monster(74,58));
     	addedEntities.add(new Monster(82,64));
     	addedEntities.add(new Monster(67,64));
-    	addedEntities.add(new Monster(68,81));
+    	addedEntities.add(new Monster(69,81));
     	addedEntities.add(new Monster(75,70));
     	addedEntities.add(new Monster(81,72));
     	addedEntities.add(new Monster(81,76));
