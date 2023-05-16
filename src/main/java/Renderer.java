@@ -80,10 +80,11 @@ public class Renderer {
 
                     drawRect(camera,livingEntity.getX() + entity.getImageOffsetX() - .15,livingEntity.getY()  + livingEntity.getImageOffsetY() - 0.05,livingEntity.getImageSizeX()+.3,.2,Color.LIGHTGRAY);
                     Color color;
-                    if (livingEntity.getLife()<=0.3) color = Color.RED;
-                    else if (livingEntity.getLife()<=0.6) color = Color.ORANGE;
+                    double lifeRatio = livingEntity.getLife()/ livingEntity.getMaxLife();
+                    if (lifeRatio<=0.3) color = Color.RED;
+                    else if (lifeRatio<=0.6) color = Color.ORANGE;
                     else color = Color.GREEN;
-                    drawRect(camera,livingEntity.getX() + entity.getImageOffsetX() - .1,livingEntity.getY()  + livingEntity.getImageOffsetY() - 0.1,(livingEntity.getImageSizeX()+.2)* livingEntity.getLife()/ livingEntity.getMaxLife(),.1,color);
+                    drawRect(camera,livingEntity.getX() + entity.getImageOffsetX() - .1,livingEntity.getY()  + livingEntity.getImageOffsetY() - 0.1,(livingEntity.getImageSizeX()+.2)* lifeRatio,.1,color);
                 }
             }
         }
