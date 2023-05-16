@@ -30,7 +30,13 @@ public class Renderer {
             }
         }
     }
-    
+    private void drawImage(Image image, Camera camera, double x, double y, double w, double h){
+        gc.drawImage(image, canvas.getWidth() / 2 + (x - camera.getX())* scale, canvas.getHeight() / 2 - (h + y - camera.getY())* scale, w*scale, h*scale);
+    }
+    private void drawRect(Camera camera,double x, double y, double w, double h, Color color){
+        gc.setFill(color);
+        gc.fillRect(canvas.getWidth() / 2 + (x - camera.getX()) * scale, canvas.getHeight() / 2 - (y - camera.getY()) * scale,w * scale, h * scale);
+    }
     public void render(Camera camera,Environment environment){
     	
         gc.setFill(Color.LIGHTBLUE);
@@ -45,7 +51,7 @@ public class Renderer {
             for (int y = start_y; y < end_y; y++) {
                 short block = environment.getBlock(x, y);
                 if (block_images[block]!=null) {
-                    gc.drawImage(block_images[block], canvas.getWidth() / 2 + (x - camera.getX())* scale, canvas.getHeight() / 2 - scale - (y - camera.getY())* scale, scale, scale);
+                    drawImage(block_images[block],camera,x,y,1,1);
                 }
             }
         }
@@ -55,15 +61,15 @@ public class Renderer {
                 if(entity instanceof Particle){
                     gc.setGlobalAlpha(((Particle) entity).getAlpha());
                 }
-                gc.drawImage(entity.getImage(), canvas.getWidth() / 2 + (entity.getX() + entity.getImageOffsetX() - camera.getX()) * scale, canvas.getHeight() / 2 - entity.getImageSizeY()* scale - (entity.getY()  + entity.getImageOffsetY() - camera.getY()) * scale, entity.getImageSizeX()* scale, entity.getImageSizeY()* scale);
+                drawImage(entity.getImage(),camera,entity.getX() + entity.getImageOffsetX(),entity.getY()  + entity.getImageOffsetY(),entity.getImageSizeX(),entity.getImageSizeY());
                 gc.setGlobalAlpha(1);
                 if(entity instanceof LivingEntity livingEntity){
-                    gc.setFill(Color.LIGHTGRAY);
-                    gc.fillRect(canvas.getWidth() / 2 + (livingEntity.getX() + entity.getImageOffsetX() - camera.getX() - .15 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale - (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 0.95) * scale,(livingEntity.getImageSizeX()+.3)* scale, .2 * scale);
-                    if (livingEntity.getLife()<=0.3) gc.setFill(Color.RED);
-                    else if (livingEntity.getLife()<=0.6) gc.setFill(Color.ORANGE);
-                    else gc.setFill(Color.GREEN);
-                    gc.fillRect(canvas.getWidth() / 2 + (livingEntity.getX() + entity.getImageOffsetX() - camera.getX() - .1 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale - (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 1) * scale,(livingEntity.getImageSizeX()+.2)* scale * livingEntity.getLife(), .1 * scale);
+                    drawRect(camera,livingEntity.getX() + entity.getImageOffsetX() - .15,livingEntity.getY()  + livingEntity.getImageOffsetY() - 0.05,livingEntity.getImageSizeX()+.3,.2,Color.LIGHTGRAY);
+                    Color color;
+                    if (livingEntity.getLife()<=0.3) color = Color.RED;
+                    else if (livingEntity.getLife()<=0.6) color = Color.ORANGE;
+                    else color = Color.GREEN;
+                    drawRect(camera,livingEntity.getX() + entity.getImageOffsetX() - .1,livingEntity.getY()  + livingEntity.getImageOffsetY() - 0.1,(livingEntity.getImageSizeX()+.2)* livingEntity.getLife()/ livingEntity.getMaxLife(),.1,color);
                 }
             }
         }

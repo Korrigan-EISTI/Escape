@@ -7,31 +7,29 @@ import main.java.entity.NonPlayableCharacter;
 
 public class Arrow extends Projectile {
 
-	private static Image imageLeft = new Image("file:src/main/resources/arrow_left.png");
-	private static Image imageRight = new Image("file:src/main/resources/arrow_right.png");
-	private boolean shotFromPlayer;
+	private static final Image imageLeft = new Image("file:src/main/resources/arrow_left.png");
+	private static final Image imageRight = new Image("file:src/main/resources/arrow_right.png");
+	private Class<?> owner;
 
-	public Arrow(double x, double y, double vx, boolean shotFromPlayer) {
-		super(x, y,vx,0);
-		this.setShotFromPlayer(shotFromPlayer);
+	public Arrow(double x, double y, double vx, Class<?> owner) {
+		super(x-0.5, y,vx,0,1,0.2);
+		this.owner = owner;
 	}
 
-	public boolean isShotFromPlayer() {
-		return shotFromPlayer;
-	}
-
-	public void setShotFromPlayer(boolean shotFromPlayer) {
-		this.shotFromPlayer = shotFromPlayer;
+	public Class<?> shotFrom() {
+		return owner;
 	}
 
 	public void tick(Environment environment) {
 		super.tick(environment);
 		for (int i = 0;i<environment.getEntityCount();i++){
-			if(environment.getEntity(i) instanceof LivingEntity livingEntity && !(environment.getEntity(i) instanceof NonPlayableCharacter)){
-				if(x>livingEntity.getX() && x<livingEntity.getX()+livingEntity.getWidth() && y>livingEntity.getY() && y<livingEntity.getY()+livingEntity.getHeight() ){
-					if(isShotFromPlayer()) livingEntity.damage(0.25);
-					else livingEntity.damage(0.1);
-					destroy();
+			if(environment.getEntity(i) instanceof LivingEntity livingEntity && !(livingEntity instanceof NonPlayableCharacter)){
+				if(x<livingEntity.getX() + livingEntity.getWidth() && x+w>livingEntity.getX() && y<livingEntity.getY() + livingEntity.getHeight() && y+h>livingEntity.getY()){
+					if(!(livingEntity instanceof NonPlayableCharacter) && !owner.isInstance(livingEntity))
+					{
+						livingEntity.damage(1);
+						destroy();
+					}
 				}
 			}
 		}
@@ -39,17 +37,5 @@ public class Arrow extends Projectile {
 
 	public Image getImage(){
 		return vx>0?imageRight:imageLeft;
-	}
-	public double getImageOffsetX(){
-		return vx>0?-1:0;
-	}
-	public double getImageOffsetY(){
-		return -0.1;
-	}
-	public double getImageSizeX(){
-		return 1;
-	}
-	public double getImageSizeY(){
-		return 0.1;
 	}
 }

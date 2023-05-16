@@ -101,13 +101,13 @@ public class TakeTheChest extends Application {
 		
 		renderer.render(camera,environment);
 		if (environment.getPlayer().hasKey()) {
-			inventory.getBtn2().setGraphic(new ImageView(Key.img));			
+			inventory.getSlot2().setImage(new Image("file:src/main/resources/inventory_key.png"));
 		}
 		if (environment.getPlayer().hasWallPotion()) {
-			inventory.getBtn3().setGraphic(new ImageView(WallPotion.img));			
+			inventory.getSlot1().setImage(WallPotion.img);
 		}
 		if (environment.getPlayer().canWalkThroughMagicWalls()) {
-			inventory.getBtn3().setGraphic(new ImageView(WallPotion.img_used));			
+			inventory.getSlot1().setImage(WallPotion.img_used);
 		}
 		if(environment.getPlayer().getLife()<=0.1 && !dead) gameOver();
 	}
