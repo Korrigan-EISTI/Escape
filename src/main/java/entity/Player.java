@@ -14,7 +14,7 @@ public class Player extends LivingEntity{
     private boolean hasKey;
 
     public Player(double x, double y) {
-        super(x, y);
+        super(x, y,10);
         setLast_shot(60);
         allowToShoot = true;
         hasKey = false;
@@ -41,19 +41,24 @@ public class Player extends LivingEntity{
         if(input.keyPressed(KeyCode.LEFT)){
             vx-=0.07;
         }
-        if(input.keyPressed(KeyCode.UP) && (on_ground || climbing)){
-            vy=0.35;
+        if(input.keyPressed(KeyCode.UP)){
+            if (on_ground){
+                vy=0.35;
+            }
+            else if(climbing){
+                vy=0.2;
+            }
+        }
+        if(input.keyPressed(KeyCode.DOWN) && climbing){
+            vy=-0.2;
         }
         if (allowToShoot) {
-        	if(input.keyPressed(KeyCode.DOWN) && climbing){
-                vy=-0.3;
-            }
             if(input.keyPressed(KeyCode.A) && getLast_shot()<=0){
-            	environment.addEntity(new Arrow(x-w/2,y+2*h/3,-0.5, true));
+            	environment.addEntity(new Arrow(x+w/2,y+2*h/3,-0.5, this.getClass()));
             	setLast_shot(30);
             }
             if(input.keyPressed(KeyCode.E) && getLast_shot()<=0){
-                environment.addEntity(new Arrow(x+3*w/2,y+2*h/3,0.5, true));
+                environment.addEntity(new Arrow(x+w/2,y+2*h/3,0.5, this.getClass()));
                 setLast_shot(30);
             }
         }

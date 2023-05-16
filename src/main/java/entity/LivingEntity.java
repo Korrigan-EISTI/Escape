@@ -8,9 +8,20 @@ import main.java.Environment;
 public class LivingEntity extends PhysicalEntity{
 
     double life;
-    public LivingEntity(double x, double y) {
+
+    public double getMaxLife() {
+        return maxLife;
+    }
+
+    public void setMaxLife(double maxLife) {
+        this.maxLife = maxLife;
+    }
+
+    double maxLife;
+    public LivingEntity(double x, double y, double life) {
         super(x, y, 0, 0, (double) 20/24, (double) 20/24);
-        life = 1;
+        this.life = life;
+        maxLife = life;
     }
     public double getLife() {
         return life;

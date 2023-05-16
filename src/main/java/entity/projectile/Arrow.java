@@ -9,19 +9,15 @@ public class Arrow extends Projectile {
 
 	private static final Image imageLeft = new Image("file:src/main/resources/arrow_left.png");
 	private static final Image imageRight = new Image("file:src/main/resources/arrow_right.png");
-	private boolean shotFromPlayer;
+	private Class<?> owner;
 
-	public Arrow(double x, double y, double vx, boolean shotFromPlayer) {
+	public Arrow(double x, double y, double vx, Class<?> owner) {
 		super(x-0.5, y,vx,0,1,0.2);
-		this.setShotFromPlayer(shotFromPlayer);
+		this.owner = owner;
 	}
 
-	public boolean isShotFromPlayer() {
-		return shotFromPlayer;
-	}
-
-	public void setShotFromPlayer(boolean shotFromPlayer) {
-		this.shotFromPlayer = shotFromPlayer;
+	public Class<?> shotFrom() {
+		return owner;
 	}
 
 	public void tick(Environment environment) {
@@ -29,9 +25,11 @@ public class Arrow extends Projectile {
 		for (int i = 0;i<environment.getEntityCount();i++){
 			if(environment.getEntity(i) instanceof LivingEntity livingEntity && !(livingEntity instanceof NonPlayableCharacter)){
 				if(x<livingEntity.getX() + livingEntity.getWidth() && x+w>livingEntity.getX() && y<livingEntity.getY() + livingEntity.getHeight() && y+h>livingEntity.getY()){
-					if(isShotFromPlayer()) livingEntity.damage(0.25);
-					else livingEntity.damage(0.1);
-					destroy();
+					if(!(livingEntity instanceof NonPlayableCharacter) && !owner.isInstance(livingEntity))
+					{
+						livingEntity.damage(1);
+						destroy();
+					}
 				}
 			}
 		}

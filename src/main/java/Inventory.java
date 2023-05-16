@@ -6,16 +6,19 @@ import javafx.scene.layout.HBox;
 
 public class Inventory {
 	private HBox hbox;
-	private ImageView btn1;
-	private ImageView btn2;
-	private ImageView btn3;
+	private ImageView slot1 = new ImageView(new Image("file:src/main/resources/inventory.png"));;
+	private ImageView slot2 = new ImageView(new Image("file:src/main/resources/inventory.png"));;
+	private ImageView slot3 = new ImageView(new Image("file:src/main/resources/inventory.png"));;
 	
 	public Inventory() {
 		hbox = new HBox();
-		btn1 = new ImageView(new Image("file:src/main/resources/inventory.png"));
-		btn2 = new ImageView(new Image("file:src/main/resources/inventory.png"));
-		btn3 = new ImageView(new Image("file:src/main/resources/inventory.png"));
-		hbox = new HBox(btn1, btn2, btn3);
+		slot1.setFitHeight(50);
+		slot1.setFitWidth(50);
+		slot2.setFitHeight(50);
+		slot2.setFitWidth(50);
+		slot3.setFitHeight(50);
+		slot3.setFitWidth(50);
+		hbox = new HBox(slot1, slot2, slot3);
 	}
 	
 	public HBox getHbox() {
@@ -24,22 +27,22 @@ public class Inventory {
 	public void setHbox(HBox hbox) {
 		this.hbox = hbox;
 	}
-	public ImageView getBtn1() {
-		return btn1;
+	public ImageView getSlot1() {
+		return slot1;
 	}
-	public void setBtn1(ImageView btn1) {
-		this.btn1 = btn1;
+	public void setSlot1(ImageView slot1) {
+		this.slot1 = slot1;
 	}
-	public ImageView getBtn2() {
-		return btn2;
+	public ImageView getSlot2() {
+		return slot2;
 	}
-	public void setBtn2(ImageView btn2) {
-		this.btn2 = btn2;
+	public void setSlot2(ImageView slot2) {
+		this.slot2 = slot2;
 	}
-	public ImageView getBtn3() {
-		return btn3;
+	public ImageView getSlot3() {
+		return slot3;
 	}
-	public void setBtn3(ImageView btn3) {
-		this.btn3 = btn3;
+	public void setSlot3(ImageView slot3) {
+		this.slot3 = slot3;
 	}
 }

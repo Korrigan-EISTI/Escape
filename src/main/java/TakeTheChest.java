@@ -96,7 +96,7 @@ public class TakeTheChest extends Application {
 		camera.tick();
 		renderer.render(camera,environment);
 		if (environment.getPlayer().hasKey()) {
-			inventory.getBtn2().setImage(new Image("file:src/main/resources/inventory_key.png"));			
+			inventory.getSlot2().setImage(new Image("file:src/main/resources/inventory_key.png"));
 		}
 		if(environment.getPlayer().getLife()<=0.1 && !dead) gameOver();
 	}
