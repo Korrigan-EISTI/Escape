@@ -44,6 +44,7 @@ public abstract class PhysicalEntity extends Entity{
             	scan_x-=1;
                 for (int i = start_y;i<=end_y;i++){
                     hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==1 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
+                    if(environment.getPlayer().hasKey() && Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==3) environment.setGameProgression(4);
                 }
             }
             if(hit){

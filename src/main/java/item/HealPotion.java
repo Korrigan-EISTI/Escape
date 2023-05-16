@@ -1,20 +1,20 @@
-package item;
+package main.java.item;
 
 import javafx.scene.image.Image;
 import main.java.Environment;
 
-public class Key extends Item{
-	public static Image img = new Image("file:src/main/resources/key.png");
+public class HealPotion extends Item{
 	
-	public Key(double x, double y) {
+	public static Image img = new Image("file:src/main/resources/heal_potion.png");
+	
+	public HealPotion(double x, double y) {
 		super (x, y, 1, 1);
 	}
 	
 	public void tick (Environment e) {
 		super.tick(e);
 		if (!status) {
-			e.getPlayer().setHasKey(true);
-			e.setGameProgression(2);
+			e.getPlayer().heal(5);
 		}
 	}
 	
@@ -22,5 +22,4 @@ public class Key extends Item{
 	public Image getImage() {
 		return img;
 	}
-	
 }

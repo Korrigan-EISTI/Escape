@@ -3,6 +3,7 @@ package main.java.entity;
 import main.java.Environment;
 
 public class NonPlayableCharacter extends LivingEntity {
+	
 	private int cooldown;
 	
 	public NonPlayableCharacter(double x, double y) {

@@ -1,6 +1,7 @@
 package main.java;
 
 import main.java.entity.Entity;
+import main.java.item.HealPotion;
 import main.java.item.Key;
 import main.java.item.WallPotion;
 import main.java.entity.Monster;
@@ -104,6 +105,7 @@ public class Environment {
     public void generateItems() {
     	addedEntities.add(new Key(168, 63));
     	addedEntities.add(new WallPotion(111, 33));
+    	addedEntities.add(new HealPotion(190, 53));
     }
     
     public Player getPlayer() {
