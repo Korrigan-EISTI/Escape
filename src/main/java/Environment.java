@@ -26,7 +26,6 @@ public class Environment {
     private int gameProgression;
     
     public Environment(){
-    	
     	gameProgression = 0;
         entities = new ArrayList<>();
         addedEntities = new ArrayList<>();
@@ -117,16 +116,6 @@ public class Environment {
 	}
 
 
-	public int getGameProgression() {
-		return gameProgression;
-	}
-
-
-	public void setGameProgression(int gameProgression) {
-		this.gameProgression = gameProgression;
-	}
-
-
 	public void tickEntities(){
     	
         entities.addAll(addedEntities);
@@ -145,4 +134,15 @@ public class Environment {
     public Entity getEntity(int i){
         return entities.get(i);
     }
+
+
+	public int getGameProgression() {
+		return gameProgression;
+	}
+
+
+	public void setGameProgression(int gameProgression) {
+		this.gameProgression = gameProgression;
+	}
+    
 }

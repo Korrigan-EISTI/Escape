@@ -1,6 +1,9 @@
-package main.java.entity;
+package item;
 
 import main.java.Environment;
+import main.java.entity.Entity;
+import main.java.entity.Player;
+
 
 public class Item extends Entity{
 	protected boolean status;

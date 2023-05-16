@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import main.java.entity.Entity;
 import main.java.entity.LivingEntity;
+import main.java.entity.NonPlayableCharacter;
 import main.java.entity.particle.Particle;
 import java.util.Objects;
 
@@ -16,7 +17,6 @@ public class Renderer {
     public static final int scale = 64;
 
     public Renderer(Canvas canvas){
-    	
         this.canvas = canvas;
         gc = this.canvas.getGraphicsContext2D();
         gc.setImageSmoothing(false);
@@ -64,6 +64,20 @@ public class Renderer {
                 drawImage(entity.getImage(),camera,entity.getX() + entity.getImageOffsetX(),entity.getY()  + entity.getImageOffsetY(),entity.getImageSizeX(),entity.getImageSizeY());
                 gc.setGlobalAlpha(1);
                 if(entity instanceof LivingEntity livingEntity){
+                	if (entity instanceof NonPlayableCharacter npc){
+                		gc.setFill(Color.WHITE);
+                	    gc.fillRect(canvas.getWidth() / 2 + (livingEntity.getX() - 0.75 + entity.getImageOffsetX() - camera.getX() - .15 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale + (livingEntity.getY() - 0.25  + livingEntity.getImageOffsetY() - camera.getY() - 0.95) * scale,(livingEntity.getImageSizeX()*4.25)* scale, .9* scale);
+                		if (environment.getGameProgression() == 1) {
+                			gc.setFill(Color.BLACK);
+                			gc.fillText("Viens me voir héros! \nJ'ai un problème mon coffre est fermé \net j'ai oublié où j'ai mis la clé \n", canvas.getWidth() / 2 + (livingEntity.getX() - 0.5 + entity.getImageOffsetX() - camera.getX() - .15 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale + (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 0.95) * scale);
+                			if (npc.getCooldown() <= 0) environment.setGameProgression(2);
+                		}
+                		if (environment.getGameProgression() == 2) {
+                			gc.setFill(Color.BLACK);
+                			gc.fillText("Ah!!!! \nMon chateau est rempli de monstre, \ntiens prends mon arc et va les tuer", canvas.getWidth() / 2 + (livingEntity.getX() - 0.5 + entity.getImageOffsetX() - camera.getX() - .15 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale + (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 0.95) * scale);
+                		}
+                	}
+
                     drawRect(camera,livingEntity.getX() + entity.getImageOffsetX() - .15,livingEntity.getY()  + livingEntity.getImageOffsetY() - 0.05,livingEntity.getImageSizeX()+.3,.2,Color.LIGHTGRAY);
                     Color color;
                     if (livingEntity.getLife()<=0.3) color = Color.RED;

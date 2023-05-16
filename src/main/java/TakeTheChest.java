@@ -18,8 +18,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import main.java.item.Key;
-import main.java.item.WallPotion;
 import main.java.entity.Player;
 import main.java.entity.NonPlayableCharacter;
 
@@ -104,10 +102,13 @@ public class TakeTheChest extends Application {
 			inventory.getSlot2().setImage(new Image("file:src/main/resources/inventory_key.png"));
 		}
 		if (environment.getPlayer().hasWallPotion()) {
-			inventory.getSlot1().setImage(WallPotion.img);
+			inventory.getSlot1().setImage(new Image("file:src/main/resources/inventory_wall_potion.png"));
 		}
 		if (environment.getPlayer().canWalkThroughMagicWalls()) {
-			inventory.getSlot1().setImage(WallPotion.img_used);
+			inventory.getSlot1().setImage(new Image("file:src/main/resources/inventory_wall_potion_used.png"));
+		}
+		if (environment.getPlayer().isAllowToShoot()) {
+			inventory.getSlot3().setImage(new Image("file:src/main/resources/inventory_bow.png"));
 		}
 		if(environment.getPlayer().getLife()<=0.1 && !dead) gameOver();
 	}

@@ -1,4 +1,4 @@
-package main.java.entity;
+package item;
 
 import javafx.scene.image.Image;
 import main.java.Environment;
@@ -14,6 +14,7 @@ public class Key extends Item{
 		super.tick(e);
 		if (!status) {
 			e.getPlayer().setHasKey(true);
+			e.setGameProgression(2);
 		}
 	}
 	

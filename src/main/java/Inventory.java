@@ -3,6 +3,8 @@ package main.java;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class Inventory {
 	private HBox hbox;
@@ -20,7 +22,7 @@ public class Inventory {
 		slot3.setFitWidth(50);
 		hbox = new HBox(slot1, slot2, slot3);
 	}
-
+	
 	public HBox getHbox() {
 		return hbox;
 	}

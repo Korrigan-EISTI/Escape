@@ -18,9 +18,10 @@ public class Player extends LivingEntity{
     public Player(double x, double y) {
         super(x, y,10);
         setLast_shot(30);
+        allowToShoot = false;
         hasKey = false;
         hasWallPotion = false;
-        allowToShoot = true;
+
     }
 
 	@Override
@@ -107,4 +108,13 @@ public class Player extends LivingEntity{
 			this.setHasWallPotion(false);
 		}
 	}
+
+	public boolean isAllowToShoot() {
+		return allowToShoot;
+	}
+
+	public void setAllowToShoot(boolean allowToShoot) {
+		this.allowToShoot = allowToShoot;
+	}
+	
 }
