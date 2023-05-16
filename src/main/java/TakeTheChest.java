@@ -58,7 +58,7 @@ public class TakeTheChest extends Application {
 		camera = new Camera(100, 200);
 		root.getChildren().add(canvas);
 		
-		environment.setPlayer(new Player(114, 33));
+		environment.setPlayer(new Player(9, 51));
 		environment.generateMonsters();
 		environment.addEntity(new NonPlayableCharacter(25, 51));
 
