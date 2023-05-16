@@ -4,7 +4,6 @@ import javafx.scene.image.Image;
 import main.java.Environment;
 import main.java.entity.LivingEntity;
 import main.java.entity.NonPlayableCharacter;
-import main.java.entity.PhysicalEntity;
 
 public class Arrow extends Projectile {
 
