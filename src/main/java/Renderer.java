@@ -22,7 +22,7 @@ public class Renderer {
         gc.setImageSmoothing(false);
 
         block_images = new Image[Environment.BLOCK_PROPERTIES.size()];
-        
+
         for (int i=0;i<Environment.BLOCK_PROPERTIES.size();i++){
             String path = Environment.BLOCK_PROPERTIES.get((short)i).imagePath();
             if(!Objects.equals(path, "")){
@@ -37,16 +37,20 @@ public class Renderer {
         gc.setFill(color);
         gc.fillRect(canvas.getWidth() / 2 + (x - camera.getX()) * scale, canvas.getHeight() / 2 - (y - camera.getY()) * scale,w * scale, h * scale);
     }
+    private void drawText(Camera camera, String text, double x, double y,Color color){
+        gc.setFill(color);
+        gc.fillText(text, canvas.getWidth() / 2 + (x - camera.getX()) * scale, canvas.getHeight() / 2 - (y - camera.getY()) * scale);
+    }
     public void render(Camera camera,Environment environment){
-    	
+
         gc.setFill(Color.LIGHTBLUE);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        
+
         int start_x = (int) Math.floor(camera.getX() - canvas.getWidth() / (scale *2));
         int end_x = (int) Math.ceil(camera.getX() + canvas.getWidth() / (scale *2));
         int start_y = (int) Math.floor(camera.getY() - canvas.getHeight() / (scale *2));
         int end_y = (int) Math.ceil(camera.getY() + canvas.getHeight() / (scale *2));
-        
+
         for (int x = start_x; x < end_x; x++) {
             for (int y = start_y; y < end_y; y++) {
                 short block = environment.getBlock(x, y);
@@ -64,19 +68,16 @@ public class Renderer {
                 drawImage(entity.getImage(),camera,entity.getX() + entity.getImageOffsetX(),entity.getY()  + entity.getImageOffsetY(),entity.getImageSizeX(),entity.getImageSizeY());
                 gc.setGlobalAlpha(1);
                 if(entity instanceof LivingEntity livingEntity){
-                	if (entity instanceof NonPlayableCharacter npc){
-                		gc.setFill(Color.WHITE);
-                	    gc.fillRect(canvas.getWidth() / 2 + (livingEntity.getX() - 0.75 + entity.getImageOffsetX() - camera.getX() - .15 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale + (livingEntity.getY() - 0.25  + livingEntity.getImageOffsetY() - camera.getY() - 0.95) * scale,(livingEntity.getImageSizeX()*4.25)* scale, .9* scale);
-                		if (environment.getGameProgression() == 1) {
-                			gc.setFill(Color.BLACK);
-                			gc.fillText("Viens me voir héros! \nJ'ai un problème mon coffre est fermé \net j'ai oublié où j'ai mis la clé \n", canvas.getWidth() / 2 + (livingEntity.getX() - 0.5 + entity.getImageOffsetX() - camera.getX() - .15 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale + (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 0.95) * scale);
-                			if (npc.getCooldown() <= 0) environment.setGameProgression(2);
-                		}
-                		if (environment.getGameProgression() == 2) {
-                			gc.setFill(Color.BLACK);
-                			gc.fillText("Ah!!!! \nMon chateau est rempli de monstre, \ntiens prends mon arc et va les tuer", canvas.getWidth() / 2 + (livingEntity.getX() - 0.5 + entity.getImageOffsetX() - camera.getX() - .15 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale + (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 0.95) * scale);
-                		}
-                	}
+                    if (entity instanceof NonPlayableCharacter npc){
+                        drawRect(camera,livingEntity.getX()-1,livingEntity.getY()+2.5,4,1.5,Color.WHITE);
+                        if (environment.getGameProgression() == 1) {
+                            drawText(camera,"Viens me voir hÃ©ros! \nJ'ai un problÃ¨me mon coffre est fermÃ© \net j'ai oubliÃ© oÃ¹ j'ai mis la clÃ©",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
+                            if (npc.getCooldown() <= 0) environment.setGameProgression(2);
+                        }
+                        if (environment.getGameProgression() == 2) {
+                            drawText(camera,"Ah!!!! \nMon chateau est rempli de monstre, \ntiens prends mon arc et va les tuer",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
+                        }
+                    }
 
                     drawRect(camera,livingEntity.getX() + entity.getImageOffsetX() - .15,livingEntity.getY()  + livingEntity.getImageOffsetY() - 0.05,livingEntity.getImageSizeX()+.3,.2,Color.LIGHTGRAY);
                     Color color;
@@ -88,5 +89,5 @@ public class Renderer {
                 }
             }
         }
-	}
+    }
 }
