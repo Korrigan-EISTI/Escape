@@ -60,11 +60,11 @@ public class Player extends LivingEntity{
         }
         if (allowToShoot) {
             if(input.keyPressed(KeyCode.A) && getLast_shot()<=0){
-            	environment.addEntity(new Arrow(x+w/2,y+2*h/3,-0.5, Player.class));
+            	environment.addEntity(new Arrow(x+w/2,y+2*h/3,-0.5,this));
             	setLast_shot(30);
             }
             if(input.keyPressed(KeyCode.E) && getLast_shot()<=0) {
-                environment.addEntity(new Arrow(x+w/2,y+2*h/3, 0.5, Player.class));
+                environment.addEntity(new Arrow(x+w/2,y+2*h/3, 0.5,this));
                 setLast_shot(30);
             }
         }
