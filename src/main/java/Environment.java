@@ -1,7 +1,8 @@
 package main.java;
 
 import main.java.entity.Entity;
-import main.java.entity.Key;
+import main.java.item.Key;
+import main.java.item.WallPotion;
 import main.java.entity.Monster;
 import main.java.entity.Player;
 
@@ -16,15 +17,17 @@ import java.util.ArrayList;
 
 public class Environment {
 	
-    public static BlockProperties BLOCK_PROPERTIES=new BlockProperties();
+    public static BlockProperties BLOCK_PROPERTIES = new BlockProperties();
     private final short[][] blocks;
     private final int map_width, map_height;
     private ArrayList<Entity> entities;
     private ArrayList<Entity> addedEntities;
     private Player player;
+    private int gameProgression;
     
     public Environment(){
     	
+    	gameProgression = 0;
         entities = new ArrayList<>();
         addedEntities = new ArrayList<>();
         Document doc = null;
@@ -101,6 +104,7 @@ public class Environment {
     
     public void generateItems() {
     	addedEntities.add(new Key(168, 63));
+    	addedEntities.add(new WallPotion(111, 33));
     }
     
     public Player getPlayer() {
@@ -110,6 +114,16 @@ public class Environment {
 	public void setPlayer(Player player) {
 		this.player = player;
 		addEntity(player);
+	}
+
+
+	public int getGameProgression() {
+		return gameProgression;
+	}
+
+
+	public void setGameProgression(int gameProgression) {
+		this.gameProgression = gameProgression;
 	}
 
 

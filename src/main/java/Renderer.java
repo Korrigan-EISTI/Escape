@@ -63,7 +63,7 @@ public class Renderer {
                     if (livingEntity.getLife()<=0.3) gc.setFill(Color.RED);
                     else if (livingEntity.getLife()<=0.6) gc.setFill(Color.ORANGE);
                     else gc.setFill(Color.GREEN);
-                    gc.fillRect(canvas.getWidth() / 2 + (livingEntity.getX() + entity.getImageOffsetX() - camera.getX() - .1 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale - (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 1) * scale,(livingEntity.getImageSizeX()+.2)* scale * livingEntity.getLife()/ livingEntity.getMaxLife(), .1 * scale);
+                    gc.fillRect(canvas.getWidth() / 2 + (livingEntity.getX() + entity.getImageOffsetX() - camera.getX() - .1 ) * scale, canvas.getHeight() / 2 - livingEntity.getImageSizeY()* scale - (livingEntity.getY()  + livingEntity.getImageOffsetY() - camera.getY() - 1) * scale,(livingEntity.getImageSizeX()+.2)* scale * livingEntity.getLife(), .1 * scale);
                 }
             }
         }

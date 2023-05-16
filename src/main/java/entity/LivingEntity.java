@@ -8,20 +8,9 @@ import main.java.Environment;
 public class LivingEntity extends PhysicalEntity{
 
     double life;
-
-    public double getMaxLife() {
-        return maxLife;
-    }
-
-    public void setMaxLife(double maxLife) {
-        this.maxLife = maxLife;
-    }
-
-    double maxLife;
-    public LivingEntity(double x, double y, double life) {
+    public LivingEntity(double x, double y) {
         super(x, y, 0, 0, (double) 20/24, (double) 20/24);
-        this.life = life;
-        maxLife = life;
+        life = 1;
     }
     public double getLife() {
         return life;
@@ -47,9 +36,12 @@ public class LivingEntity extends PhysicalEntity{
     public void tick(Environment environment){
 
         if(life < 0.001) destroy();
-        vy-=0.02;
-        vx*=0.7;
     	super.tick(environment);
+//        int rand = new Random().nextInt(100);
+//        if(rand>=10 && rand<20){
+//            double dir = new Random().nextDouble(360);
+//            environment.addEntity(new Bullet(x+w/2,y+2*h/3,Math.cos(dir),Math.sin(dir)));
+//        }
         
     }
 }

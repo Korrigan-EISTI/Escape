@@ -5,6 +5,8 @@ import main.java.Environment;
 import java.util.Arrays;
 
 public abstract class PhysicalEntity extends Entity{
+	
+
     protected double w;
     protected double h;
     protected boolean on_ground;
@@ -31,22 +33,24 @@ public abstract class PhysicalEntity extends Entity{
     public void tick(Environment environment) {
 
     	setLast_shot(getLast_shot()-1);
+    	
+        vy-=0.02;
         on_ground=false;
         if(vx<0){
-            int check_x = (int)Math.floor(x);
+            int scan_x = (int)Math.floor(x);
             int end_x = (int)Math.floor(x+vx);
             int start_y = (int)Math.floor(y);
             int end_y = (int)Math.ceil(y+h)-1;
             boolean hit = false;
-            while (check_x>end_x && !hit){
-                check_x-=1;
+            while (scan_x>end_x && !hit){
+            	scan_x-=1;
                 for (int i = start_y;i<=end_y;i++){
-                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(check_x,i)).solid();
+                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==1 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
                 }
             }
             if(hit){
                 vx=0;
-                x=check_x+1;
+                x=scan_x+1;
             }
             else{
                 x+=vx;
@@ -61,7 +65,7 @@ public abstract class PhysicalEntity extends Entity{
             while (scan_x<end_x && !hit){
                 scan_x+=1;
                 for (int i = start_y;i<=end_y;i++){
-                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid();
+                	hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==1 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
                 }
             }
             if(hit){
@@ -81,7 +85,7 @@ public abstract class PhysicalEntity extends Entity{
             while (scan_y>end_y && !hit){
                 scan_y-=1;
                 for (int i = start_x;i<=end_x;i++){
-                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,scan_y)).solid();
+                	hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,scan_y)).solid()==1 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,scan_y)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
                 }
             }
             if(hit){
@@ -102,7 +106,7 @@ public abstract class PhysicalEntity extends Entity{
             while (check_y<end_y && !hit){
                 check_y+=1;
                 for (int i = start_x;i<=end_x;i++){
-                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,check_y)).solid();
+                	hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,check_y)).solid()==1 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,check_y)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
                 }
             }
             if(hit){
@@ -113,6 +117,7 @@ public abstract class PhysicalEntity extends Entity{
                 y+=vy;
             }
         }
+        vx*=0.7;
         int bottom_x = (int)Math.floor(x);
         int top_x = (int)Math.ceil(x+w)-1;
         int bottom_y = (int)Math.floor(y);

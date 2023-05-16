@@ -18,7 +18,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import main.java.entity.Key;
+import main.java.item.Key;
+import main.java.item.WallPotion;
 import main.java.entity.Player;
 import main.java.entity.NonPlayableCharacter;
 
@@ -45,6 +46,7 @@ public class TakeTheChest extends Application {
 			dead = false;
 			time.stop();
 		}
+		
 		VBox root = new VBox();
 		root.getStyleClass().add("root");
 		Scene scene = new Scene(root,1000,750);
@@ -56,7 +58,7 @@ public class TakeTheChest extends Application {
 		camera = new Camera(100, 200);
 		root.getChildren().add(canvas);
 		
-		environment.setPlayer(new Player(9, 51));
+		environment.setPlayer(new Player(114, 33));
 		environment.generateMonsters();
 		environment.addEntity(new NonPlayableCharacter(25, 51));
 
@@ -89,14 +91,23 @@ public class TakeTheChest extends Application {
 	}
 
 	private void tick(ActionEvent actionEvent) {
+		
 		environment.getPlayer().handleInput(input,environment);
 		environment.tickEntities();
+		
 		camera.setTarget_x(environment.getPlayer().getX() + environment.getPlayer().getWidth()/2);
 		camera.setTarget_y(environment.getPlayer().getY());
 		camera.tick();
+		
 		renderer.render(camera,environment);
 		if (environment.getPlayer().hasKey()) {
-			inventory.getSlot2().setImage(new Image("file:src/main/resources/inventory_key.png"));
+			inventory.getBtn2().setGraphic(new ImageView(Key.img));			
+		}
+		if (environment.getPlayer().hasWallPotion()) {
+			inventory.getBtn3().setGraphic(new ImageView(WallPotion.img));			
+		}
+		if (environment.getPlayer().canWalkThroughMagicWalls()) {
+			inventory.getBtn3().setGraphic(new ImageView(WallPotion.img_used));			
 		}
 		if(environment.getPlayer().getLife()<=0.1 && !dead) gameOver();
 	}
