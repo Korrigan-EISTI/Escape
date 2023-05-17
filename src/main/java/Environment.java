@@ -30,7 +30,8 @@ public class Environment {
         KEY,
         POTATO,
         KING,
-        WIN
+        WIN,
+        END
     }
     public static BlockProperties BLOCK_PROPERTIES = new BlockProperties();
     private final short[][] blocks;

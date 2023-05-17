@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.java.entity.Player;
+import main.java.Environment.Progress;
 import main.java.entity.NonPlayableCharacter;
 
 /**
@@ -59,7 +60,7 @@ public class TakeTheChest extends Application {
             dead = false;
             time.stop();
         }
-        VBox root = new VBox();
+        BorderPane root = new BorderPane();
         root.getStyleClass().add("root");
         Scene scene = new Scene(root, 1000, 750);
 		canvas = new Canvas(scene.getWidth(), scene.getHeight()-100);
@@ -67,7 +68,7 @@ public class TakeTheChest extends Application {
 		environment = new Environment();
 		renderer = new Renderer(canvas);
 		camera = new Camera(100, 200);
-		root.getChildren().add(canvas);
+		root.setCenter(canvas);
 		environment.setPlayer(new Player(9, 51));
 		environment.generateMonsters();
 		environment.addEntity(new NonPlayableCharacter(25, 51));
@@ -79,7 +80,7 @@ public class TakeTheChest extends Application {
         inventory.getHbox().setMinHeight(100);
         HBox bottom = new HBox(inventory.getHbox());
         environment.generateItems();
-        root.getChildren().add(bottom);
+        root.setBottom(bottom);
 
         input = new Input(scene);
 
@@ -106,7 +107,6 @@ public class TakeTheChest extends Application {
 	 */
 	
 	private void tick(ActionEvent actionEvent) {
-		
 		environment.getPlayer().handleInput(input,environment);
 		environment.tickEntities();
 		
@@ -133,7 +133,7 @@ public class TakeTheChest extends Application {
 		}
 		if(environment.getPlayer().getLife()<=0.1 && !dead) gameOver();
 		if (environment.getGameProgression() == Environment.Progress.POTATO) inventory.getSlot2().setImage(new Image("file:src/main/resources/inventory/inventory_potato.png"));
-		if (environment.getGameProgression() == Environment.Progress.WIN) victory();
+		if (environment.getGameProgression() == Environment.Progress.WIN && !dead) victory();
 	}
 	
 	/**
@@ -160,6 +160,8 @@ public class TakeTheChest extends Application {
 			}
 		});
 		HBox bottom = new HBox (quit, relaunch);
+		bottom.setAlignment(Pos.CENTER);
+		bottom.setPrefSize(750, 100);
 		dead.setBottom(bottom);
 		dead.setPrefSize(1000, 750);
 		Scene death = new Scene(dead, 1000, 750);
@@ -175,7 +177,7 @@ public class TakeTheChest extends Application {
 	private void victory() {
 		dead = true;
 		BorderPane winPane = new BorderPane();
-		ImageView imgView = new ImageView(new Image("file:src/main/resources/game_over.png", 500, 500, false, false));
+		ImageView imgView = new ImageView(new Image("file:src/main/resources/win.jpg", 500, 500, false, false));
 		winPane.setCenter(imgView);
 		Button quit = new Button ("Quitter");
 		quit.setOnAction(new EventHandler<ActionEvent>() {
@@ -192,8 +194,9 @@ public class TakeTheChest extends Application {
 			}
 		});
 		HBox bottom = new HBox (quit, relaunch);
+		bottom.setAlignment(Pos.CENTER);
+		bottom.setPrefSize(750, 100);
 		winPane.setBottom(bottom);
-		winPane.setPrefSize(1000, 750);
 		Scene win = new Scene(winPane, 1000, 750);
 		winPane.setPrefSize(win.getWidth(), win.getHeight());
 		stage.setScene(win);
