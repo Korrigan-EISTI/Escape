@@ -43,9 +43,7 @@ public abstract class PhysicalEntity extends Entity{
             while (scan_x>end_x && !hit){
             	scan_x-=1;
                 for (int i = start_y;i<=end_y;i++){
-                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==1 || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid() == 3 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
-                    if (environment.getPlayer().hasKey() && Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x, i)).solid() == 3) environment.setGameProgression(4);
-                    if(environment.getPlayer().hasKey() && Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==3) environment.setGameProgression(4);
+                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid();
                 }
             }
             if(hit){
@@ -65,8 +63,7 @@ public abstract class PhysicalEntity extends Entity{
             while (scan_x<end_x && !hit){
                 scan_x+=1;
                 for (int i = start_y;i<=end_y;i++){
-                	hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==1 || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==3 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
-                	if (environment.getPlayer().hasKey() && Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x, i)).solid() == 3) environment.setGameProgression(4);
+                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid();
                 }
             }
             if(hit){
@@ -86,8 +83,7 @@ public abstract class PhysicalEntity extends Entity{
             while (scan_y>end_y && !hit){
                 scan_y-=1;
                 for (int i = start_x;i<=end_x;i++){
-                	hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,scan_y)).solid()==1 || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,scan_y)).solid()==3 || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_y,i)).solid()==3 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,scan_y)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
-                	if (environment.getPlayer().hasKey() && Environment.BLOCK_PROPERTIES.get(environment.getBlock(i, scan_y)).solid() == 3) environment.setGameProgression(4);
+                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,scan_y)).solid();
                 }
             }
             if(hit){
@@ -100,21 +96,20 @@ public abstract class PhysicalEntity extends Entity{
             }
         }
         else {
-            int check_y = (int)Math.ceil(y+h)-1;
+            int scan_y = (int)Math.ceil(y+h)-1;
             int end_y = (int)Math.floor(y+h+vy);
             int start_x = (int)Math.floor(x);
             int end_x = (int)Math.ceil(x+w)-1;
             boolean hit = false;
-            while (check_y<end_y && !hit){
-                check_y+=1;
+            while (scan_y<end_y && !hit){
+                scan_y+=1;
                 for (int i = start_x;i<=end_x;i++){
-                	hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,check_y)).solid()==1 || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,check_y)).solid()==3 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,check_y)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
-                	if (environment.getPlayer().hasKey() && Environment.BLOCK_PROPERTIES.get(environment.getBlock(i, check_y)).solid() == 3) environment.setGameProgression(4);
+                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,scan_y)).solid();
                 }
             }
             if(hit){
                 vy=0;
-                y=check_y-h;
+                y=scan_y-h;
             }
             else{
                 y+=vy;

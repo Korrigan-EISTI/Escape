@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class BlockProperties {
 	
-    public record BlockProperty(String imagePath,short solid,boolean climbable){};
+    public record BlockProperty(String imagePath,boolean solid,boolean climbable){};
     private final ArrayList<BlockProperty> properties;
     
     public BlockProperties(){
@@ -17,7 +17,7 @@ public class BlockProperties {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                properties.add(new BlockProperty(values[0], Short.valueOf(values[1]), Objects.equals(values[2], "1")));
+                properties.add(new BlockProperty(values[0], Objects.equals(values[1], "1"), Objects.equals(values[2], "1")));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -26,6 +26,9 @@ public class BlockProperties {
     
     public BlockProperty get(short i){
         return properties.get(i);
+    }
+    public void set(short i, BlockProperty property){
+        properties.set(i,property);
     }
     
     public int size(){

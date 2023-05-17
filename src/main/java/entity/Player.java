@@ -2,6 +2,7 @@ package main.java.entity;
 
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import main.java.BlockProperties;
 import main.java.Environment;
 import main.java.Input;
 import main.java.entity.projectile.Arrow;
@@ -34,6 +35,9 @@ public class Player extends LivingEntity{
         
         for (short block : touched){
             climbing=climbing || Environment.BLOCK_PROPERTIES.get(block).climbable();
+            if(block==15 && hasKey){
+                environment.setGameProgression(6);
+            }
         }
         if(climbing){
             vx=0;
@@ -102,13 +106,9 @@ public class Player extends LivingEntity{
 		return canWalkThroughMagicWalls;
 	}
 
-	public void setCanWalkThroughMagicWalls(boolean canWalkThroughMagicWalls) {
-		this.canWalkThroughMagicWalls = canWalkThroughMagicWalls;
-	}
-    
 	public void useWallPotion() {
 		if(hasWallPotion) {
-			this.canWalkThroughMagicWalls = true;
+			Environment.BLOCK_PROPERTIES.set((short)14,new BlockProperties.BlockProperty("magic_wall.png",false,false));
 			this.setHasWallPotion(false);
 		}
 	}

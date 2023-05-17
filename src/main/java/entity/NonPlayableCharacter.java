@@ -19,14 +19,14 @@ public class NonPlayableCharacter extends LivingEntity {
 				if(x - 5<=player.getX() && player.getX()<= x + 1 && player.getY() >= y && player.getY()<= y + 1){
 					if (e.getGameProgression() == 0) {
 						e.setGameProgression(1);
-						cooldown = 300;
+						cooldown = 100;
 					}
 					if (e.getGameProgression() == 2) {
 						player.setAllowToShoot(true);
 					}
 					if (e.getGameProgression() == 5) {
 						e.setGameProgression(6);
-						cooldown = 300;
+						cooldown = 100;
 					}
 					cooldown--;
 				}

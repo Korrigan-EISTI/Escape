@@ -1,5 +1,5 @@
 /**
- * @author Martin Macé de Gastines, Louis-Alexandre Laguet, Alexis Tourrenc--Lecerf
+ * @author Martin Macï¿½ de Gastines, Louis-Alexandre Laguet, Alexis Tourrenc--Lecerf
  * @version 1.0
  * <p>
  * Main class of the program
@@ -215,5 +215,4 @@ public class TakeTheChest extends Application {
 		stage.setTitle("You Win");
 		stage.show();
 	}
-	
 }

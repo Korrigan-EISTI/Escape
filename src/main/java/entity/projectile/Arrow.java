@@ -25,14 +25,13 @@ public class Arrow extends Projectile {
 
 	@Override
 	protected boolean onHit(LivingEntity livingEntity) {
-		if(!(livingEntity instanceof NonPlayableCharacter) || !(livingEntity instanceof MonsterUpgraded)){
+		if(!(livingEntity instanceof NonPlayableCharacter) && !(livingEntity instanceof MonsterUpgraded)){
 			livingEntity.damage(1);
 			destroy();
 			return true;
 		}
 		return false;
 	}
-
 	public Image getImage(){
 		return vx>0?imageRight:imageLeft;
 	}
