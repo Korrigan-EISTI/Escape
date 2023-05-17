@@ -5,6 +5,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 public class Inventory {
+	
 	private HBox hbox;
 	private ImageView slot1 = new ImageView(new Image("file:src/main/resources/inventory.png"));;
 	private ImageView slot2 = new ImageView(new Image("file:src/main/resources/inventory.png"));;

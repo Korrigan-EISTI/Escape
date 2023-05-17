@@ -78,7 +78,7 @@ public class TakeTheChest extends Application {
 		camera = new Camera(100, 200);
 		root.getChildren().add(canvas);
 		
-		environment.setPlayer(new Player(115, 33));
+		environment.setPlayer(new Player(9, 51));
 		environment.generateMonsters();
 		environment.addEntity(new NonPlayableCharacter(25, 51));
 
@@ -129,6 +129,13 @@ public class TakeTheChest extends Application {
 		camera.tick();
 		
 		renderer.render(camera,environment);
+		
+		if (environment.getPlayer().isAllowToShoot()) {
+			inventory.getSlot1().setImage(new Image("file:src/main/resources/inventory_bow.png"));
+		}
+		if (environment.getPlayer().isBowUpgraded()) {
+			inventory.getSlot1().setImage(new Image("file:src/main/resources/inventory_bow_upgraded.png"));
+		}
 		if (environment.getPlayer().hasKey()) {
 			inventory.getSlot2().setImage(new Image("file:src/main/resources/inventory_key.png"));
 		}
@@ -137,9 +144,6 @@ public class TakeTheChest extends Application {
 		}
 		if (environment.getPlayer().canWalkThroughMagicWalls()) {
 			inventory.getSlot3().setImage(new Image("file:src/main/resources/inventory_wall_potion_used.png"));
-		}
-		if (environment.getPlayer().isAllowToShoot()) {
-			inventory.getSlot1().setImage(new Image("file:src/main/resources/inventory_bow.png"));
 		}
 		if(environment.getPlayer().getLife()<=0.1 && !dead) gameOver();
 		if (environment.getGameProgression() == 6) victory();

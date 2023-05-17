@@ -1,10 +1,12 @@
 package main.java;
 
 import main.java.entity.Entity;
+import main.java.item.BowUpgraded;
 import main.java.item.HealPotion;
 import main.java.item.Key;
 import main.java.item.WallPotion;
 import main.java.entity.Monster;
+import main.java.entity.MonsterUpgraded;
 import main.java.entity.Player;
 
 import org.w3c.dom.Document;
@@ -27,6 +29,7 @@ public class Environment {
     private int gameProgression;
     
     public Environment(){
+    	
     	gameProgression = 0;
         entities = new ArrayList<>();
         addedEntities = new ArrayList<>();
@@ -85,7 +88,7 @@ public class Environment {
     }
     
     public void generateMonsters(){
-    	/*addedEntities.add(new Monster(39,51));
+    	addedEntities.add(new Monster(39,51));
     	addedEntities.add(new Monster(56,46));
     	addedEntities.add(new Monster(75,53));
     	addedEntities.add(new Monster(74,58));
@@ -94,18 +97,19 @@ public class Environment {
     	addedEntities.add(new Monster(69,81));
     	addedEntities.add(new Monster(75,70));
     	addedEntities.add(new Monster(81,72));
-    	addedEntities.add(new Monster(81,76));
+    	addedEntities.add(new MonsterUpgraded(80,76));
     	addedEntities.add(new Monster(86,88));
     	addedEntities.add(new Monster(72,82));
     	addedEntities.add(new Monster(78,82));
     	addedEntities.add(new Monster(75,84));
-    	addedEntities.add(new Monster(115,33));*/
+    	addedEntities.add(new Monster(115,33));
     }
     
     public void generateItems() {
     	addedEntities.add(new Key(168, 63));
     	addedEntities.add(new WallPotion(111, 33));
     	addedEntities.add(new HealPotion(190, 53));
+    	addedEntities.add(new BowUpgraded(188, 53));
     }
     
     public Player getPlayer() {

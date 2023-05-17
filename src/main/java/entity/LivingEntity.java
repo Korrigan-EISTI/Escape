@@ -9,8 +9,8 @@ public class LivingEntity extends PhysicalEntity{
     double life;
     double maxLife;
     
-    public LivingEntity(double x, double y, double life) {
-        super(x, y, 0, 0, (double) 20/24, (double) 20/24);
+    public LivingEntity(double x, double y, double life, int size_multiplicator) {
+        super(x, y, 0, 0, (double) size_multiplicator*20/24, (double) size_multiplicator*20/24);
         this.life = life;
         maxLife = life;
     }

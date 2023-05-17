@@ -5,6 +5,7 @@ import javafx.scene.input.KeyCode;
 import main.java.Environment;
 import main.java.Input;
 import main.java.entity.projectile.Arrow;
+import main.java.entity.projectile.ArrowUpgraded;
 
 public class Player extends LivingEntity{
 
@@ -14,14 +15,15 @@ public class Player extends LivingEntity{
     private boolean hasKey;
     private boolean hasWallPotion;
     private boolean canWalkThroughMagicWalls;
+    private boolean bowIsUpgraded;
 
     public Player(double x, double y) {
-        super(x, y,10);
+        super(x, y, 10, 1);
         setLast_shot(30);
         allowToShoot = false;
         hasKey = false;
         hasWallPotion = false;
-
+        setBowIsUpgraded(false);
     }
 
 	@Override
@@ -60,11 +62,13 @@ public class Player extends LivingEntity{
         }
         if (allowToShoot) {
             if(input.keyPressed(KeyCode.A) && getLast_shot()<=0){
-            	environment.addEntity(new Arrow(x+w/2,y+2*h/3,-0.5,this));
+            	if(this.isBowUpgraded()) environment.addEntity(new ArrowUpgraded(x+w/2,y+2*h/3,-0.5,this));
+            	else environment.addEntity(new Arrow(x+w/2,y+2*h/3,-0.5,this));
             	setLast_shot(30);
             }
             if(input.keyPressed(KeyCode.E) && getLast_shot()<=0) {
-                environment.addEntity(new Arrow(x+w/2,y+2*h/3, 0.5,this));
+            	if (this.isBowUpgraded()) environment.addEntity(new ArrowUpgraded(x+w/2,y+2*h/3, 0.5,this));
+            	else environment.addEntity(new Arrow(x+w/2,y+2*h/3, 0.5,this));
                 setLast_shot(30);
             }
         }
@@ -115,6 +119,14 @@ public class Player extends LivingEntity{
 
 	public void setAllowToShoot(boolean allowToShoot) {
 		this.allowToShoot = allowToShoot;
+	}
+
+	public boolean isBowUpgraded() {
+		return bowIsUpgraded;
+	}
+
+	public void setBowIsUpgraded(boolean bowIsUpgraded) {
+		this.bowIsUpgraded = bowIsUpgraded;
 	}
 	
 }

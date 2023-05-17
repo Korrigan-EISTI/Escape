@@ -7,7 +7,7 @@ public class NonPlayableCharacter extends LivingEntity {
 	private int cooldown;
 	
 	public NonPlayableCharacter(double x, double y) {
-		super(x,y,100000);
+		super(x,y, 100000, 1);
 		cooldown = 0;
 	}
 	

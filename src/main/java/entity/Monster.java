@@ -12,7 +12,7 @@ public class Monster extends LivingEntity {
 
 
 	public Monster(double x, double y) {
-		super(x, y,4);
+		super(x, y, 4, 1);
 	}
 
 	@Override
