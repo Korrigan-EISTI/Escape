@@ -1,5 +1,5 @@
-
 package main.java;
+
 import javafx.scene.text.Text;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -18,7 +18,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.java.entity.Player;
-import main.java.Environment.Progress;
 import main.java.entity.NonPlayableCharacter;
 
 /**
@@ -61,13 +60,8 @@ public class TakeTheChest extends Application {
             dead = false;
             time.stop();
         }
-<<<<<<< .mine
-        
+
         BorderPane root = new BorderPane();
-=======
-        BorderPane root = new BorderPane();
-        root.getStyleClass().add("root");
->>>>>>> .theirs
         Scene scene = new Scene(root, 1000, 750);
         
 		canvas = new Canvas(scene.getWidth(), scene.getHeight()-100);
@@ -75,13 +69,8 @@ public class TakeTheChest extends Application {
 		environment = new Environment();
 		renderer = new Renderer(canvas);
 		camera = new Camera(100, 200);
-<<<<<<< .mine
 		root.setCenter(canvas);
 		
-=======
-		root.setCenter(canvas);
-
->>>>>>> .theirs
 		environment.setPlayer(new Player(9, 51));
 		environment.generateMonsters();
 		environment.addEntity(new NonPlayableCharacter(25, 51));
@@ -100,15 +89,8 @@ public class TakeTheChest extends Application {
         inventory.getHbox().setSpacing(75);
         inventory.getHbox().setMinHeight(75);
         HBox bottom = new HBox(inventory.getHbox());
-<<<<<<< .mine
         root.setBottom(bottom);
         
-        
-=======
-        environment.generateItems();
-        root.setBottom(bottom);
-
->>>>>>> .theirs
         input = new Input(scene);
 
         stage.setTitle("Take the Chest");
