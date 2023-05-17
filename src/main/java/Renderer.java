@@ -15,7 +15,7 @@ import java.util.Objects;
  * La classe Renderer est responsable du rendu graphique dans une application JavaFX.
  */
 public class Renderer {
-	private final Canvas canvas;
+    private final Canvas canvas;
     private final GraphicsContext gc;
     private final Image[] block_images;
     public static final int scale = 64;
@@ -43,12 +43,12 @@ public class Renderer {
     private void drawImage(Image image, Camera camera, double x, double y, double w, double h){
         gc.drawImage(image, canvas.getWidth() / 2 + (x - camera.getX())* scale, canvas.getHeight() / 2 - (h + y - camera.getY())* scale, w*scale, h*scale);
     }
-    
+
     private void drawRect(Camera camera,double x, double y, double w, double h, Color color){
         gc.setFill(color);
         gc.fillRect(canvas.getWidth() / 2 + (x - camera.getX()) * scale, canvas.getHeight() / 2 - (y - camera.getY()) * scale,w * scale, h * scale);
     }
-    
+
     private void drawText(Camera camera, String text, double x, double y,Color color){
         gc.setFill(color);
         gc.fillText(text, canvas.getWidth() / 2 + (x - camera.getX()) * scale, canvas.getHeight() / 2 - (y - camera.getY()) * scale);
@@ -97,11 +97,11 @@ public class Renderer {
                             drawText(camera,"Ah!!!! \nMon chateau est rempli de monstre.\nTiens prends mon arc et va les tuer.",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
                         }
                         if (environment.getGameProgression() == Environment.Progress.KEY) {
-                        	drawText(camera,"Bravo, tu as trouvé la clé. \nCours au coffre pour l'ouvrir maintenant !",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
+                            drawText(camera,"Bravo, tu as trouvé la clé. \nCours au coffre pour l'ouvrir maintenant !",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
 
                         }
                         if (environment.getGameProgression() == Environment.Progress.POTATO) {
-                        	drawText(camera, "Merci tu m'a ramené ma patate :)\nFélicitation héros !", livingEntity.getX() - 0.8 , livingEntity.getY()+2,Color.BLACK);
+                            drawText(camera, "Merci tu m'a ramené ma patate :)\nFélicitation héros !", livingEntity.getX() - 0.8 , livingEntity.getY()+2,Color.BLACK);
 
                         }
                         if (environment.getGameProgression() == Environment.Progress.KING) {

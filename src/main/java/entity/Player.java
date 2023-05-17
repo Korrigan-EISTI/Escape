@@ -181,6 +181,7 @@ public class Player extends LivingEntity {
 	 * @param canWalkThroughMagicWalls `true` si le joueur peut traverser les murs magiques, sinon `false`.
 	 */
 	public void useWallPotion() {
+        canWalkThroughMagicWalls=true;
 		if(hasWallPotion) {
 			Environment.BLOCK_PROPERTIES.set((short)14,new BlockProperties.BlockProperty("magic_wall.png",false,false));
 			this.setHasWallPotion(false);

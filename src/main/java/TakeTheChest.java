@@ -94,10 +94,10 @@ public class TakeTheChest extends Application {
         final Duration d = Duration.millis((double) 1000 / frameRate);
         final KeyFrame oneFrame = new KeyFrame(d, this::tick);
 
-        Timeline t = new Timeline(frameRate, oneFrame);
-        t.setCycleCount(Animation.INDEFINITE);
-        t.playFromStart();
-        time = t;
+        Timeline tickLoop = new Timeline(frameRate, oneFrame);
+        tickLoop.setCycleCount(Animation.INDEFINITE);
+        tickLoop.playFromStart();
+        time = tickLoop;
     }
 
 	/**
