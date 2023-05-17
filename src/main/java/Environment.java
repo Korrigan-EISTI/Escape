@@ -23,14 +23,22 @@ import java.util.ArrayList;
  * La classe Environment représente l'environnement du jeu, contenant la carte, les entités et la progression du jeu.
  */
 public class Environment {
-	
+	public enum Progress{
+        START,
+        WELCOME,
+        BOW,
+        KEY,
+        POTATO,
+        KING,
+        WIN
+    }
     public static BlockProperties BLOCK_PROPERTIES = new BlockProperties();
     private final short[][] blocks;
     private final int map_width, map_height;
     private ArrayList<Entity> entities;
     private ArrayList<Entity> addedEntities;
     private Player player;
-    private int gameProgression;
+    private Progress gameProgression;
     
     /**
      * Constructeur de la classe Environment.
@@ -38,7 +46,7 @@ public class Environment {
      */
     public Environment(){
     	
-    	gameProgression = 0;
+    	gameProgression = Progress.START;
         entities = new ArrayList<>();
         addedEntities = new ArrayList<>();
         Document doc = null;
@@ -220,7 +228,7 @@ public class Environment {
      *
      * @return La progression du jeu.
      */
-	public int getGameProgression() {
+	public Progress getGameProgression() {
 		return gameProgression;
 	}
 
@@ -229,7 +237,7 @@ public class Environment {
      *
      * @param gameProgression La progression du jeu à définir.
      */
-	public void setGameProgression(int gameProgression) {
+	public void setGameProgression(Progress gameProgression) {
 		this.gameProgression = gameProgression;
 	}
     

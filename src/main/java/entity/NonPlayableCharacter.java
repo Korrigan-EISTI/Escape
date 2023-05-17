@@ -32,15 +32,15 @@ public class NonPlayableCharacter extends LivingEntity {
 			if(e.getEntity(i) instanceof Player){
 				Player player = (Player)e.getEntity(i);
 				if(x - 5<=player.getX() && player.getX()<= x + 1 && player.getY() >= y && player.getY()<= y + 1){
-					if (e.getGameProgression() == 0) {
-						e.setGameProgression(1);
+					if (e.getGameProgression() == Environment.Progress.START) {
+						e.setGameProgression(Environment.Progress.WELCOME);
 						cooldown = 100;
 					}
-					if (e.getGameProgression() == 2) {
+					if (e.getGameProgression() == Environment.Progress.BOW) {
 						player.setAllowToShoot(true);
 					}
-					if (e.getGameProgression() == 5) {
-						e.setGameProgression(6);
+					if (e.getGameProgression() == Environment.Progress.POTATO) {
+						e.setGameProgression(Environment.Progress.KING);
 						cooldown = 100;
 					}
 					cooldown--;

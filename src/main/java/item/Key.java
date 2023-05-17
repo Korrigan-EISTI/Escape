@@ -30,7 +30,7 @@ public class Key extends Item {
 		super.tick(e);
 		if (!status) {
 			e.getPlayer().setHasKey(true);
-			e.setGameProgression(3);
+			e.setGameProgression(Environment.Progress.KEY);
 		}
 	}
 

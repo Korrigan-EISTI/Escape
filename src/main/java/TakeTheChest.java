@@ -132,8 +132,8 @@ public class TakeTheChest extends Application {
 			inventory.getSlot3().setImage(new Image("file:src/main/resources/inventory/inventory_wall_potion_used.png"));
 		}
 		if(environment.getPlayer().getLife()<=0.1 && !dead) gameOver();
-		if (environment.getGameProgression() == 4) inventory.getSlot2().setImage(new Image("file:src/main/resources/inventory/inventory_potato.png"));
-		if (environment.getGameProgression() == 6) victory();
+		if (environment.getGameProgression() == Environment.Progress.POTATO) inventory.getSlot2().setImage(new Image("file:src/main/resources/inventory/inventory_potato.png"));
+		if (environment.getGameProgression() == Environment.Progress.WIN) victory();
 	}
 	
 	/**

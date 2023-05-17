@@ -69,7 +69,7 @@ public class Player extends LivingEntity {
         for (short block : touched){
             climbing=climbing || Environment.BLOCK_PROPERTIES.get(block).climbable();
             if(block==15 && hasKey){
-                environment.setGameProgression(6);
+                environment.setGameProgression(Environment.Progress.POTATO);
             }
         }
         if (climbing) {
