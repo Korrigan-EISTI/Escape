@@ -178,9 +178,6 @@ public class TakeTheChest extends Application {
 		stage.setTitle("Game Over");
 		stage.show();
 	}
-<<<<<<< Updated upstream
-}
-=======
 	
 	/**
 	 * 
@@ -216,4 +213,3 @@ public class TakeTheChest extends Application {
 	}
 	
 }
->>>>>>> Stashed changes
