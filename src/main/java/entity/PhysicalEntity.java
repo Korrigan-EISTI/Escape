@@ -5,26 +5,26 @@ import main.java.Environment;
 import java.util.Arrays;
 
 /**
- * Classe abstraite représentant une entité physique.
- * Une entité physique possède une taille, peut se déplacer et interagir avec l'environnement du jeu.
+ * Classe abstraite reprÃ©sentant une entitÃ© physique.
+ * Une entitÃ© physique possÃ¨de une taille, peut se dÃ©placer et interagir avec l'environnement du jeu.
  */
 public abstract class PhysicalEntity extends Entity {
 
-    protected double w; // Largeur de l'entité
-    protected double h; // Hauteur de l'entité
-    protected boolean on_ground; // Indique si l'entité est au sol
-    protected short[] touched; // Tableau des blocs touchés par l'entité
-    private int last_shot; // Temps depuis le dernier tir effectué par l'entité
+    protected double w; // Largeur de l'entitÃ©
+    protected double h; // Hauteur de l'entitÃ©
+    protected boolean on_ground; // Indique si l'entitÃ© est au sol
+    protected short[] touched; // Tableau des blocs touchÃ©s par l'entitÃ©
+    private int last_shot; // Temps depuis le dernier tir effectuÃ© par l'entitÃ©
 
     /**
      * Constructeur de la classe PhysicalEntity.
      *
-     * @param x  La coordonnée en abscisse de l'entité.
-     * @param y  La coordonnée en ordonnée de l'entité.
-     * @param vx La vitesse horizontale de l'entité.
-     * @param vy La vitesse verticale de l'entité.
-     * @param w  La largeur de l'entité.
-     * @param h  La hauteur de l'entité.
+     * @param x  La coordonnÃ©e en abscisse de l'entitÃ©.
+     * @param y  La coordonnÃ©e en ordonnÃ©e de l'entitÃ©.
+     * @param vx La vitesse horizontale de l'entitÃ©.
+     * @param vy La vitesse verticale de l'entitÃ©.
+     * @param w  La largeur de l'entitÃ©.
+     * @param h  La hauteur de l'entitÃ©.
      */
     public PhysicalEntity(double x, double y, double vx, double vy, double w, double h) {
         super(x, y, vx, vy);
@@ -35,25 +35,25 @@ public abstract class PhysicalEntity extends Entity {
     }
 
     /**
-     * Renvoie le temps écoulé depuis le dernier tir effectué par l'entité.
+     * Renvoie le temps Ã©coulÃ© depuis le dernier tir effectuÃ© par l'entitÃ©.
      *
-     * @return Le temps écoulé depuis le dernier tir.
+     * @return Le temps Ã©coulÃ© depuis le dernier tir.
      */
     public int getLast_shot() {
         return last_shot;
     }
 
     /**
-     * Définit le temps écoulé depuis le dernier tir effectué par l'entité.
+     * DÃ©finit le temps Ã©coulÃ© depuis le dernier tir effectuÃ© par l'entitÃ©.
      *
-     * @param last_shot Le temps écoulé depuis le dernier tir.
+     * @param last_shot Le temps Ã©coulÃ© depuis le dernier tir.
      */
     public void setLast_shot(int last_shot) {
         this.last_shot = last_shot;
     }
 
     /**
-     * Met à jour l'état de l'entité à chaque itération du jeu.
+     * Met Ã  jour l'Ã©tat de l'entitÃ© Ã  chaque itÃ©ration du jeu.
      *
      * @param environment L'environnement du jeu.
      */
@@ -63,7 +63,7 @@ public abstract class PhysicalEntity extends Entity {
         setLast_shot(getLast_shot() - 1);
         on_ground = false;
 
-        // Détection de collision avec les blocs horizontaux lors du déplacement horizontal
+        // DÃ©tection de collision avec les blocs horizontaux lors du dÃ©placement horizontal
         if (vx < 0) {
             int scan_x = (int) Math.floor(x);
             int end_x = (int) Math.floor(x + vx);
@@ -103,7 +103,7 @@ public abstract class PhysicalEntity extends Entity {
             }
         }
 
-        // Détection de collision avec les blocs verticaux lors du déplacement vertical
+        // DÃ©tection de collision avec les blocs verticaux lors du dÃ©placement vertical
         if (vy < 0) {
             int scan_y = (int) Math.floor(y);
             int end_y = (int) Math.floor(y + vy);
@@ -146,7 +146,7 @@ public abstract class PhysicalEntity extends Entity {
             }
         }
 
-        // Mise à jour des blocs touchés par l'entité
+        // Mise Ã  jour des blocs touchÃ©s par l'entitÃ©
         int bottom_x = (int) Math.floor(x);
         int top_x = (int) Math.ceil(x + w) - 1;
         int bottom_y = (int) Math.floor(y);
@@ -162,34 +162,34 @@ public abstract class PhysicalEntity extends Entity {
     }
 
     /**
-     * Vérifie si l'entité est au sol.
+     * VÃ©rifie si l'entitÃ© est au sol.
      *
-     * @return Vrai si l'entité est au sol, sinon faux.
+     * @return Vrai si l'entitÃ© est au sol, sinon faux.
      */
     public boolean isOnGround() {
         return on_ground;
     }
 
     /**
-     * Renvoie la largeur de l'entité.
+     * Renvoie la largeur de l'entitÃ©.
      *
-     * @return La largeur de l'entité.
+     * @return La largeur de l'entitÃ©.
      */
     public double getWidth() {
         return w;
     }
 
     /**
-     * Renvoie la hauteur de l'entité.
+     * Renvoie la hauteur de l'entitÃ©.
      *
-     * @return La hauteur de l'entité.
+     * @return La hauteur de l'entitÃ©.
      */
     public double getHeight() {
         return h;
     }
 
     /**
-     * Renvoie la taille de l'image associée à l'entité selon l'axe des abscisses.
+     * Renvoie la taille de l'image associÃ©e Ã  l'entitÃ© selon l'axe des abscisses.
      *
      * @return La taille de l'image selon l'axe des abscisses.
      */
@@ -199,9 +199,9 @@ public abstract class PhysicalEntity extends Entity {
     }
 
     /**
-     * Renvoie la taille de l'image associée à l'entité selon l'axe des ordonnées.
+     * Renvoie la taille de l'image associÃ©e Ã  l'entitÃ© selon l'axe des ordonnÃ©es.
      *
-     * @return La taille de l'image selon l'axe des ordonnées.
+     * @return La taille de l'image selon l'axe des ordonnÃ©es.
      */
     @Override
     public double getImageSizeY() {

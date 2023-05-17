@@ -4,33 +4,33 @@ import javafx.scene.image.Image;
 import main.java.Environment;
 
 /**
- * Classe abstraite qui définit une entité.
+ * Classe abstraite qui dÃ©finit une entitÃ©.
  * 
  * <p>
  * 
- * Une entité représente tout ce qui peut être rendu et qui n'est pas sur la carte.
+ * Une entitÃ© reprÃ©sente tout ce qui peut Ãªtre rendu et qui n'est pas sur la carte.
  * 
  */
 public abstract class Entity {
 	
-	/** Coordonnée en abscisse */
+	/** CoordonnÃ©e en abscisse */
     protected double x;
-    /** Coordonnée en ordonnée */
+    /** CoordonnÃ©e en ordonnÃ©e */
     protected double y;
-    /** Coordonnée de la vitesse en abscisse */
+    /** CoordonnÃ©e de la vitesse en abscisse */
     protected double vx;
-    /** Coordonnée de la vitesse en ordonnée */
+    /** CoordonnÃ©e de la vitesse en ordonnÃ©e */
     protected double vy;
-    /** Variable booléenne indiquant si l'entité doit être rendue, initialisée à false */
+    /** Variable boolÃ©enne indiquant si l'entitÃ© doit Ãªtre rendue, initialisÃ©e Ã  false */
     private boolean destroyed = false;
 
     /**
      * Constructeur de la classe.
      *
-     * @param x  La coordonnée en abscisse
-     * @param y  La coordonnée en ordonnée
-     * @param vx La coordonnée de la vitesse en abscisse
-     * @param vy La coordonnée de la vitesse en ordonnée
+     * @param x  La coordonnÃ©e en abscisse
+     * @param y  La coordonnÃ©e en ordonnÃ©e
+     * @param vx La coordonnÃ©e de la vitesse en abscisse
+     * @param vy La coordonnÃ©e de la vitesse en ordonnÃ©e
      */
     public Entity(double x, double y, double vx, double vy) {
         this.x = x;
@@ -40,80 +40,80 @@ public abstract class Entity {
     }
 
     /**
-     * Retourne la coordonnée en abscisse de l'entité.
+     * Retourne la coordonnÃ©e en abscisse de l'entitÃ©.
      *
-     * @return La coordonnée en abscisse
+     * @return La coordonnÃ©e en abscisse
      */
     public double getX() {
         return x;
     }
 
     /**
-     * Définit la coordonnée en abscisse de l'entité.
+     * DÃ©finit la coordonnÃ©e en abscisse de l'entitÃ©.
      *
-     * @param x La coordonnée en abscisse à définir
+     * @param x La coordonnÃ©e en abscisse Ã  dÃ©finir
      */
     public void setX(double x) {
         this.x = x;
     }
 
     /**
-     * Retourne la coordonnée en ordonnée de l'entité.
+     * Retourne la coordonnÃ©e en ordonnÃ©e de l'entitÃ©.
      *
-     * @return La coordonnée en ordonnée
+     * @return La coordonnÃ©e en ordonnÃ©e
      */
     public double getY() {
         return y;
     }
 
     /**
-     * Définit la coordonnée en ordonnée de l'entité.
+     * DÃ©finit la coordonnÃ©e en ordonnÃ©e de l'entitÃ©.
      *
-     * @param y La coordonnée en ordonnée à définir
+     * @param y La coordonnÃ©e en ordonnÃ©e Ã  dÃ©finir
      */
     public void setY(double y) {
         this.y = y;
     }
 
     /**
-     * Retourne la coordonnée de la vitesse en abscisse de l'entité.
+     * Retourne la coordonnÃ©e de la vitesse en abscisse de l'entitÃ©.
      *
-     * @return La coordonnée de la vitesse en abscisse
+     * @return La coordonnÃ©e de la vitesse en abscisse
      */
     public double getVx() {
         return vx;
     }
 
     /**
-     * Définit la coordonnée de la vitesse en abscisse de l'entité.
+     * DÃ©finit la coordonnÃ©e de la vitesse en abscisse de l'entitÃ©.
      *
-     * @param vx La coordonnée de la vitesse en abscisse à définir
+     * @param vx La coordonnÃ©e de la vitesse en abscisse Ã  dÃ©finir
      */
     public void setVx(double vx) {
         this.vx = vx;
     }
 
     /**
-     * Retourne la coordonnée de la vitesse en ordonnée de l'entité.
+     * Retourne la coordonnÃ©e de la vitesse en ordonnÃ©e de l'entitÃ©.
      *
-     * @return La coordonnée de la vitesse en ordonnée
+     * @return La coordonnÃ©e de la vitesse en ordonnÃ©e
      */
     public double getVy() {
         return vy;
     }
 
     /**
-     * Définit la coordonnée de la vitesse en ordonnée de l'entité.
+     * DÃ©finit la coordonnÃ©e de la vitesse en ordonnÃ©e de l'entitÃ©.
      *
-     * @param vy La coordonnée de la vitesse en ordonnée à définir
+     * @param vy La coordonnÃ©e de la vitesse en ordonnÃ©e Ã  dÃ©finir
      */
     public void setVy(double vy) {
         this.vy = vy;
     }
     
     /**
-     * Met à jour l'entité à chaque tick du jeu.
-     * Vérifie si l'entité est en dehors des limites de l'environnement et la détruit si c'est le cas.
+     * Met Ã  jour l'entitÃ© Ã  chaque tick du jeu.
+     * VÃ©rifie si l'entitÃ© est en dehors des limites de l'environnement et la dÃ©truit si c'est le cas.
      *
      * @param environment L'environnement du jeu
      */
@@ -124,50 +124,50 @@ public abstract class Entity {
     }
 
     /**
-     * Vérifie si l'entité est détruite.
+     * VÃ©rifie si l'entitÃ© est dÃ©truite.
      *
-     * @return true si l'entité est détruite, sinon false
+     * @return true si l'entitÃ© est dÃ©truite, sinon false
      */
     public boolean destroyed() {
         return destroyed;
     }
 
     /**
-     * Détruit l'entité.
+     * DÃ©truit l'entitÃ©.
      */
     public void destroy(Environment environment) {
         this.destroyed = true;
     }
     
     /**
-     * Détruit l'entité.
+     * DÃ©truit l'entitÃ©.
      */
     public void destroy() {
         this.destroyed = true;
     }
 
     /**
-     * Retourne l'image de l'entité.
+     * Retourne l'image de l'entitÃ©.
      *
-     * @return L'image de l'entité
+     * @return L'image de l'entitÃ©
      */
     public Image getImage(){
         return null;
     }
 
     /**
-     * Retourne le décalage de l'image en abscisse.
+     * Retourne le dÃ©calage de l'image en abscisse.
      *
-     * @return Le décalage de l'image en abscisse
+     * @return Le dÃ©calage de l'image en abscisse
      */
     public double getImageOffsetX(){
         return 0;
     }
 
     /**
-     * Retourne le décalage de l'image en ordonnée.
+     * Retourne le dÃ©calage de l'image en ordonnÃ©e.
      *
-     * @return Le décalage de l'image en ordonnée
+     * @return Le dÃ©calage de l'image en ordonnÃ©e
      */
     public double getImageOffsetY(){
         return 0;
@@ -183,9 +183,9 @@ public abstract class Entity {
     }
 
     /**
-     * Retourne la taille de l'image en ordonnée.
+     * Retourne la taille de l'image en ordonnÃ©e.
      *
-     * @return La taille de l'image en ordonnée
+     * @return La taille de l'image en ordonnÃ©e
      */
     public double getImageSizeY(){
         return 1;

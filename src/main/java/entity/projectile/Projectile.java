@@ -5,7 +5,7 @@ import main.java.entity.LivingEntity;
 import main.java.entity.PhysicalEntity;
 
 /**
- * Cette classe représente un projectile générique.
+ * Cette classe reprÃ©sente un projectile gÃ©nÃ©rique.
  */
 public class Projectile extends PhysicalEntity {
 
@@ -14,13 +14,13 @@ public class Projectile extends PhysicalEntity {
     /**
      * Constructeur de la classe Projectile.
      *
-     * @param x      La coordonnée X de départ du projectile.
-     * @param y      La coordonnée Y de départ du projectile.
+     * @param x      La coordonnÃ©e X de dÃ©part du projectile.
+     * @param y      La coordonnÃ©e Y de dÃ©part du projectile.
      * @param vx     La vitesse horizontale du projectile.
      * @param vy     La vitesse verticale du projectile.
      * @param w      La largeur du projectile.
      * @param h      La hauteur du projectile.
-     * @param owner  L'entité parente du projectile.
+     * @param owner  L'entitÃ© parente du projectile.
      */
     public Projectile(double x, double y, double vx, double vy, double w, double h, LivingEntity owner) {
         super(x, y, vx, vy, w, h);
@@ -28,9 +28,9 @@ public class Projectile extends PhysicalEntity {
     }
 
     /**
-     * Met à jour l'état du projectile à chaque tick.
+     * Met Ã  jour l'Ã©tat du projectile Ã  chaque tick.
      *
-     * @param environment L'environnement dans lequel évolue le projectile.
+     * @param environment L'environnement dans lequel Ã©volue le projectile.
      */
     @Override
     public void tick(Environment environment) {
@@ -53,10 +53,10 @@ public class Projectile extends PhysicalEntity {
     }
 
     /**
-     * Méthode invoquée lorsqu'une entité est touchée par le projectile.
+     * MÃ©thode invoquÃ©e lorsqu'une entitÃ© est touchÃ©e par le projectile.
      *
-     * @param livingEntity L'entité touchée par le projectile.
-     * @return Vrai si l'entité a été touchée par le projectile, faux sinon.
+     * @param livingEntity L'entitÃ© touchÃ©e par le projectile.
+     * @return Vrai si l'entitÃ© a Ã©tÃ© touchÃ©e par le projectile, faux sinon.
      */
     protected boolean onHit(LivingEntity livingEntity) {
         return false;

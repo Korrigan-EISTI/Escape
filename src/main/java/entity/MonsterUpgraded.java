@@ -8,12 +8,12 @@ public class MonsterUpgraded extends LivingEntity {
 
 
 	/**
-	 * L'image du monstre amélioré.
+	 * L'image du monstre amÃ©liorÃ©.
 	 */
 	private static final Image image = new Image("file:src/main/resources/living_entities/monster_upgraded.png");
 
     /**
-     * Initialise un nouvel objet MonsterUpgraded avec les coordonnées spécifiées.
+     * Initialise un nouvel objet MonsterUpgraded avec les coordonnÃ©es spÃ©cifiÃ©es.
      *
      * @param x La position horizontale du monstre.
      * @param y La position verticale du monstre.
@@ -23,7 +23,7 @@ public class MonsterUpgraded extends LivingEntity {
 	}
 
     /**
-     * Met à jour l'état du monstre à chaque cycle de jeu.
+     * Met Ã  jour l'Ã©tat du monstre Ã  chaque cycle de jeu.
      *
      * @param environment L'environnement de jeu.
      */
@@ -39,9 +39,9 @@ public class MonsterUpgraded extends LivingEntity {
     }
 
     /**
-     * Retourne l'image du monstre amélioré.
+     * Retourne l'image du monstre amÃ©liorÃ©.
      *
-     * @return L'image du monstre amélioré.
+     * @return L'image du monstre amÃ©liorÃ©.
      */
     @Override
     public Image getImage(){

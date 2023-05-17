@@ -7,8 +7,8 @@ import main.java.entity.projectile.Arrow;
 import java.util.Random;
 
 /**
- * Classe représentant un monstre.
- * Un monstre est une entité vivante qui peut attaquer en lançant des flèches.
+ * Classe reprÃ©sentant un monstre.
+ * Un monstre est une entitÃ© vivante qui peut attaquer en lanÃ§ant des flÃ¨ches.
  */
 public class Monster extends LivingEntity {
 
@@ -18,14 +18,14 @@ public class Monster extends LivingEntity {
 	/**
 	 * Constructeur de la classe Monster.
 	 *
-	 * @param x La coordonnée en abscisse du monstre.
-	 * @param y La coordonnée en ordonnée du monstre.
+	 * @param x La coordonnÃ©e en abscisse du monstre.
+	 * @param y La coordonnÃ©e en ordonnÃ©e du monstre.
 	 */
 	public Monster(double x, double y) {
 		super(x, y, 2, 1);
 	}
     /**
-     * Met à jour l'état du monstre à chaque itération du jeu.
+     * Met Ã  jour l'Ã©tat du monstre Ã  chaque itÃ©ration du jeu.
      *
      * @param environment L'environnement du jeu.
      */
@@ -45,7 +45,7 @@ public class Monster extends LivingEntity {
     }
 
     /**
-     * Renvoie l'image associée au monstre.
+     * Renvoie l'image associÃ©e au monstre.
      *
      * @return L'image du monstre.
      */

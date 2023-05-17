@@ -5,7 +5,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 /**
- * La classe Input gère les entrées clavier dans une application JavaFX.
+ * La classe Input gï¿½re les entrï¿½es clavier dans une application JavaFX.
  */
 public class Input {
 
@@ -14,27 +14,27 @@ public class Input {
     /**
      * Initialise une nouvelle instance de la classe Input.
      *
-     * @param scene la scène JavaFX à surveiller pour les événements clavier
+     * @param scene la scï¿½ne JavaFX ï¿½ surveiller pour les ï¿½vï¿½nements clavier
      */
     public Input(Scene scene) {
         keyBoardState = new boolean[KeyCode.values().length];
         
-        // Gestion des événements de touche enfoncée
+        // Gestion des ï¿½vï¿½nements de touche enfoncï¿½e
         scene.setOnKeyPressed((KeyEvent event) -> {
             keyBoardState[event.getCode().ordinal()] = true;
         });
         
-        // Gestion des événements de touche relâchée
+        // Gestion des ï¿½vï¿½nements de touche relï¿½chï¿½e
         scene.setOnKeyReleased((KeyEvent event) -> {
             keyBoardState[event.getCode().ordinal()] = false;
         });
     }
 
     /**
-     * Vérifie si une touche est enfoncée.
+     * Vï¿½rifie si une touche est enfoncï¿½e.
      *
-     * @param key la touche à vérifier
-     * @return true si la touche est enfoncée, false sinon
+     * @param key la touche ï¿½ vï¿½rifier
+     * @return true si la touche est enfoncï¿½e, false sinon
      */
     public boolean keyPressed(KeyCode key) {
         return keyBoardState[key.ordinal()];

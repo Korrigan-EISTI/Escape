@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * La classe Environment représente l'environnement du jeu, contenant la carte, les entités et la progression du jeu.
+ * La classe Environment reprÃ©sente l'environnement du jeu, contenant la carte, les entitÃ©s et la progression du jeu.
  */
 public class Environment {
 	public enum Progress{
@@ -43,7 +43,7 @@ public class Environment {
     
     /**
      * Constructeur de la classe Environment.
-     * Charge la carte à partir du fichier XML et initialise les paramètres du jeu.
+     * Charge la carte Ã  partir du fichier XML et initialise les paramÃ¨tres du jeu.
      */
     public Environment(){
     	
@@ -76,11 +76,11 @@ public class Environment {
     }
     
     /**
-     * Récupère le type de bloc à la position spécifiée.
+     * RÃ©cupÃ¨re le type de bloc Ã  la position spÃ©cifiÃ©e.
      *
      * @param x La position horizontale du bloc.
      * @param y La position verticale du bloc.
-     * @return Le type de bloc à la position spécifiée.
+     * @return Le type de bloc Ã  la position spÃ©cifiÃ©e.
      */
     public short getBlock(int x, int y) {
     	
@@ -91,18 +91,18 @@ public class Environment {
     }
     
     /**
-     * Récupère le type de bloc à la position spécifiée en virgule flottante.
+     * RÃ©cupÃ¨re le type de bloc Ã  la position spÃ©cifiÃ©e en virgule flottante.
      *
      * @param x La position horizontale du bloc.
      * @param y La position verticale du bloc.
-     * @return Le type de bloc à la position spécifiée.
+     * @return Le type de bloc Ã  la position spÃ©cifiÃ©e.
      */
     public short getBlock(double x, double y) {
         return getBlock((int) x, (int) y);
     }
     
     /**
-     * Modifie le type de bloc à la position spécifiée.
+     * Modifie le type de bloc Ã  la position spÃ©cifiÃ©e.
      *
      * @param x   La position horizontale du bloc.
      * @param y   La position verticale du bloc.
@@ -131,17 +131,17 @@ public class Environment {
     }
     
     /**
-     * Ajoute une entité à l'environnement.
+     * Ajoute une entitÃ© Ã  l'environnement.
      *
-     * @param entity L'entité à ajouter.
+     * @param entity L'entitÃ© Ã  ajouter.
      */
     public void addEntity(Entity entity){
         addedEntities.add(entity);
     }
     
     /**
-     * Génère des monstres dans l'environnement.
-     * Cette méthode est actuellement commentée, mais elle permettrait de générer des monstres à des positions spécifiques.
+     * GÃ©nÃ¨re des monstres dans l'environnement.
+     * Cette mÃ©thode est actuellement commentÃ©e, mais elle permettrait de gÃ©nÃ©rer des monstres Ã  des positions spÃ©cifiques.
      */
     public void generateMonsters(){
     	addedEntities.add(new Monster(39,51));
@@ -162,8 +162,8 @@ public class Environment {
     }
     
     /**
-     * Génère des objets dans l'environnement.
-     * Cette méthode ajoute des objets (clés, potions, etc.) à des positions spécifiques.
+     * GÃ©nÃ¨re des objets dans l'environnement.
+     * Cette mÃ©thode ajoute des objets (clÃ©s, potions, etc.) Ã  des positions spÃ©cifiques.
      */
     public void generateItems() {
     	addedEntities.add(new Key(168, 63));
@@ -182,9 +182,9 @@ public class Environment {
 	}
 
     /**
-     * Définit le joueur actuel.
+     * DÃ©finit le joueur actuel.
      *
-     * @param player Le joueur à définir.
+     * @param player Le joueur Ã  dÃ©finir.
      */
 	public void setPlayer(Player player) {
 		this.player = player;
@@ -192,7 +192,7 @@ public class Environment {
 	}
 
 	/**
-     * Met à jour les entités dans l'environnement.
+     * Met Ã  jour les entitÃ©s dans l'environnement.
      */
 	public void tickEntities(){
     	
@@ -206,19 +206,19 @@ public class Environment {
     }
     
     /**
-     * Retourne le nombre total d'entités dans l'environnement.
+     * Retourne le nombre total d'entitÃ©s dans l'environnement.
      *
-     * @return Le nombre total d'entités.
+     * @return Le nombre total d'entitÃ©s.
      */
     public int getEntityCount(){
         return entities.size();
     }
     
     /**
-     * Récupère une entité à l'index spécifié.
+     * RÃ©cupÃ¨re une entitÃ© Ã  l'index spÃ©cifiÃ©.
      *
-     * @param i L'index de l'entité.
-     * @return L'entité à l'index spécifié.
+     * @param i L'index de l'entitÃ©.
+     * @return L'entitÃ© Ã  l'index spÃ©cifiÃ©.
      */
     public Entity getEntity(int i){
         return entities.get(i);
@@ -234,9 +234,9 @@ public class Environment {
 	}
 
     /**
-     * Définit la progression du jeu.
+     * DÃ©finit la progression du jeu.
      *
-     * @param gameProgression La progression du jeu à définir.
+     * @param gameProgression La progression du jeu Ã  dÃ©finir.
      */
 	public void setGameProgression(Progress gameProgression) {
 		this.gameProgression = gameProgression;

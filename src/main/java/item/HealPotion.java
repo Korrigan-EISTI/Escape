@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import main.java.Environment;
 
 /**
- * Cette classe représente une potion de soin.
+ * Cette classe reprï¿½sente une potion de soin.
  */
 public class HealPotion extends Item {
 
@@ -13,15 +13,15 @@ public class HealPotion extends Item {
     /**
      * Constructeur de la classe HealPotion.
      *
-     * @param x La coordonnée X de la potion de soin.
-     * @param y La coordonnée Y de la potion de soin.
+     * @param x La coordonnï¿½e X de la potion de soin.
+     * @param y La coordonnï¿½e Y de la potion de soin.
      */
 	public HealPotion(double x, double y) {
 		super (x, y, 1, 1);
 	}
 
     /**
-     * Met à jour l'état de la potion de soin à chaque tick.
+     * Met ï¿½ jour l'ï¿½tat de la potion de soin ï¿½ chaque tick.
      *
      * @param e L'environnement dans lequel se trouve la potion de soin.
      */
@@ -33,7 +33,7 @@ public class HealPotion extends Item {
 	}
 
     /**
-     * Renvoie l'image correspondante à la potion de soin.
+     * Renvoie l'image correspondante ï¿½ la potion de soin.
      *
      * @return L'image de la potion de soin.
      */

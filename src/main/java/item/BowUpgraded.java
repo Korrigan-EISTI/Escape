@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import main.java.Environment;
 
 /**
- * Cette classe représente un arc amélioré.
+ * Cette classe reprï¿½sente un arc amï¿½liorï¿½.
  */
 public class BowUpgraded extends Item {
 
@@ -13,17 +13,17 @@ public class BowUpgraded extends Item {
     /**
      * Constructeur de la classe BowUpgraded.
      *
-     * @param x La coordonnée X de l'arc amélioré.
-     * @param y La coordonnée Y de l'arc amélioré.
+     * @param x La coordonnï¿½e X de l'arc amï¿½liorï¿½.
+     * @param y La coordonnï¿½e Y de l'arc amï¿½liorï¿½.
      */
 	public BowUpgraded(double x, double y) {
 		super (x, y, 1, 1);
 	}
 
     /**
-     * Met à jour l'état de l'arc amélioré à chaque tick.
+     * Met ï¿½ jour l'ï¿½tat de l'arc amï¿½liorï¿½ ï¿½ chaque tick.
      *
-     * @param e L'environnement dans lequel se trouve l'arc amélioré.
+     * @param e L'environnement dans lequel se trouve l'arc amï¿½liorï¿½.
      */
 	public void tick (Environment e) {
 		super.tick(e);
@@ -33,9 +33,9 @@ public class BowUpgraded extends Item {
 	}
 
     /**
-     * Renvoie l'image correspondante à l'arc amélioré.
+     * Renvoie l'image correspondante ï¿½ l'arc amï¿½liorï¿½.
      *
-     * @return L'image de l'arc amélioré.
+     * @return L'image de l'arc amï¿½liorï¿½.
      */
 	@Override
     public Image getImage() {

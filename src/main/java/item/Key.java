@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import main.java.Environment;
 
 /**
- * Cette classe représente une clé.
+ * Cette classe reprÃ©sente une clÃ©.
  */
 public class Key extends Item {
 
@@ -13,17 +13,17 @@ public class Key extends Item {
     /**
      * Constructeur de la classe Key.
      *
-     * @param x La coordonnée X de la clé.
-     * @param y La coordonnée Y de la clé.
+     * @param x La coordonnÃ©e X de la clÃ©.
+     * @param y La coordonnÃ©e Y de la clÃ©.
      */
 	public Key(double x, double y) {
 		super (x, y, 1, 1);
 	}
 
     /**
-     * Met à jour l'état de la clé à chaque tick.
+     * Met Ã  jour l'Ã©tat de la clÃ© Ã  chaque tick.
      *
-     * @param e L'environnement dans lequel se trouve la clé.
+     * @param e L'environnement dans lequel se trouve la clÃ©.
      */
 	@Override
 	public void tick (Environment e) {
@@ -35,9 +35,9 @@ public class Key extends Item {
 	}
 
     /**
-     * Renvoie l'image correspondante à la clé.
+     * Renvoie l'image correspondante Ã  la clÃ©.
      *
-     * @return L'image de la clé.
+     * @return L'image de la clÃ©.
      */
 	@Override
 	public Image getImage() {

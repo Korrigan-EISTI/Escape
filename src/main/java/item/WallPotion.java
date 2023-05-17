@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import main.java.Environment;
 
 /**
- * Cette classe représente une potion permettant de traverser les murs.
+ * Cette classe reprï¿½sente une potion permettant de traverser les murs.
  */
 public class WallPotion extends Item {
 
@@ -13,15 +13,15 @@ public class WallPotion extends Item {
     /**
      * Constructeur de la classe WallPotion.
      *
-     * @param x La coordonnée X de la potion de mur.
-     * @param y La coordonnée Y de la potion de mur.
+     * @param x La coordonnï¿½e X de la potion de mur.
+     * @param y La coordonnï¿½e Y de la potion de mur.
      */
 	public WallPotion(double x, double y) {
 		super (x, y, 1, 1);
 	}
 
     /**
-     * Met à jour l'état de la potion de mur à chaque tick.
+     * Met ï¿½ jour l'ï¿½tat de la potion de mur ï¿½ chaque tick.
      *
      * @param e L'environnement dans lequel se trouve la potion de mur.
      */
@@ -33,7 +33,7 @@ public class WallPotion extends Item {
 	}
 
     /**
-     * Renvoie l'image correspondante à la potion de mur.
+     * Renvoie l'image correspondante ï¿½ la potion de mur.
      *
      * @return L'image de la potion de mur.
      */

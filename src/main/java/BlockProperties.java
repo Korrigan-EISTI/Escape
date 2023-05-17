@@ -7,20 +7,20 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * La classe BlockProperties représente les propriétés des blocs du jeu.
- * Elle charge les propriétés des blocs à partir d'un fichier CSV et fournit des méthodes pour y accéder.
+ * La classe BlockProperties reprï¿½sente les propriï¿½tï¿½s des blocs du jeu.
+ * Elle charge les propriï¿½tï¿½s des blocs ï¿½ partir d'un fichier CSV et fournit des mï¿½thodes pour y accï¿½der.
  */
 public class BlockProperties {
     /**
-     * Le record BlockProperty représente les propriétés d'un bloc.
-     * Il contient le chemin d'accès à l'image du bloc, une valeur indiquant si le bloc est solide et un indicateur de grimpabilité.
+     * Le record BlockProperty reprï¿½sente les propriï¿½tï¿½s d'un bloc.
+     * Il contient le chemin d'accï¿½s ï¿½ l'image du bloc, une valeur indiquant si le bloc est solide et un indicateur de grimpabilitï¿½.
      */
     public record BlockProperty(String imagePath, boolean solid, boolean climbable) {}
     private final ArrayList<BlockProperty> properties;
 
     /**
      * Constructeur de la classe BlockProperties.
-     * Charge les propriétés des blocs à partir d'un fichier CSV.
+     * Charge les propriï¿½tï¿½s des blocs ï¿½ partir d'un fichier CSV.
      */
     public BlockProperties() {
         properties = new ArrayList<>();
@@ -36,10 +36,10 @@ public class BlockProperties {
     }
 
     /**
-     * Retourne les propriétés du bloc à l'indice spécifié.
+     * Retourne les propriï¿½tï¿½s du bloc ï¿½ l'indice spï¿½cifiï¿½.
      *
      * @param i L'indice du bloc.
-     * @return Les propriétés du bloc.
+     * @return Les propriï¿½tï¿½s du bloc.
      */
     public BlockProperty get(short i) {
         return properties.get(i);
@@ -48,9 +48,9 @@ public class BlockProperties {
         properties.set(i,property);
     }
     /**
-     * Retourne le nombre de propriétés de blocs disponibles.
+     * Retourne le nombre de propriï¿½tï¿½s de blocs disponibles.
      *
-     * @return Le nombre de propriétés de blocs.
+     * @return Le nombre de propriï¿½tï¿½s de blocs.
      */
     public int size(){
 

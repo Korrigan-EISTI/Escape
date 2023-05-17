@@ -26,18 +26,18 @@ public class Inventory {
     }
 
     /**
-     * Retourne la boîte horizontale (HBox) de l'inventaire.
+     * Retourne la boÃ®te horizontale (HBox) de l'inventaire.
      *
-     * @return la boîte horizontale (HBox) de l'inventaire
+     * @return la boÃ®te horizontale (HBox) de l'inventaire
      */
     public HBox getHbox() {
         return hbox;
     }
 
     /**
-     * Définit la boîte horizontale (HBox) de l'inventaire.
+     * DÃ©finit la boÃ®te horizontale (HBox) de l'inventaire.
      *
-     * @param hbox la boîte horizontale (HBox) de l'inventaire à définir
+     * @param hbox la boÃ®te horizontale (HBox) de l'inventaire Ã  dÃ©finir
      */
     public void setHbox(HBox hbox) {
         this.hbox = hbox;
@@ -53,9 +53,9 @@ public class Inventory {
     }
 
     /**
-     * Définit l'ImageView du slot 1 de l'inventaire.
+     * DÃ©finit l'ImageView du slot 1 de l'inventaire.
      *
-     * @param slot1 l'ImageView du slot 1 de l'inventaire à définir
+     * @param slot1 l'ImageView du slot 1 de l'inventaire Ã  dÃ©finir
      */
     public void setSlot1(ImageView slot1) {
         this.slot1 = slot1;
@@ -71,9 +71,9 @@ public class Inventory {
     }
 
     /**
-     * Définit l'ImageView du slot 2 de l'inventaire.
+     * DÃ©finit l'ImageView du slot 2 de l'inventaire.
      *
-     * @param slot2 l'ImageView du slot 2 de l'inventaire à définir
+     * @param slot2 l'ImageView du slot 2 de l'inventaire Ã  dÃ©finir
      */
     public void setSlot2(ImageView slot2) {
         this.slot2 = slot2;
@@ -89,9 +89,9 @@ public class Inventory {
     }
 
     /**
-     * Définit l'ImageView du slot 3 de l'inventaire.
+     * DÃ©finit l'ImageView du slot 3 de l'inventaire.
      *
-     * @param slot3 l'ImageView du slot 3 de l'inventaire à définir
+     * @param slot3 l'ImageView du slot 3 de l'inventaire Ã  dÃ©finir
      */
     public void setSlot3(ImageView slot3) {
         this.slot3 = slot3;

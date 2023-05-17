@@ -21,10 +21,10 @@ import main.java.entity.Player;
 import main.java.entity.NonPlayableCharacter;
 
 /**
- * La classe TakeTheChest représente l'application principale du jeu.
- * Elle étend la classe Application de JavaFX et est responsable de la configuration de l'environnement du jeu,
- * de la gestion des ticks du jeu, du rendu du jeu et de la gestion des états de fin de partie (game over et victoire).
- * @author Macé de Gastines Martin, Laguet Louis-Alexandre, Tourrenc--Lecerf Alexis
+ * La classe TakeTheChest reprÃ©sente l'application principale du jeu.
+ * Elle Ã©tend la classe Application de JavaFX et est responsable de la configuration de l'environnement du jeu,
+ * de la gestion des ticks du jeu, du rendu du jeu et de la gestion des Ã©tats de fin de partie (game over et victoire).
+ * @author MacÃ© de Gastines Martin, Laguet Louis-Alexandre, Tourrenc--Lecerf Alexis
  * @version 1.0
  */
 public class TakeTheChest extends Application {
@@ -40,7 +40,7 @@ public class TakeTheChest extends Application {
     private Text score;
 
     /**
-     * Le point d'entrée principal de l'application.
+     * Le point d'entrÃ©e principal de l'application.
      *
      * @param args Les arguments de la ligne de commande.
      */
@@ -49,9 +49,9 @@ public class TakeTheChest extends Application {
     }
 
     /**
-     * Initialise le jeu et configure la fenêtre du jeu.
+     * Initialise le jeu et configure la fenÃªtre du jeu.
      *
-     * @param stage Le stage principal de l'application sur lequel la scène peut être définie.
+     * @param stage Le stage principal de l'application sur lequel la scÃ¨ne peut Ãªtre dÃ©finie.
      */
     @Override
     public void start(Stage stage) {
@@ -103,16 +103,15 @@ public class TakeTheChest extends Application {
         final Duration d = Duration.millis((double) 1000 / frameRate);
         final KeyFrame oneFrame = new KeyFrame(d, this::tick);
 
-        Timeline tickLoop = new Timeline(frameRate, oneFrame);
-        tickLoop.setCycleCount(Animation.INDEFINITE);
-        tickLoop.playFromStart();
-        time = tickLoop;
+        time = new Timeline(frameRate, oneFrame);
+		time.setCycleCount(Animation.INDEFINITE);
+		time.playFromStart();
     }
 
 	/**
-	 * Effectue une itération du jeu lors d'un tick d'horloge.
+	 * Effectue une itÃ©ration du jeu lors d'un tick d'horloge.
 	 *
-	 * @param actionEvent L'événement d'action déclenché lors du tick d'horloge.
+	 * @param actionEvent L'Ã©vÃ©nement d'action dÃ©clenchÃ© lors du tick d'horloge.
 	 */
 	
 	private void tick(ActionEvent actionEvent) {
@@ -148,7 +147,7 @@ public class TakeTheChest extends Application {
 	}
 	
 	/**
-	 * Affiche l'écran de fin de partie en cas de victoire.
+	 * Affiche l'Ã©cran de fin de partie en cas de victoire.
 	 */
 	private void gameOver() {
 		dead = true;
@@ -182,7 +181,7 @@ public class TakeTheChest extends Application {
 	}
 	
 	/**
-     * Affiche l'écran de fin de partie en cas de victoire.
+     * Affiche l'Ã©cran de fin de partie en cas de victoire.
      */
 	private void victory() {
 		dead = true;

@@ -3,8 +3,8 @@ package main.java.entity;
 import main.java.Environment;
 
 /**
- * Classe représentant un personnage non jouable (PNJ).
- * Un PNJ est une entité vivante qui interagit avec le joueur et peut déclencher des événements dans le jeu.
+ * Classe reprÃ©sentant un personnage non jouable (PNJ).
+ * Un PNJ est une entitÃ© vivante qui interagit avec le joueur et peut dÃ©clencher des Ã©vÃ©nements dans le jeu.
  */
 public class NonPlayableCharacter extends LivingEntity {
 	
@@ -13,8 +13,8 @@ public class NonPlayableCharacter extends LivingEntity {
 	/**
 	 * Constructeur de la classe NonPlayableCharacter.
 	 *
-	 * @param x La coordonnée en abscisse du PNJ.
-	 * @param y La coordonnée en ordonnée du PNJ.
+	 * @param x La coordonnÃ©e en abscisse du PNJ.
+	 * @param y La coordonnÃ©e en ordonnÃ©e du PNJ.
 	 */	
 	public NonPlayableCharacter(double x, double y) {
 		super(x,y, 100000, 1);
@@ -22,7 +22,7 @@ public class NonPlayableCharacter extends LivingEntity {
 	}
 	
 	/**
-     * Met à jour l'état du PNJ à chaque itération du jeu.
+     * Met Ã  jour l'Ã©tat du PNJ Ã  chaque itÃ©ration du jeu.
      *
      * @param e L'environnement du jeu.
      */
@@ -59,7 +59,7 @@ public class NonPlayableCharacter extends LivingEntity {
     }
 
     /**
-     * Définit le temps de recharge du PNJ.
+     * DÃ©finit le temps de recharge du PNJ.
      *
      * @param cooldown Le temps de recharge du PNJ.
      */
