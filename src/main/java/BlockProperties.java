@@ -7,20 +7,20 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * La classe BlockProperties repr�sente les propri�t�s des blocs du jeu.
- * Elle charge les propri�t�s des blocs � partir d'un fichier CSV et fournit des m�thodes pour y acc�der.
+ * La classe BlockProperties représente les propriétés des blocs du jeu.
+ * Elle charge les propriétés des blocs à partir d'un fichier CSV et fournit des méthodes pour y accéder.
  */
 public class BlockProperties {
     /**
-     * Le record BlockProperty repr�sente les propri�t�s d'un bloc.
-     * Il contient le chemin d'acc�s � l'image du bloc, une valeur indiquant si le bloc est solide et un indicateur de grimpabilit�.
+     * Le record BlockProperty représente les propriétés d'un bloc.
+     * Il contient le chemin d'accès à l'image du bloc, une valeur indiquant si le bloc est solide et un indicateur de grimpabilité.
      */
     public record BlockProperty(String imagePath, boolean solid, boolean climbable) {}
     private final ArrayList<BlockProperty> properties;
 
     /**
      * Constructeur de la classe BlockProperties.
-     * Charge les propri�t�s des blocs � partir d'un fichier CSV.
+     * Charge les propriétés des blocs à partir d'un fichier CSV.
      */
     public BlockProperties() {
         properties = new ArrayList<>();
@@ -36,10 +36,10 @@ public class BlockProperties {
     }
 
     /**
-     * Retourne les propri�t�s du bloc � l'indice sp�cifi�.
+     * Retourne les propriétés du bloc à l'indice spécifié.
      *
      * @param i L'indice du bloc.
-     * @return Les propri�t�s du bloc.
+     * @return Les propriétés du bloc.
      */
     public BlockProperty get(short i) {
         return properties.get(i);
@@ -48,9 +48,9 @@ public class BlockProperties {
         properties.set(i,property);
     }
     /**
-     * Retourne le nombre de propri�t�s de blocs disponibles.
+     * Retourne le nombre de propriétés de blocs disponibles.
      *
-     * @return Le nombre de propri�t�s de blocs.
+     * @return Le nombre de propriétés de blocs.
      */
     public int size(){
 
