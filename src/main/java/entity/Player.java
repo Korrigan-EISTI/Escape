@@ -21,17 +21,17 @@ public class Player extends LivingEntity {
     protected boolean climbing;
 
     /**
-     * Indique si le joueur est autorisÃ© Ã  tirer.
+     * Indique si le joueur est autorisé à tirer.
      */
     protected boolean allowToShoot;
 
     /**
-     * Indique si le joueur possÃ¨de la clÃ©.
+     * Indique si le joueur possède la clé.
      */
     private boolean hasKey;
 
     /**
-     * Indique si le joueur possÃ¨de la potion murale.
+     * Indique si le joueur possède la potion murale.
      */
     private boolean hasWallPotion;
 
@@ -41,17 +41,17 @@ public class Player extends LivingEntity {
     private boolean canWalkThroughMagicWalls;
     
     /**
-     * Indique si l'arc du joueur est amÃ©liorÃ©.
+     * Indique si l'arc du joueur est amélioré.
      */
     private boolean bowIsUpgraded;
     
     /**
      * Le score du joueur.
      */
-    private int score;
+    private double score;
 
     /**
-     * Initialise un nouvel objet Player avec les coordonnÃ©es spÃ©cifiÃ©es.
+     * Initialise un nouvel objet Player avec les coordonnées spécifiées.
      *
      * @param x La position horizontale du joueur.
      * @param y La position verticale du joueur.
@@ -67,7 +67,7 @@ public class Player extends LivingEntity {
     }
 
     /**
-     * Met Ã  jour l'Ã©tat du joueur Ã  chaque cycle de jeu.
+     * Met à jour l'état du joueur à chaque cycle de jeu.
      *
      * @param environment L'environnement de jeu.
      */
@@ -89,9 +89,9 @@ public class Player extends LivingEntity {
     }
 
     /**
-     * GÃ¨re les entrÃ©es du joueur pour effectuer des actions.
+     * Gère les entrées du joueur pour effectuer des actions.
      *
-     * @param input       Les entrÃ©es du joueur.
+     * @param input       Les entrées du joueur.
      * @param environment L'environnement de jeu.
      */
     public void handleInput(Input input, Environment environment) {
@@ -141,36 +141,36 @@ public class Player extends LivingEntity {
     }
 
     /**
-     * Indique si le joueur possÃ¨de la clÃ©.
+     * Indique si le joueur possède la clé.
      *
-     * @return `true` si le joueur possÃ¨de la clÃ©, sinon `false`.
+     * @return `true` si le joueur possède la clé, sinon `false`.
      */
     public boolean hasKey() {
         return hasKey;
     }
 
     /**
-     * DÃ©finit si le joueur possÃ¨de la clÃ©.
+     * Définit si le joueur possède la clé.
      *
-     * @param hasKey `true` si le joueur possÃ¨de la clÃ©, sinon `false`.
+     * @param hasKey `true` si le joueur possède la clé, sinon `false`.
      */
     public void setHasKey(boolean hasKey) {
         this.hasKey = hasKey;
     }
 
     /**
-     * Indique si le joueur possÃ¨de la potion murale.
+     * Indique si le joueur possède la potion murale.
      *
-     * @return `true` si le joueur possÃ¨de la potion murale, sinon `false`.
+     * @return `true` si le joueur possède la potion murale, sinon `false`.
      */
     public boolean hasWallPotion() {
         return hasWallPotion;
     }
 
     /**
-     * DÃ©finit si le joueur possÃ¨de la potion murale.
+     * Définit si le joueur possède la potion murale.
      *
-     * @param hasWallPotion `true` si le joueur possÃ¨de la potion murale, sinon `false`.
+     * @param hasWallPotion `true` si le joueur possède la potion murale, sinon `false`.
      */
     public void setHasWallPotion(boolean hasWallPotion) {
         this.hasWallPotion = hasWallPotion;
@@ -198,36 +198,36 @@ public class Player extends LivingEntity {
 	}
 
     /**
-     * Indique si le joueur est autorisÃ© Ã  tirer.
+     * Indique si le joueur est autorisé à tirer.
      *
-     * @return `true` si le joueur est autorisÃ© Ã  tirer, sinon `false`.
+     * @return `true` si le joueur est autorisé à tirer, sinon `false`.
      */
     public boolean isAllowToShoot() {
         return allowToShoot;
     }
 
     /**
-     * DÃ©finit si le joueur est autorisÃ© Ã  tirer.
+     * Définit si le joueur est autorisé à tirer.
      *
-     * @param allowToShoot `true` si le joueur est autorisÃ© Ã  tirer, sinon `false`.
+     * @param allowToShoot `true` si le joueur est autorisé à tirer, sinon `false`.
      */
     public void setAllowToShoot(boolean allowToShoot) {
         this.allowToShoot = allowToShoot;
     }
 
     /**
-     * Indique si l'arc du joueur est amÃ©liorÃ©.
+     * Indique si l'arc du joueur est amélioré.
      *
-     * @return `true` si l'arc du joueur est amÃ©liorÃ©, sinon `false`.
+     * @return `true` si l'arc du joueur est amélioré, sinon `false`.
      */
     public boolean isBowUpgraded() {
         return bowIsUpgraded;
     }
 
     /**
-     * DÃ©finit si l'arc du joueur est amÃ©liorÃ©.
+     * Définit si l'arc du joueur est amélioré.
      *
-     * @param bowIsUpgraded `true` si l'arc du joueur est amÃ©liorÃ©, sinon `false`.
+     * @param bowIsUpgraded `true` si l'arc du joueur est amélioré, sinon `false`.
      */
     public void setBowIsUpgraded(boolean bowIsUpgraded) {
         this.bowIsUpgraded = bowIsUpgraded;
@@ -237,25 +237,25 @@ public class Player extends LivingEntity {
      * Renvoie le score du joueur.
 	 *
      */
-	public int getScore() {
+	public double getScore() {
 		return score;
 	}
 
 	/**
-     * DÃ©finit le score du joueur.
+     * Définit le score du joueur.
      *
-     * @param score Le score Ã  dÃ©finir.
+     * @param score Le score à définir.
      */
 	public void setScore(int score) {
 		this.score = score;
 	} 
 	
 	/**
-     * IncrÃ©mente le score du joueur.
+     * Incrémente le score du joueur.
      *
-     * @param points Les points de score Ã  ajouter au score du joueur.
+     * @param d Les points de score à ajouter au score du joueur.
      */
-	public void addScore(int points) {
-		this.score += points;
+	public void addScore(double d) {
+		this.score += d;
 	} 
 }

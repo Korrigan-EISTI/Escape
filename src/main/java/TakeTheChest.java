@@ -1,6 +1,10 @@
 package main.java;
 
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -15,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.java.entity.Player;
@@ -38,6 +43,7 @@ public class TakeTheChest extends Application {
     private Inventory inventory;
     private Timeline time;
     private Text score;
+    private HBox score_hbox;
 
     /**
      * Le point d'entrée principal de l'application.
@@ -77,11 +83,12 @@ public class TakeTheChest extends Application {
 		environment.generateItems();
 		
 		score = new Text();
-		HBox top = new HBox(score);
-		top.setMaxWidth(scene.getWidth());
-		top.setPrefHeight(25);
-		top.setAlignment(Pos.CENTER);
-        root.setTop(top);
+		score.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+		score_hbox = new HBox(score);
+		score_hbox.setMaxWidth(scene.getWidth());
+		score_hbox.setPrefHeight(25);
+		score_hbox.setAlignment(Pos.CENTER);
+        root.setTop(score_hbox);
 
         inventory = new Inventory();
         inventory.getHbox().setPrefWidth(scene.getWidth());
@@ -115,7 +122,8 @@ public class TakeTheChest extends Application {
 	 */
 	
 	private void tick(ActionEvent actionEvent) {
-		score.setText(String.valueOf(environment.getPlayer().getScore()));
+
+		score.setText(String.valueOf((int)environment.getPlayer().getScore()));
 		
 		environment.getPlayer().handleInput(input,environment);
 		environment.tickEntities();
@@ -184,10 +192,24 @@ public class TakeTheChest extends Application {
      * Affiche l'écran de fin de partie en cas de victoire.
      */
 	private void victory() {
+		
+		environment.getPlayer().addScore(environment.getPlayer().getLife()*50);
+		score.setText(String.valueOf((int)environment.getPlayer().getScore()));
 		dead = true;
+		
 		BorderPane winPane = new BorderPane();
 		ImageView imgView = new ImageView(new Image("file:src/main/resources/win.jpg", 500, 500, false, false));
-		winPane.setCenter(imgView);
+		
+		Text score_display = new Text("Score : " + score.getText());
+		score_display.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+		
+		VBox img_and_score = new VBox(imgView,score_display);
+		img_and_score.setPrefWidth(750);
+		img_and_score.setSpacing(50);
+		img_and_score.setAlignment(Pos.CENTER);
+		
+		winPane.setCenter(img_and_score);
+		
 		Button quit = new Button ("Quitter");
 		quit.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -195,6 +217,7 @@ public class TakeTheChest extends Application {
 				System.exit(0);
 			}
 		});
+		
 		Button relaunch = new Button ("Relancer");
 		relaunch.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -202,12 +225,15 @@ public class TakeTheChest extends Application {
 				start(stage);
 			}
 		});
+		
 		HBox bottom = new HBox (quit, relaunch);
 		bottom.setAlignment(Pos.CENTER);
 		bottom.setPrefSize(750, 100);
 		winPane.setBottom(bottom);
+		
 		Scene win = new Scene(winPane, 1000, 750);
 		winPane.setPrefSize(win.getWidth(), win.getHeight());
+		
 		stage.setScene(win);
 		stage.setTitle("You Win");
 		stage.show();

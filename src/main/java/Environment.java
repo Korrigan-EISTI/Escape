@@ -23,6 +23,7 @@ import java.util.ArrayList;
  * La classe Environment représente l'environnement du jeu, contenant la carte, les entités et la progression du jeu.
  */
 public class Environment {
+	
 	public enum Progress{
         START,
         WELCOME,
@@ -33,6 +34,7 @@ public class Environment {
         WIN,
         END
     }
+	
     public static BlockProperties BLOCK_PROPERTIES = new BlockProperties();
     private final short[][] blocks;
     private final int map_width, map_height;
