@@ -3,6 +3,7 @@ package main.java.entity.projectile;
 import javafx.scene.image.Image;
 import main.java.Environment;
 import main.java.entity.LivingEntity;
+import main.java.entity.MonsterUpgraded;
 import main.java.entity.NonPlayableCharacter;
 
 public class ArrowUpgraded extends Projectile {
@@ -24,7 +25,7 @@ public class ArrowUpgraded extends Projectile {
 
 	@Override
 	protected boolean onHit(LivingEntity livingEntity) {
-		if(!(livingEntity instanceof NonPlayableCharacter)){
+		if(!(livingEntity instanceof NonPlayableCharacter) || !(livingEntity instanceof MonsterUpgraded)){
 			livingEntity.damage(2);
 			destroy();
 			return true;
