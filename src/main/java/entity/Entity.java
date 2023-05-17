@@ -118,8 +118,8 @@ public abstract class Entity {
      * @param environment L'environnement du jeu
      */
     public void tick(Environment environment){
-        if (x < -100 || x > environment.getWidth() + 100 || y < -100 || y > environment.getHeight() + 100){
-            destroy(environment);
+        if (x < -100 || x > environment.getWidth() + 100 || y < 0 || y > environment.getHeight() + 100){
+            this.destroy(environment);
         }
     }
 

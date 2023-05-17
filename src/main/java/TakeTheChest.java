@@ -77,6 +77,14 @@ public class TakeTheChest extends Application {
 		environment.generateMonsters();
 		environment.generateItems();
 		
+		//Reset player --> Ca marche pas 
+		environment.getPlayer().setAllowToShoot(false);
+		environment.getPlayer().setHasKey(false);
+		environment.getPlayer().setHasWallPotion(false);
+		environment.getPlayer().setBowIsUpgraded(false);
+		environment.getPlayer().setCanWalkThroughMagicWalls(false);
+		environment.getPlayer().setScore(0);
+		
 		score = new Text();
 		score.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
 		score_hbox = new HBox(score);
@@ -144,7 +152,10 @@ public class TakeTheChest extends Application {
 		if (environment.getPlayer().canWalkThroughMagicWalls()) {
 			inventory.getSlot3().setImage(new Image("file:src/main/resources/inventory/inventory_wall_potion_used.png"));
 		}
-		if(environment.getPlayer().getLife()<=0.1 && !dead) gameOver();
+		if((environment.getPlayer().getLife()<=0.1 && !dead) || environment.getPlayer().getY()<0) {
+			time.stop();
+			gameOver();
+		}
 		if (environment.getGameProgression() == Environment.Progress.POTATO) inventory.getSlot2().setImage(new Image("file:src/main/resources/inventory/inventory_potato.png"));
 		if (environment.getGameProgression() == Environment.Progress.WIN && !dead) victory();
 	}

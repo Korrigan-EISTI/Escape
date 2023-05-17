@@ -53,11 +53,10 @@ public abstract class PhysicalEntity extends Entity {
     }
 
     /**
-     * Met Ã  jour l'Ã©tat de l'entitÃ© Ã  chaque itÃ©ration du jeu.
+     * Met Ã  jour l'état de l'entité à chaque itération du jeu.
      *
      * @param environment L'environnement du jeu.
      */
-    @Override
     public void tick(Environment environment) {
 
         setLast_shot(getLast_shot() - 1);

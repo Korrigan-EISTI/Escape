@@ -101,7 +101,7 @@ public class Renderer {
 
                         }
                         if (environment.getGameProgression() == Environment.Progress.KING) {
-                            drawText(camera, "Je te nomme Roi du Chateau de la famille Lama !", livingEntity.getX() - 0.8 , livingEntity.getY()+2,Color.BLACK);
+                            drawText(camera, "Je te nomme Roi du Chateau \nde la famille Lama !", livingEntity.getX() - 0.8 , livingEntity.getY()+2,Color.BLACK);
                             if (npc.getCooldown() <= 0) environment.setGameProgression(Environment.Progress.WIN);
                         }
                     }

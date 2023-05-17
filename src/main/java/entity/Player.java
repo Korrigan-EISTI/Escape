@@ -58,13 +58,13 @@ public class Player extends LivingEntity {
      */
     public Player(double x, double y) {
         super(x, y, 10, 1);
-        setLast_shot(15);
-        allowToShoot = false;
-        hasKey = false;
-        hasWallPotion = false;
-        bowIsUpgraded = false;
-        canWalkThroughMagicWalls = false;
-        score = 0;
+        this.setLast_shot(15);
+        this.setAllowToShoot(false);
+        this.setHasKey(false);
+        this.setHasWallPotion(false);
+		this.setBowIsUpgraded(false);
+		this.setCanWalkThroughMagicWalls(false);
+		this.setScore(0);
     }
 
     /**
@@ -184,6 +184,15 @@ public class Player extends LivingEntity {
      */
     public boolean canWalkThroughMagicWalls() {
         return canWalkThroughMagicWalls;
+    }
+    
+    /**
+     * Définit si le joueur peut traverser les murs.
+     *
+     * @param condition `true` si le joueur peut traverser les murs, sinon `false`.
+     */
+    public void setCanWalkThroughMagicWalls(boolean condition) {
+    	this.canWalkThroughMagicWalls = condition;
     }
     
 	/**
