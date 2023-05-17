@@ -5,7 +5,7 @@ import main.java.Environment;
 
 public class LivingEntity extends PhysicalEntity{
 
-	private static final Image image = new Image("file:src/main/resources/pnj.png");
+	private static final Image image = new Image("file:src/main/resources/living_entities/pnj.png");
     double life;
     double maxLife;
     

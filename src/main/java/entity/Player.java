@@ -10,7 +10,7 @@ import main.java.entity.projectile.ArrowUpgraded;
 
 public class Player extends LivingEntity{
 
-    private static final Image image = new Image("file:src/main/resources/player.png");
+    private static final Image image = new Image("file:src/main/resources/living_entities/player.png");
     protected boolean climbing;
     protected boolean allowToShoot;
     private boolean hasKey;

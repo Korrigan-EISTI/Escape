@@ -5,8 +5,7 @@ import main.java.Environment;
 
 public class WallPotion extends Item{
 	
-	public static Image img = new Image("file:src/main/resources/wall_potion.png");
-	public static Image img_used = new Image("file:src/main/resources/wall_potion_used.png");
+	public static Image img = new Image("file:src/main/resources/items/wall_potion.png");
 	
 	public WallPotion(double x, double y) {
 		super (x, y, 1, 1);

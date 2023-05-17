@@ -8,11 +8,11 @@ import java.util.Random;
 
 public class Monster extends LivingEntity {
 
-	private static final Image image = new Image("file:src/main/resources/monster.png");
+	private static final Image image = new Image("file:src/main/resources/living_entities/monster.png");
 
 
 	public Monster(double x, double y) {
-		super(x, y, 4, 1);
+		super(x, y, 2, 1);
 	}
 
 	@Override

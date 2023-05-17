@@ -6,10 +6,10 @@ import main.java.entity.projectile.ArrowUpgraded;
 
 public class MonsterUpgraded extends LivingEntity {
 
-	private static final Image image = new Image("file:src/main/resources/monster_upgraded.png");
+	private static final Image image = new Image("file:src/main/resources/living_entities/monster_upgraded.png");
 
 	public MonsterUpgraded(double x, double y) {
-		super(x, y, 10, 2);
+		super(x, y, 12, 2);
 	}
 
 	@Override

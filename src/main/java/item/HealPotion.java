@@ -5,7 +5,7 @@ import main.java.Environment;
 
 public class HealPotion extends Item{
 	
-	public static Image img = new Image("file:src/main/resources/heal_potion.png");
+	public static Image img = new Image("file:src/main/resources/items/heal_potion.png");
 	
 	public HealPotion(double x, double y) {
 		super (x, y, 1, 1);

@@ -92,7 +92,6 @@ public class TakeTheChest extends Application {
 		root.getChildren().add(bottom);
 
 		input = new Input(scene);
-		scene.getStylesheets().add("main/resources/test.css");
 
 		stage.setTitle("Take the Chest");
 		stage.setScene(scene);
@@ -131,21 +130,22 @@ public class TakeTheChest extends Application {
 		renderer.render(camera,environment);
 		
 		if (environment.getPlayer().isAllowToShoot()) {
-			inventory.getSlot1().setImage(new Image("file:src/main/resources/inventory_bow.png"));
+			inventory.getSlot1().setImage(new Image("file:src/main/resources/inventory/inventory_bow.png"));
 		}
 		if (environment.getPlayer().isBowUpgraded()) {
-			inventory.getSlot1().setImage(new Image("file:src/main/resources/inventory_bow_upgraded.png"));
+			inventory.getSlot1().setImage(new Image("file:src/main/resources/inventory/inventory_bow_upgraded.png"));
 		}
 		if (environment.getPlayer().hasKey()) {
-			inventory.getSlot2().setImage(new Image("file:src/main/resources/inventory_key.png"));
+			inventory.getSlot2().setImage(new Image("file:src/main/resources/inventory/inventory_key.png"));
 		}
 		if (environment.getPlayer().hasWallPotion()) {
-			inventory.getSlot3().setImage(new Image("file:src/main/resources/inventory_wall_potion.png"));
+			inventory.getSlot3().setImage(new Image("file:src/main/resources/inventory/inventory_wall_potion.png"));
 		}
 		if (environment.getPlayer().canWalkThroughMagicWalls()) {
-			inventory.getSlot3().setImage(new Image("file:src/main/resources/inventory_wall_potion_used.png"));
+			inventory.getSlot3().setImage(new Image("file:src/main/resources/inventory/inventory_wall_potion_used.png"));
 		}
 		if(environment.getPlayer().getLife()<=0.1 && !dead) gameOver();
+		if (environment.getGameProgression() == 4) inventory.getSlot2().setImage(new Image("file:src/main/resources/inventory/inventory_potato.png"));
 		if (environment.getGameProgression() == 6) victory();
 	}
 	
