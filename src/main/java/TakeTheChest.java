@@ -1,12 +1,5 @@
-/**
- * @author Martin Macï¿½ de Gastines, Louis-Alexandre Laguet, Alexis Tourrenc--Lecerf
- * @version 1.0
- * <p>
- * Main class of the program
- */
 
 package main.java;
-
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -28,95 +21,89 @@ import javafx.util.Duration;
 import main.java.entity.Player;
 import main.java.entity.NonPlayableCharacter;
 
-
 /**
- * <p>
- * Main class of the program
+ * La classe TakeTheChest représente l'application principale du jeu.
+ * Elle étend la classe Application de JavaFX et est responsable de la configuration de l'environnement du jeu,
+ * de la gestion des ticks du jeu, du rendu du jeu et de la gestion des états de fin de partie (game over et victoire).
+ * @author Macé de Gastines Martin, Laguet Louis-Alexandre, Tourrenc--Lecerf Alexis
+ * @version 1.0
  */
 public class TakeTheChest extends Application {
-	/** JavaFX Canvas that will paint the render window*/
-	private Canvas canvas;
-	/** Boolean variable who will be true if the player is dead*/
-	private boolean dead;
-	/** Camera center on the player*/
-	private Camera camera;
-	private Renderer renderer;
-	private Environment environment;
-	private Input input;
-	private Stage stage;
-	private Inventory inventory;
-	private Timeline time;
+    private Canvas canvas;
+    private boolean dead;
+    private Camera camera;
+    private Renderer renderer;
+    private Environment environment;
+    private Input input;
+    private Stage stage;
+    private Inventory inventory;
+    private Timeline time;
 
-	public static void main(String[] args) {
-		launch(args);
-	}
+    /**
+     * Le point d'entrée principal de l'application.
+     *
+     * @param args Les arguments de la ligne de commande.
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
 
-	/**
-	 * 
-	 * Start the main application 
-	 * <p>
-	 * @param Stage This stage is the main stage of the JavaFX application
-	 * 
-	 * 
-	 * */
-	@Override
-	public void start(Stage stage) {
-		
-		if (dead) {
-			dead = false;
-			time.stop();
-		}
-		
-		VBox root = new VBox();
-		root.getStyleClass().add("root");
-		Scene scene = new Scene(root,1000,750);
-
+    /**
+     * Initialise le jeu et configure la fenêtre du jeu.
+     *
+     * @param stage Le stage principal de l'application sur lequel la scène peut être définie.
+     */
+    @Override
+    public void start(Stage stage) {
+        if (dead) {
+            dead = false;
+            time.stop();
+        }
+        VBox root = new VBox();
+        root.getStyleClass().add("root");
+        Scene scene = new Scene(root, 1000, 750);
 		canvas = new Canvas(scene.getWidth(), scene.getHeight()-100);
 		canvas.setFocusTraversable(true);
 		environment = new Environment();
 		renderer = new Renderer(canvas);
 		camera = new Camera(100, 200);
 		root.getChildren().add(canvas);
-		
 		environment.setPlayer(new Player(9, 51));
 		environment.generateMonsters();
 		environment.addEntity(new NonPlayableCharacter(25, 51));
 
-		inventory = new Inventory();
-		inventory.getHbox().setPrefWidth(scene.getWidth());
-		inventory.getHbox().setAlignment(Pos.CENTER);
-		inventory.getHbox().setSpacing(75);
-		inventory.getHbox().setMinHeight(100);
-		HBox bottom = new HBox(inventory.getHbox());
-		environment.generateItems();
-		root.getChildren().add(bottom);
+        inventory = new Inventory();
+        inventory.getHbox().setPrefWidth(scene.getWidth());
+        inventory.getHbox().setAlignment(Pos.CENTER);
+        inventory.getHbox().setSpacing(75);
+        inventory.getHbox().setMinHeight(100);
+        HBox bottom = new HBox(inventory.getHbox());
+        environment.generateItems();
+        root.getChildren().add(bottom);
 
-		input = new Input(scene);
+        input = new Input(scene);
 
-		stage.setTitle("Take the Chest");
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.show();
-		this.stage = stage;
+        stage.setTitle("Take the Chest");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+        this.stage = stage;
 
-		int frameRate = 60;
-		final Duration d = Duration.millis((double) 1000 / frameRate);
-		final KeyFrame oneFrame = new KeyFrame(d, this::tick);
+        int frameRate = 60;
+        final Duration d = Duration.millis((double) 1000 / frameRate);
+        final KeyFrame oneFrame = new KeyFrame(d, this::tick);
 
-		Timeline t = new Timeline(frameRate, oneFrame);
-		t.setCycleCount(Animation.INDEFINITE);
-		t.playFromStart();
-		time = t;
-	}
+        Timeline t = new Timeline(frameRate, oneFrame);
+        t.setCycleCount(Animation.INDEFINITE);
+        t.playFromStart();
+        time = t;
+    }
 
 	/**
-	 * 
-	 * Function tick
-	 * <p> 
-	 * This function actualize the game 60 times per seconds
-	 * 
-	 * @param ActionEvent An action that the user has input
-	 * */
+	 * Effectue une itération du jeu lors d'un tick d'horloge.
+	 *
+	 * @param actionEvent L'événement d'action déclenché lors du tick d'horloge.
+	 */
 	
 	private void tick(ActionEvent actionEvent) {
 		
@@ -150,9 +137,8 @@ public class TakeTheChest extends Application {
 	}
 	
 	/**
-	 * 
-	 * Method that create the dead scene where the player is dead
-	 * */
+	 * Affiche l'écran de fin de partie en cas de victoire.
+	 */
 	
 	private void gameOver() {
 		dead = true;
@@ -184,9 +170,8 @@ public class TakeTheChest extends Application {
 	}
 	
 	/**
-	 * 
-	 * Method that create the dead scene where the player is dead
-	 * */
+     * Affiche l'écran de fin de partie en cas de victoire.
+     */
 	private void victory() {
 		dead = true;
 		BorderPane winPane = new BorderPane();

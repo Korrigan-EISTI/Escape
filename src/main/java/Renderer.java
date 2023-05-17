@@ -1,3 +1,4 @@
+
 package main.java;
 
 import javafx.scene.canvas.Canvas;
@@ -10,12 +11,20 @@ import main.java.entity.NonPlayableCharacter;
 import main.java.entity.particle.Particle;
 import java.util.Objects;
 
+/**
+ * La classe Renderer est responsable du rendu graphique dans une application JavaFX.
+ */
 public class Renderer {
-    private final Canvas canvas;
+	private final Canvas canvas;
     private final GraphicsContext gc;
     private final Image[] block_images;
     public static final int scale = 64;
 
+    /**
+     * Initialise une nouvelle instance de la classe Renderer.
+     *
+     * @param canvas le canevas sur lequel effectuer le rendu
+     */
     public Renderer(Canvas canvas){
         this.canvas = canvas;
         gc = this.canvas.getGraphicsContext2D();
@@ -30,7 +39,7 @@ public class Renderer {
             }
         }
     }
-    
+
     private void drawImage(Image image, Camera camera, double x, double y, double w, double h){
         gc.drawImage(image, canvas.getWidth() / 2 + (x - camera.getX())* scale, canvas.getHeight() / 2 - (h + y - camera.getY())* scale, w*scale, h*scale);
     }
@@ -44,7 +53,13 @@ public class Renderer {
         gc.setFill(color);
         gc.fillText(text, canvas.getWidth() / 2 + (x - camera.getX()) * scale, canvas.getHeight() / 2 - (y - camera.getY()) * scale);
     }
-    
+
+    /**
+     * Effectue le rendu graphique de l'environnement et des entités sur le canevas.
+     *
+     * @param camera      la caméra utilisée pour le rendu
+     * @param environment l'environnement contenant les éléments à rendre
+     */
     public void render(Camera camera,Environment environment){
 
         gc.setFill(Color.LIGHTBLUE);

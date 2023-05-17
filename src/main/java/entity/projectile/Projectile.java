@@ -5,22 +5,42 @@ import main.java.entity.LivingEntity;
 import main.java.entity.PhysicalEntity;
 import main.java.entity.particle.Particle;
 
+/**
+ * Cette classe représente un projectile générique.
+ */
 public class Projectile extends PhysicalEntity {
+
     protected LivingEntity owner;
-    public Projectile(double x, double y, double vx, double vy,double w,double h,LivingEntity owner) {
+
+    /**
+     * Constructeur de la classe Projectile.
+     *
+     * @param x      La coordonnée X de départ du projectile.
+     * @param y      La coordonnée Y de départ du projectile.
+     * @param vx     La vitesse horizontale du projectile.
+     * @param vy     La vitesse verticale du projectile.
+     * @param w      La largeur du projectile.
+     * @param h      La hauteur du projectile.
+     * @param owner  L'entité parente du projectile.
+     */
+    public Projectile(double x, double y, double vx, double vy, double w, double h, LivingEntity owner) {
         super(x, y, vx, vy, w, h);
         this.owner = owner;
     }
-    
+
+    /**
+     * Met à jour l'état du projectile à chaque tick.
+     *
+     * @param environment L'environnement dans lequel évolue le projectile.
+     */
     @Override
-    public void tick(Environment environment){
+    public void tick(Environment environment) {
         super.tick(environment);
-        for (int i = 0;i<environment.getEntityCount();i++){
-            if(environment.getEntity(i) instanceof LivingEntity livingEntity){
-                if(!owner.getClass().equals(livingEntity.getClass())){
-                    if(x<livingEntity.getX() + livingEntity.getWidth() && x+w>livingEntity.getX() && y<livingEntity.getY() + livingEntity.getHeight() && y+h>livingEntity.getY()){
-                        if(onHit(livingEntity))
-                        {
+        for (int i = 0; i < environment.getEntityCount(); i++) {
+            if (environment.getEntity(i) instanceof LivingEntity livingEntity) {
+                if (!owner.getClass().equals(livingEntity.getClass())) {
+                    if (x < livingEntity.getX() + livingEntity.getWidth() && x + w > livingEntity.getX() && y < livingEntity.getY() + livingEntity.getHeight() && y + h > livingEntity.getY()) {
+                        if (onHit(livingEntity)) {
                             destroy();
                             break;
                         }
@@ -28,14 +48,29 @@ public class Projectile extends PhysicalEntity {
                 }
             }
         }
-        if(vx == 0){
+        if (vx == 0) {
             destroy();
         }
     }
-    protected boolean onHit(LivingEntity livingEntity){
+
+    /**
+     * Méthode invoquée lorsqu'une entité est touchée par le projectile.
+     *
+     * @param livingEntity L'entité touchée par le projectile.
+     * @return Vrai si l'entité a été touchée par le projectile, faux sinon.
+     */
+    protected boolean onHit(LivingEntity livingEntity) {
         return false;
     }
-    protected Particle spawnParticle(double x,double y){
+
+    /**
+     * Permet de créer une particule à l'endroit spécifié.
+     *
+     * @param x La coordonnée X de la particule.
+     * @param y La coordonnée Y de la particule.
+     * @return La particule créée.
+     */
+    protected Particle spawnParticle(double x, double y) {
         return null;
     }
 }

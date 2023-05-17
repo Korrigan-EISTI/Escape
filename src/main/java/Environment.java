@@ -12,12 +12,16 @@ import main.java.entity.Player;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * La classe Environment représente l'environnement du jeu, contenant la carte, les entités et la progression du jeu.
+ */
 public class Environment {
 	
     public static BlockProperties BLOCK_PROPERTIES = new BlockProperties();
@@ -28,6 +32,10 @@ public class Environment {
     private Player player;
     private int gameProgression;
     
+    /**
+     * Constructeur de la classe Environment.
+     * Charge la carte à partir du fichier XML et initialise les paramètres du jeu.
+     */
     public Environment(){
     	
     	gameProgression = 0;
@@ -42,51 +50,90 @@ public class Environment {
         }
         
         Node info = doc.getElementsByTagName("map").item(0);
-        map_width=Short.parseShort(info.getAttributes().getNamedItem("width").getTextContent());
-        map_height=Short.parseShort(info.getAttributes().getNamedItem("height").getTextContent());
-        blocks= new short[map_height][map_width];
+        map_width = Short.parseShort(info.getAttributes().getNamedItem("width").getTextContent());
+        map_height = Short.parseShort(info.getAttributes().getNamedItem("height").getTextContent());
+        blocks = new short[map_height][map_width];
         String data = doc.getElementsByTagName("data").item(0).getTextContent().trim();
         
-        int y=map_height;
+        int y = map_height;
         for (String row : data.split("\n")){
             y--;
-            int x=0;
-            for (String block:row.split(",")){
-                blocks[y][x]=Short.parseShort(block);
+            int x = 0;
+            for (String block : row.split(",")){
+                blocks[y][x] = Short.parseShort(block);
                 x++;
             }
         }
     }
     
-    
-    public short getBlock(int x,int y) {
+    /**
+     * Récupère le type de bloc à la position spécifiée.
+     *
+     * @param x La position horizontale du bloc.
+     * @param y La position verticale du bloc.
+     * @return Le type de bloc à la position spécifiée.
+     */
+    public short getBlock(int x, int y) {
     	
-        if(x<0 || y<0 || x>=map_width || y>=map_height){
+        if (x < 0 || y < 0 || x >= map_width || y >= map_height){
             return 0;
         }
         return blocks[y][x];
     }
     
-    public short getBlock(double x,double y) {
-        return getBlock((int)x,(int)y);
+    /**
+     * Récupère le type de bloc à la position spécifiée en virgule flottante.
+     *
+     * @param x La position horizontale du bloc.
+     * @param y La position verticale du bloc.
+     * @return Le type de bloc à la position spécifiée.
+     */
+    public short getBlock(double x, double y) {
+        return getBlock((int) x, (int) y);
     }
     
-    public void setBlock(int x,int y,short val) {
+    /**
+     * Modifie le type de bloc à la position spécifiée.
+     *
+     * @param x   La position horizontale du bloc.
+     * @param y   La position verticale du bloc.
+     * @param val Le nouveau type de bloc.
+     */
+    public void setBlock(int x, int y, short val) {
         this.blocks[y][x] = val;
     }
 
+    /**
+     * Retourne la largeur de la carte.
+     *
+     * @return La largeur de la carte.
+     */
     public int getWidth() {
         return map_width;
     }
 
+    /**
+     * Retourne la hauteur de la carte.
+     *
+     * @return La hauteur de la carte.
+     */
     public int getHeight() {
         return map_height;
     }
     
+    /**
+     * Ajoute une entité à l'environnement.
+     *
+     * @param entity L'entité à ajouter.
+     */
     public void addEntity(Entity entity){
         addedEntities.add(entity);
     }
     
+    /**
+     * Génère des monstres dans l'environnement.
+     * Cette méthode est actuellement commentée, mais elle permettrait de générer des monstres à des positions spécifiques.
+     */
     public void generateMonsters(){
     	addedEntities.add(new Monster(39,51));
     	addedEntities.add(new Monster(56,46));
@@ -105,6 +152,10 @@ public class Environment {
     	addedEntities.add(new Monster(115,33));
     }
     
+    /**
+     * Génère des objets dans l'environnement.
+     * Cette méthode ajoute des objets (clés, potions, etc.) à des positions spécifiques.
+     */
     public void generateItems() {
     	addedEntities.add(new Key(168, 63));
     	addedEntities.add(new WallPotion(111, 33));
@@ -112,16 +163,28 @@ public class Environment {
     	addedEntities.add(new BowUpgraded(188, 53));
     }
     
+    /**
+     * Retourne le joueur actuel.
+     *
+     * @return Le joueur actuel.
+     */
     public Player getPlayer() {
 		return player;
 	}
 
+    /**
+     * Définit le joueur actuel.
+     *
+     * @param player Le joueur à définir.
+     */
 	public void setPlayer(Player player) {
 		this.player = player;
 		addEntity(player);
 	}
 
-
+	/**
+     * Met à jour les entités dans l'environnement.
+     */
 	public void tickEntities(){
     	
         entities.addAll(addedEntities);
@@ -133,20 +196,39 @@ public class Environment {
         entities.removeIf(Entity::destroyed);
     }
     
+    /**
+     * Retourne le nombre total d'entités dans l'environnement.
+     *
+     * @return Le nombre total d'entités.
+     */
     public int getEntityCount(){
         return entities.size();
     }
     
+    /**
+     * Récupère une entité à l'index spécifié.
+     *
+     * @param i L'index de l'entité.
+     * @return L'entité à l'index spécifié.
+     */
     public Entity getEntity(int i){
         return entities.get(i);
     }
 
-
+    /**
+     * Retourne la progression du jeu.
+     *
+     * @return La progression du jeu.
+     */
 	public int getGameProgression() {
 		return gameProgression;
 	}
 
-
+    /**
+     * Définit la progression du jeu.
+     *
+     * @param gameProgression La progression du jeu à définir.
+     */
 	public void setGameProgression(int gameProgression) {
 		this.gameProgression = gameProgression;
 	}
