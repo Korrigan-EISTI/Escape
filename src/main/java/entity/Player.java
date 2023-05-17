@@ -39,7 +39,16 @@ public class Player extends LivingEntity {
      * Indique si le joueur peut traverser les murs magiques.
      */
     private boolean canWalkThroughMagicWalls;
+    
+    /**
+     * Indique si l'arc du joueur est amélioré.
+     */
     private boolean bowIsUpgraded;
+    
+    /**
+     * Le score du joueur.
+     */
+    private int score;
 
     /**
      * Initialise un nouvel objet Player avec les coordonnées spécifiées.
@@ -54,6 +63,7 @@ public class Player extends LivingEntity {
         hasKey = false;
         hasWallPotion = false;
         setBowIsUpgraded(false);
+        score = 0;
     }
 
     /**
@@ -222,5 +232,31 @@ public class Player extends LivingEntity {
      */
     public void setBowIsUpgraded(boolean bowIsUpgraded) {
         this.bowIsUpgraded = bowIsUpgraded;
-    } 
+    }
+
+    /**
+     * Renvoie le score du joueur.
+	 *
+     */
+	public int getScore() {
+		return score;
+	}
+
+	/**
+     * Définit le score du joueur.
+     *
+     * @param score Le score à définir.
+     */
+	public void setScore(int score) {
+		this.score = score;
+	} 
+	
+	/**
+     * Incrémente le score du joueur.
+     *
+     * @param points Les points de score à ajouter au score du joueur.
+     */
+	public void addScore(int points) {
+		this.score += points;
+	} 
 }

@@ -1,6 +1,6 @@
 
 package main.java;
-
+import javafx.scene.text.Text;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -15,7 +15,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.java.entity.Player;
@@ -39,6 +38,7 @@ public class TakeTheChest extends Application {
     private Stage stage;
     private Inventory inventory;
     private Timeline time;
+    private Text score;
 
     /**
      * Le point d'entrée principal de l'application.
@@ -56,32 +56,59 @@ public class TakeTheChest extends Application {
      */
     @Override
     public void start(Stage stage) {
+    	
         if (dead) {
             dead = false;
             time.stop();
         }
+<<<<<<< .mine
+        
+        BorderPane root = new BorderPane();
+=======
         BorderPane root = new BorderPane();
         root.getStyleClass().add("root");
+>>>>>>> .theirs
         Scene scene = new Scene(root, 1000, 750);
+        
 		canvas = new Canvas(scene.getWidth(), scene.getHeight()-100);
 		canvas.setFocusTraversable(true);
 		environment = new Environment();
 		renderer = new Renderer(canvas);
 		camera = new Camera(100, 200);
+<<<<<<< .mine
 		root.setCenter(canvas);
+		
+=======
+		root.setCenter(canvas);
+
+>>>>>>> .theirs
 		environment.setPlayer(new Player(9, 51));
 		environment.generateMonsters();
 		environment.addEntity(new NonPlayableCharacter(25, 51));
+		environment.generateItems();
+		
+		score = new Text();
+		HBox top = new HBox(score);
+		top.setMaxWidth(scene.getWidth());
+		top.setPrefHeight(25);
+		top.setAlignment(Pos.CENTER);
+        root.setTop(top);
 
         inventory = new Inventory();
         inventory.getHbox().setPrefWidth(scene.getWidth());
         inventory.getHbox().setAlignment(Pos.CENTER);
         inventory.getHbox().setSpacing(75);
-        inventory.getHbox().setMinHeight(100);
+        inventory.getHbox().setMinHeight(75);
         HBox bottom = new HBox(inventory.getHbox());
+<<<<<<< .mine
+        root.setBottom(bottom);
+        
+        
+=======
         environment.generateItems();
         root.setBottom(bottom);
 
+>>>>>>> .theirs
         input = new Input(scene);
 
         stage.setTitle("Take the Chest");
@@ -107,6 +134,8 @@ public class TakeTheChest extends Application {
 	 */
 	
 	private void tick(ActionEvent actionEvent) {
+		score.setText(String.valueOf(environment.getPlayer().getScore()));
+		
 		environment.getPlayer().handleInput(input,environment);
 		environment.tickEntities();
 		
@@ -139,7 +168,6 @@ public class TakeTheChest extends Application {
 	/**
 	 * Affiche l'écran de fin de partie en cas de victoire.
 	 */
-	
 	private void gameOver() {
 		dead = true;
 		BorderPane dead = new BorderPane();

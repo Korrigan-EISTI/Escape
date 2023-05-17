@@ -119,7 +119,7 @@ public abstract class Entity {
      */
     public void tick(Environment environment){
         if (x < -100 || x > environment.getWidth() + 100 || y < -100 || y > environment.getHeight() + 100){
-            destroy();
+            destroy(environment);
         }
     }
 
@@ -132,6 +132,13 @@ public abstract class Entity {
         return destroyed;
     }
 
+    /**
+     * Détruit l'entité.
+     */
+    public void destroy(Environment environment) {
+        this.destroyed = true;
+    }
+    
     /**
      * Détruit l'entité.
      */

@@ -8,7 +8,6 @@ import javafx.scene.paint.Color;
 import main.java.entity.Entity;
 import main.java.entity.LivingEntity;
 import main.java.entity.NonPlayableCharacter;
-import main.java.entity.particle.Particle;
 import java.util.Objects;
 
 /**
@@ -81,9 +80,6 @@ public class Renderer {
         for (int i=0;i<environment.getEntityCount();i++) {
             Entity entity = environment.getEntity(i);
             if (entity.getImage()!=null){
-                if(entity instanceof Particle){
-                    gc.setGlobalAlpha(((Particle) entity).getAlpha());
-                }
                 drawImage(entity.getImage(),camera,entity.getX() + entity.getImageOffsetX(),entity.getY()  + entity.getImageOffsetY(),entity.getImageSizeX(),entity.getImageSizeY());
                 gc.setGlobalAlpha(1);
                 if(entity instanceof LivingEntity livingEntity){

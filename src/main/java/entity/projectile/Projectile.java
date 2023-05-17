@@ -3,7 +3,6 @@ package main.java.entity.projectile;
 import main.java.Environment;
 import main.java.entity.LivingEntity;
 import main.java.entity.PhysicalEntity;
-import main.java.entity.particle.Particle;
 
 /**
  * Cette classe représente un projectile générique.
@@ -61,16 +60,5 @@ public class Projectile extends PhysicalEntity {
      */
     protected boolean onHit(LivingEntity livingEntity) {
         return false;
-    }
-
-    /**
-     * Permet de créer une particule à l'endroit spécifié.
-     *
-     * @param x La coordonnée X de la particule.
-     * @param y La coordonnée Y de la particule.
-     * @return La particule créée.
-     */
-    protected Particle spawnParticle(double x, double y) {
-        return null;
     }
 }

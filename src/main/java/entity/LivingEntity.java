@@ -99,7 +99,9 @@ public class LivingEntity extends PhysicalEntity {
     @Override
     public void tick(Environment environment) {
         if (life < 0.001) {
-            destroy();
+        	if ((this instanceof Monster)) environment.getPlayer().addScore(100);
+        	if ((this instanceof MonsterUpgraded)) environment.getPlayer().addScore(1000);
+            destroy(environment);
         }
         vy -= 0.02;
         vx *= 0.7;
