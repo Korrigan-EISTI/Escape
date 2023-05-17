@@ -85,7 +85,7 @@ public class Environment {
     }
     
     public void generateMonsters(){
-    	addedEntities.add(new Monster(39,51));
+    	/*addedEntities.add(new Monster(39,51));
     	addedEntities.add(new Monster(56,46));
     	addedEntities.add(new Monster(75,53));
     	addedEntities.add(new Monster(74,58));
@@ -99,7 +99,7 @@ public class Environment {
     	addedEntities.add(new Monster(72,82));
     	addedEntities.add(new Monster(78,82));
     	addedEntities.add(new Monster(75,84));
-    	addedEntities.add(new Monster(115,33));
+    	addedEntities.add(new Monster(115,33));*/
     }
     
     public void generateItems() {

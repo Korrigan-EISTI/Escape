@@ -1,5 +1,11 @@
 package main.java;
 
+/**
+ * 
+ * <p> 
+ * Class that create a camera with at reference point the player
+ *
+ */
 public class Camera {
 	
     private double x,y;

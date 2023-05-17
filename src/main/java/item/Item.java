@@ -13,6 +13,7 @@ public class Item extends Entity{
 		status = true;
 	}
 	
+	@Override
 	public void tick (Environment e) {
 		super.tick(e);
 		for (int i = 0;i<e.getEntityCount();i++){

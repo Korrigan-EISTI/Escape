@@ -71,11 +71,21 @@ public class Renderer {
                     if (entity instanceof NonPlayableCharacter npc){
                         drawRect(camera,livingEntity.getX()-1,livingEntity.getY()+2.5,4,1.5,Color.WHITE);
                         if (environment.getGameProgression() == 1) {
-                            drawText(camera,"Viens me voir hÃ©ros! \nJ'ai un problÃ¨me mon coffre est fermÃ© \net j'ai oubliÃ© oÃ¹ j'ai mis la clÃ©",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
+                            drawText(camera,"Viens me voir héros! \nJ'ai un problème mon coffre est fermé \net j'ai oublié où j'ai mis la clé",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
                             if (npc.getCooldown() <= 0) environment.setGameProgression(2);
                         }
                         if (environment.getGameProgression() == 2) {
                             drawText(camera,"Ah!!!! \nMon chateau est rempli de monstre, \ntiens prends mon arc et va les tuer",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
+                        }
+                        if (environment.getGameProgression() == 3) {
+                        	drawText(camera,"Bravo, tu as trouvé la clé, \ncours au coffre pour l'ouvrir maintenant",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
+                        }
+                        if (environment.getGameProgression() == 4) {
+                        	drawText(camera, "Merci tu m'a ramené ma patate", livingEntity.getX() - 0.8 , livingEntity.getY()+2,Color.BLACK);
+                        }
+                        if (environment.getGameProgression() == 5) {
+                        	drawText(camera, "Merci tu m'a ramené ma patate", livingEntity.getX() - 0.8 , livingEntity.getY()+2,Color.BLACK);
+                        	if (npc.getCooldown() <= 0) environment.setGameProgression(6);
                         }
                     }
 

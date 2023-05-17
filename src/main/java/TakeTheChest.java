@@ -1,3 +1,10 @@
+/**
+ * @author Martin Macé de Gastines, Louis-Alexandre Laguet, Alexis Tourrenc--Lecerf
+ * @version 1.0
+ * <p>
+ * Main class of the program
+ */
+
 package main.java;
 
 
@@ -21,10 +28,17 @@ import javafx.util.Duration;
 import main.java.entity.Player;
 import main.java.entity.NonPlayableCharacter;
 
-public class TakeTheChest extends Application {
 
+/**
+ * <p>
+ * Main class of the program
+ */
+public class TakeTheChest extends Application {
+	/** JavaFX Canvas that will paint the render window*/
 	private Canvas canvas;
+	/** Boolean variable who will be true if the player is dead*/
 	private boolean dead;
+	/** Camera center on the player*/
 	private Camera camera;
 	private Renderer renderer;
 	private Environment environment;
@@ -37,6 +51,14 @@ public class TakeTheChest extends Application {
 		launch(args);
 	}
 
+	/**
+	 * 
+	 * Start the main application 
+	 * <p>
+	 * @param Stage This stage is the main stage of the JavaFX application
+	 * 
+	 * 
+	 * */
 	@Override
 	public void start(Stage stage) {
 		
@@ -56,7 +78,7 @@ public class TakeTheChest extends Application {
 		camera = new Camera(100, 200);
 		root.getChildren().add(canvas);
 		
-		environment.setPlayer(new Player(9, 51));
+		environment.setPlayer(new Player(115, 33));
 		environment.generateMonsters();
 		environment.addEntity(new NonPlayableCharacter(25, 51));
 
@@ -88,6 +110,15 @@ public class TakeTheChest extends Application {
 		time = t;
 	}
 
+	/**
+	 * 
+	 * Function tick
+	 * <p> 
+	 * This function actualize the game 60 times per seconds
+	 * 
+	 * @param ActionEvent An action that the user has input
+	 * */
+	
 	private void tick(ActionEvent actionEvent) {
 		
 		environment.getPlayer().handleInput(input,environment);
@@ -102,16 +133,22 @@ public class TakeTheChest extends Application {
 			inventory.getSlot2().setImage(new Image("file:src/main/resources/inventory_key.png"));
 		}
 		if (environment.getPlayer().hasWallPotion()) {
-			inventory.getSlot1().setImage(new Image("file:src/main/resources/inventory_wall_potion.png"));
+			inventory.getSlot3().setImage(new Image("file:src/main/resources/inventory_wall_potion.png"));
 		}
 		if (environment.getPlayer().canWalkThroughMagicWalls()) {
-			inventory.getSlot1().setImage(new Image("file:src/main/resources/inventory_wall_potion_used.png"));
+			inventory.getSlot3().setImage(new Image("file:src/main/resources/inventory_wall_potion_used.png"));
 		}
 		if (environment.getPlayer().isAllowToShoot()) {
-			inventory.getSlot3().setImage(new Image("file:src/main/resources/inventory_bow.png"));
+			inventory.getSlot1().setImage(new Image("file:src/main/resources/inventory_bow.png"));
 		}
 		if(environment.getPlayer().getLife()<=0.1 && !dead) gameOver();
+		if (environment.getGameProgression() == 6) victory();
 	}
+	
+	/**
+	 * 
+	 * Method that create the dead scene where the player is dead
+	 * */
 	
 	private void gameOver() {
 		dead = true;
@@ -141,4 +178,42 @@ public class TakeTheChest extends Application {
 		stage.setTitle("Game Over");
 		stage.show();
 	}
+<<<<<<< Updated upstream
 }
+=======
+	
+	/**
+	 * 
+	 * Method that create the dead scene where the player is dead
+	 * */
+	private void victory() {
+		dead = true;
+		BorderPane winPane = new BorderPane();
+		ImageView imgView = new ImageView(new Image("file:src/main/resources/game_over.png", 500, 500, false, false));
+		winPane.setCenter(imgView);
+		Button quit = new Button ("Quitter");
+		quit.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		Button relaunch = new Button ("Relancer");
+		relaunch.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				start(stage);
+			}
+		});
+		HBox bottom = new HBox (quit, relaunch);
+		winPane.setBottom(bottom);
+		winPane.setPrefSize(1000, 750);
+		Scene win = new Scene(winPane, 1000, 750);
+		winPane.setPrefSize(win.getWidth(), win.getHeight());
+		stage.setScene(win);
+		stage.setTitle("You Win");
+		stage.show();
+	}
+	
+}
+>>>>>>> Stashed changes

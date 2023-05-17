@@ -43,7 +43,8 @@ public abstract class PhysicalEntity extends Entity{
             while (scan_x>end_x && !hit){
             	scan_x-=1;
                 for (int i = start_y;i<=end_y;i++){
-                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==1 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
+                    hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==1 || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid() == 3 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
+                    if (environment.getPlayer().hasKey() && Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x, i)).solid() == 3) environment.setGameProgression(4);
                     if(environment.getPlayer().hasKey() && Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==3) environment.setGameProgression(4);
                 }
             }
@@ -64,7 +65,8 @@ public abstract class PhysicalEntity extends Entity{
             while (scan_x<end_x && !hit){
                 scan_x+=1;
                 for (int i = start_y;i<=end_y;i++){
-                	hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==1 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
+                	hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==1 || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==3 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x,i)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
+                	if (environment.getPlayer().hasKey() && Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_x, i)).solid() == 3) environment.setGameProgression(4);
                 }
             }
             if(hit){
@@ -84,7 +86,8 @@ public abstract class PhysicalEntity extends Entity{
             while (scan_y>end_y && !hit){
                 scan_y-=1;
                 for (int i = start_x;i<=end_x;i++){
-                	hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,scan_y)).solid()==1 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,scan_y)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
+                	hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,scan_y)).solid()==1 || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,scan_y)).solid()==3 || Environment.BLOCK_PROPERTIES.get(environment.getBlock(scan_y,i)).solid()==3 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,scan_y)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
+                	if (environment.getPlayer().hasKey() && Environment.BLOCK_PROPERTIES.get(environment.getBlock(i, scan_y)).solid() == 3) environment.setGameProgression(4);
                 }
             }
             if(hit){
@@ -105,7 +108,8 @@ public abstract class PhysicalEntity extends Entity{
             while (check_y<end_y && !hit){
                 check_y+=1;
                 for (int i = start_x;i<=end_x;i++){
-                	hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,check_y)).solid()==1 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,check_y)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
+                	hit = hit || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,check_y)).solid()==1 || Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,check_y)).solid()==3 || (Environment.BLOCK_PROPERTIES.get(environment.getBlock(i,check_y)).solid()==2 && !environment.getPlayer().canWalkThroughMagicWalls());
+                	if (environment.getPlayer().hasKey() && Environment.BLOCK_PROPERTIES.get(environment.getBlock(i, check_y)).solid() == 3) environment.setGameProgression(4);
                 }
             }
             if(hit){

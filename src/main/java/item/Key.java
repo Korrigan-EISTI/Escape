@@ -11,11 +11,12 @@ public class Key extends Item{
 		super (x, y, 1, 1);
 	}
 	
+	@Override
 	public void tick (Environment e) {
 		super.tick(e);
 		if (!status) {
 			e.getPlayer().setHasKey(true);
-			e.setGameProgression(2);
+			e.setGameProgression(3);
 		}
 	}
 	
