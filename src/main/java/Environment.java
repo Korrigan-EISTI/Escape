@@ -7,6 +7,7 @@ import main.java.item.Key;
 import main.java.item.WallPotion;
 import main.java.entity.Monster;
 import main.java.entity.MonsterUpgraded;
+import main.java.entity.NonPlayableCharacter;
 import main.java.entity.Player;
 
 import org.w3c.dom.Document;
@@ -49,11 +50,15 @@ public class Environment {
      */
     public Environment(){
     	
+    	player = new Player(9,51);
     	gameProgression = Progress.START;
+    	
         entities = new ArrayList<>();
+        entities.add(player);
+        entities.add(new NonPlayableCharacter(25, 51));
         addedEntities = new ArrayList<>();
-        Document doc = null;
         
+        Document doc = null;
         try {
             doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File("src/main/resources/maps/map.tmx"));
         }

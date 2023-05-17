@@ -58,11 +58,12 @@ public class Player extends LivingEntity {
      */
     public Player(double x, double y) {
         super(x, y, 10, 1);
-        setLast_shot(30);
+        setLast_shot(15);
         allowToShoot = false;
         hasKey = false;
         hasWallPotion = false;
-        setBowIsUpgraded(false);
+        bowIsUpgraded = false;
+        canWalkThroughMagicWalls = false;
         score = 0;
     }
 
@@ -117,12 +118,12 @@ public class Player extends LivingEntity {
             if(input.keyPressed(KeyCode.A) && getLast_shot()<=0){
             	if(this.isBowUpgraded()) environment.addEntity(new ArrowUpgraded(x+w/2,y+2*h/3,-0.5,this));
             	else environment.addEntity(new Arrow(x+w/2,y+2*h/3,-0.5,this));
-            	setLast_shot(30);
+            	setLast_shot(15);
             }
             if(input.keyPressed(KeyCode.E) && getLast_shot()<=0) {
             	if (this.isBowUpgraded()) environment.addEntity(new ArrowUpgraded(x+w/2,y+2*h/3, 0.5,this));
             	else environment.addEntity(new Arrow(x+w/2,y+2*h/3, 0.5,this));
-                setLast_shot(30);
+                setLast_shot(15);
             }
         }
         if (input.keyPressed(KeyCode.P)) {
@@ -257,5 +258,19 @@ public class Player extends LivingEntity {
      */
 	public void addScore(double d) {
 		this.score += d;
+	} 
+	
+	/**
+     * Remise des attributs du joueurs aux valeurs de base en cas de nouvelle partie.
+     *
+     */
+	public void reset() {
+		this.setLast_shot(15);
+		this.allowToShoot = false;
+		this.hasKey = false;
+		this.hasWallPotion = false;
+		this.bowIsUpgraded = false;
+		this.canWalkThroughMagicWalls = false;
+		this.score = 0;
 	} 
 }

@@ -54,10 +54,10 @@ public class Renderer {
     }
 
     /**
-     * Effectue le rendu graphique de l'environnement et des entit√©s sur le canevas.
+     * Effectue le rendu graphique de l'environnement et des entitÈs sur le canevas.
      *
-     * @param camera      la cam√©ra utilis√©e pour le rendu
-     * @param environment l'environnement contenant les √©l√©ments √© rendre
+     * @param camera      la camÈra utilisÈe pour le rendu
+     * @param environment l'environnement contenant les ÈlÈments È rendre
      */
     public void render(Camera camera,Environment environment){
 
@@ -86,22 +86,22 @@ public class Renderer {
                     if (entity instanceof NonPlayableCharacter npc){
                         drawRect(camera,livingEntity.getX()-1,livingEntity.getY()+2.5,4,1.5,Color.WHITE);
                         if (environment.getGameProgression() == Environment.Progress.WELCOME) {
-                            drawText(camera,"Viens me voir h√©ros! \nJ'ai un probl√®me mon coffre est ferm√© \net et j'ai oubli√© o√π j'ai mis la cl√©.\nReste ici j'ai quelque chose pour toi !",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
+                            drawText(camera,"Au secours hÈros, j'ai besoin de ton aide ! \nReste ici j'ai quelque chose pour toi !",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
                             if (npc.getCooldown() <= 0) environment.setGameProgression(Environment.Progress.BOW);
                         }
                         if (environment.getGameProgression() == Environment.Progress.BOW) {
-                            drawText(camera,"Ah!!!! \nMon chateau est rempli de monstre.\nTiens prends mon arc et va les tuer.",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
+                            drawText(camera,"Mon chateau dans lequel se trouve mon \ncoffre est rempli de monstre. \nTiens, prends mon arc et va les tuer. \nPense aussi ‡ chercher la clÈ du coffre !",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
                         }
                         if (environment.getGameProgression() == Environment.Progress.KEY) {
-                            drawText(camera,"Bravo, tu as trouv√© la cl√©. \nCours au coffre pour l'ouvrir maintenant !",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
+                            drawText(camera,"Bravo, tu as trouvÈ la clÈ. \nCours au coffre pour l'ouvrir maintenant !",livingEntity.getX() - 0.8 ,livingEntity.getY()+2,Color.BLACK);
 
                         }
                         if (environment.getGameProgression() == Environment.Progress.POTATO) {
-                            drawText(camera, "Merci tu m'a ramen√© ma patate :)\nF√©licitation h√©ros !", livingEntity.getX() - 0.8 , livingEntity.getY()+2,Color.BLACK);
+                            drawText(camera, "Merci tu m'a ramenÈ ma patate :)\nFÈlicitation hÈros !", livingEntity.getX() - 0.8 , livingEntity.getY()+2,Color.BLACK);
 
                         }
                         if (environment.getGameProgression() == Environment.Progress.KING) {
-                            drawText(camera, "Je te nomme roi du chateau", livingEntity.getX() - 0.8 , livingEntity.getY()+2,Color.BLACK);
+                            drawText(camera, "Je te nomme Roi du Chateau de la famille Lama !", livingEntity.getX() - 0.8 , livingEntity.getY()+2,Color.BLACK);
                             if (npc.getCooldown() <= 0) environment.setGameProgression(Environment.Progress.WIN);
                         }
                     }

@@ -4,7 +4,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -22,8 +21,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import main.java.entity.Player;
-import main.java.entity.NonPlayableCharacter;
 
 /**
  * La classe TakeTheChest représente l'application principale du jeu.
@@ -77,9 +74,7 @@ public class TakeTheChest extends Application {
 		camera = new Camera(100, 200);
 		root.setCenter(canvas);
 		
-		environment.setPlayer(new Player(9, 51));
 		environment.generateMonsters();
-		environment.addEntity(new NonPlayableCharacter(25, 51));
 		environment.generateItems();
 		
 		score = new Text();
