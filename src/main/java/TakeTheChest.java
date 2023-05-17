@@ -77,14 +77,6 @@ public class TakeTheChest extends Application {
 		environment.generateMonsters();
 		environment.generateItems();
 		
-		//Reset player --> Ca marche pas 
-		environment.getPlayer().setAllowToShoot(false);
-		environment.getPlayer().setHasKey(false);
-		environment.getPlayer().setHasWallPotion(false);
-		environment.getPlayer().setBowIsUpgraded(false);
-		environment.getPlayer().setCanWalkThroughMagicWalls(false);
-		environment.getPlayer().setScore(0);
-		
 		score = new Text();
 		score.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
 		score_hbox = new HBox(score);
@@ -179,6 +171,7 @@ public class TakeTheChest extends Application {
 		relaunch.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
+				Environment.BLOCK_PROPERTIES.set((short)14,new BlockProperties.BlockProperty("magic_wall.png",true,false));
 				start(stage);
 			}
 		});
@@ -228,6 +221,7 @@ public class TakeTheChest extends Application {
 		relaunch.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
+				Environment.BLOCK_PROPERTIES.set((short)14,new BlockProperties.BlockProperty("magic_wall.png",true,false));
 				start(stage);
 			}
 		});

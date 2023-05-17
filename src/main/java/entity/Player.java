@@ -74,6 +74,7 @@ public class Player extends LivingEntity {
      */
     @Override
     public void tick(Environment environment) {
+    	
         super.tick(environment);
         climbing=false;
         
@@ -267,19 +268,5 @@ public class Player extends LivingEntity {
      */
 	public void addScore(double d) {
 		this.score += d;
-	} 
-	
-	/**
-     * Remise des attributs du joueurs aux valeurs de base en cas de nouvelle partie.
-     *
-     */
-	public void reset() {
-		this.setLast_shot(15);
-		this.allowToShoot = false;
-		this.hasKey = false;
-		this.hasWallPotion = false;
-		this.bowIsUpgraded = false;
-		this.canWalkThroughMagicWalls = false;
-		this.score = 0;
-	} 
+	}
 }

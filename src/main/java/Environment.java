@@ -176,7 +176,7 @@ public class Environment {
     	addedEntities.add(new Key(168, 63));
     	addedEntities.add(new WallPotion(111, 33));
     	addedEntities.add(new HealPotion(190, 53));
-    	addedEntities.add(new BowUpgraded(188, 53));
+    	addedEntities.add(new BowUpgraded(189, 53));
     }
     
     /**
