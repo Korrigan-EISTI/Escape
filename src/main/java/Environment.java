@@ -1,6 +1,7 @@
 package main.java;
 
 import main.java.entity.Entity;
+import main.java.item.Beer;
 import main.java.item.BowUpgraded;
 import main.java.item.GG;
 import main.java.item.HealPotion;
@@ -179,6 +180,7 @@ public class Environment {
     	addedEntities.add(new HealPotion(190, 53));
     	addedEntities.add(new BowUpgraded(189, 53));
     	addedEntities.add(new GG(178, 26));
+    	addedEntities.add(new Beer(179, 26));
     }
     
     /**

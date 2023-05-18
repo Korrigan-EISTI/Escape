@@ -28,6 +28,7 @@ public class BowUpgraded extends Item {
 	public void tick (Environment e) {
 		super.tick(e);
 		if (!status) {
+			e.getPlayer().setAllowToShoot(true);
 			e.getPlayer().setBowIsUpgraded(true);
 		}
 	}

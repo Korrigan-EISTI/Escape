@@ -52,9 +52,9 @@ public class TakeTheChest extends Application {
     }
 
     /**
-     * Initialise le jeu et configure la fenÃªtre du jeu.
+     * Initialise le jeu et configure la fenetre du jeu.
      *
-     * @param stage Le stage principal de l'application sur lequel la scÃ¨ne peut Ãªtre définie.
+     * @param stage Le stage principal de l'application sur lequel la scene peut etre définie.
      */
     @Override
     public void start(Stage stage) {
