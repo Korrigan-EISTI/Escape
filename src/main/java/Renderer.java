@@ -57,7 +57,7 @@ public class Renderer {
      * Effectue le rendu graphique de l'environnement et des entités sur le canevas.
      *
      * @param camera      la caméra utilisée pour le rendu
-     * @param environment l'environnement contenant les éléments é rendre
+     * @param environment l'environnement contenant les éléments a rendre
      */
     public void render(Camera camera,Environment environment){
 

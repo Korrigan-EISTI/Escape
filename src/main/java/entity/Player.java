@@ -13,7 +13,13 @@ public class Player extends LivingEntity {
 	/**
 	 * L'image du joueur.
 	 */
-    private static final Image image = new Image("file:src/main/resources/living_entities/player.png");
+	private Image image = new Image("file:src/main/resources/living_entities/player_right.png");
+	
+	/**
+	 * L'image du joueur vers la gauche et la droite.
+	 */
+    private static Image image_left = new Image("file:src/main/resources/living_entities/player_left.png");
+    private static Image image_right = new Image("file:src/main/resources/living_entities/player_right.png");
     
     /**
      * Indique si le joueur est en train de grimper.
@@ -58,7 +64,7 @@ public class Player extends LivingEntity {
      */
     public Player(double x, double y) {
         super(x, y, 10, 1);
-        this.setLast_shot(15);
+        this.setLast_shot(30);
         this.setAllowToShoot(false);
         this.setHasKey(false);
         this.setHasWallPotion(false);
@@ -100,9 +106,11 @@ public class Player extends LivingEntity {
 
         if (input.keyPressed(KeyCode.RIGHT)) {
             vx += 0.07;
+            this.image = Player.image_right;
         }
         if (input.keyPressed(KeyCode.LEFT)) {
             vx -= 0.07;
+            this.image = Player.image_left;
         }
         if (input.keyPressed(KeyCode.UP)) {
             if (on_ground) {
@@ -119,12 +127,12 @@ public class Player extends LivingEntity {
             if(input.keyPressed(KeyCode.A) && getLast_shot()<=0){
             	if(this.isBowUpgraded()) environment.addEntity(new ArrowUpgraded(x+w/2,y+2*h/3,-0.5,this));
             	else environment.addEntity(new Arrow(x+w/2,y+2*h/3,-0.5,this));
-            	setLast_shot(15);
+            	setLast_shot(30);
             }
             if(input.keyPressed(KeyCode.E) && getLast_shot()<=0) {
             	if (this.isBowUpgraded()) environment.addEntity(new ArrowUpgraded(x+w/2,y+2*h/3, 0.5,this));
             	else environment.addEntity(new Arrow(x+w/2,y+2*h/3, 0.5,this));
-                setLast_shot(15);
+                setLast_shot(30);
             }
         }
         if (input.keyPressed(KeyCode.P)) {

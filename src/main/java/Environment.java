@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * La classe Environment représente l'environnement du jeu, contenant la carte, les entités et la progression du jeu.
+ * La classe Environment represente l'environnement du jeu, contenant la carte, les entites et la progression du jeu.
  */
 public class Environment {
 	
@@ -46,7 +46,7 @@ public class Environment {
     
     /**
      * Constructeur de la classe Environment.
-     * Charge la carte à partir du fichier XML et initialise les paramètres du jeu.
+     * Charge la carte a partir du fichier XML et initialise les parametres du jeu.
      */
     public Environment(){
     	
@@ -83,11 +83,11 @@ public class Environment {
     }
     
     /**
-     * Récupère le type de bloc à la position spécifiée.
+     * Recupere le type de bloc a la position specifiee.
      *
      * @param x La position horizontale du bloc.
      * @param y La position verticale du bloc.
-     * @return Le type de bloc à la position spécifiée.
+     * @return Le type de bloc a la position specifiee.
      */
     public short getBlock(int x, int y) {
     	
@@ -98,18 +98,18 @@ public class Environment {
     }
     
     /**
-     * Récupère le type de bloc à la position spécifiée en virgule flottante.
+     * Recupere le type de bloc a la position specifiee en virgule flottante.
      *
      * @param x La position horizontale du bloc.
      * @param y La position verticale du bloc.
-     * @return Le type de bloc à la position spécifiée.
+     * @return Le type de bloc a la position specifiee.
      */
     public short getBlock(double x, double y) {
         return getBlock((int) x, (int) y);
     }
     
     /**
-     * Modifie le type de bloc à la position spécifiée.
+     * Modifie le type de bloc a la position specifiee.
      *
      * @param x   La position horizontale du bloc.
      * @param y   La position verticale du bloc.
@@ -138,17 +138,17 @@ public class Environment {
     }
     
     /**
-     * Ajoute une entité à l'environnement.
+     * Ajoute une entite a l'environnement.
      *
-     * @param entity L'entité à ajouter.
+     * @param entity L'entite a ajouter.
      */
     public void addEntity(Entity entity){
         addedEntities.add(entity);
     }
     
     /**
-     * Génère des monstres dans l'environnement.
-     * Cette méthode est actuellement commentée, mais elle permettrait de générer des monstres à des positions spécifiques.
+     * Genere des monstres dans l'environnement.
+     * Cette methode est actuellement commentee, mais elle permettrait de generer des monstres a des positions specifiques.
      */
     public void generateMonsters(){
     	addedEntities.add(new Monster(39,51));
@@ -169,8 +169,8 @@ public class Environment {
     }
     
     /**
-     * Génère des objets dans l'environnement.
-     * Cette méthode ajoute des objets (clés, potions, etc.) à des positions spécifiques.
+     * Genere des objets dans l'environnement.
+     * Cette methode ajoute des objets (cles, potions, etc.) a des positions specifiques.
      */
     public void generateItems() {
     	addedEntities.add(new Key(168, 63));
@@ -189,9 +189,9 @@ public class Environment {
 	}
 
     /**
-     * Définit le joueur actuel.
+     * Definit le joueur actuel.
      *
-     * @param player Le joueur à définir.
+     * @param player Le joueur a� definir.
      */
 	public void setPlayer(Player player) {
 		this.player = player;
@@ -199,7 +199,7 @@ public class Environment {
 	}
 
 	/**
-     * Met à jour les entités dans l'environnement.
+     * Met a� jour les entites dans l'environnement.
      */
 	public void tickEntities(){
     	
@@ -213,19 +213,19 @@ public class Environment {
     }
     
     /**
-     * Retourne le nombre total d'entités dans l'environnement.
+     * Retourne le nombre total d'entites dans l'environnement.
      *
-     * @return Le nombre total d'entités.
+     * @return Le nombre total d'entites.
      */
     public int getEntityCount(){
         return entities.size();
     }
     
     /**
-     * Récupère une entité à l'index spécifié.
+     * Recupere une entite a l'index specifie.
      *
-     * @param i L'index de l'entité.
-     * @return L'entité à l'index spécifié.
+     * @param i L'index de l'entite.
+     * @return L'entite a� l'index specifie.
      */
     public Entity getEntity(int i){
         return entities.get(i);
@@ -241,9 +241,9 @@ public class Environment {
 	}
 
     /**
-     * Définit la progression du jeu.
+     * Definit la progression du jeu.
      *
-     * @param gameProgression La progression du jeu à définir.
+     * @param gameProgression La progression du jeu a�definir.
      */
 	public void setGameProgression(Progress gameProgression) {
 		this.gameProgression = gameProgression;
