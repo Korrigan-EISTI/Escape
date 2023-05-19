@@ -95,6 +95,7 @@ public class TakeTheChest extends Application {
         
         input = new Input(scene);
 
+        stage.getIcons().add(new Image("file:src/main/resources/blocks/chest.png"));
         stage.setTitle("Take the Chest");
         stage.setScene(scene);
         stage.setResizable(false);
