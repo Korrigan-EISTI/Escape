@@ -8,7 +8,7 @@ import main.java.entity.MonsterUpgraded;
 import main.java.entity.NonPlayableCharacter;
 
 /**
- * Cette classe reprÃ©sente une flÃ¨che.
+ * Cette classe représente une flèche.
  */
 public class Arrow extends Projectile {
 
@@ -19,19 +19,19 @@ public class Arrow extends Projectile {
     /**
      * Constructeur de la classe Arrow.
      *
-     * @param x      La coordonnÃ©e X de dÃ©part de la flÃ¨che.
-     * @param y      La coordonnÃ©e Y de dÃ©part de la flÃ¨che.
-     * @param vx     La vitesse horizontale de la flÃ¨che.
-     * @param owner  L'entitÃ© parente de la flÃ¨che.
+     * @param x      La coordonnée X de départ de la flèche.
+     * @param y      La coordonnée Y de départ de la flèche.
+     * @param vx     La vitesse horizontale de la flèche.
+     * @param owner  L'entité parente de la flèche.
      */
 	public Arrow(double x, double y, double vx, LivingEntity owner) {
 		super(x-0.5, y,vx,0,1,0.2,owner);
 	}
 
     /**
-     * Renvoie l'entitÃ© qui a tirÃ© la flÃ¨che.
+     * Renvoie l'entité qui a tiré la flèche.
      *
-     * @return L'entitÃ© propriÃ©taire de la flÃ¨che.
+     * @return L'entité propriétaire de la flèche.
      */
 	public LivingEntity shotFrom() {
 		return owner;
@@ -39,19 +39,19 @@ public class Arrow extends Projectile {
 
 
     /**
-     * Met Ã  jour l'Ã©tat de la flÃ¨che Ã  chaque tick.
+     * Met à jour l'état de la flèche à chaque tick.
      *
-     * @param environment L'environnement dans lequel Ã©volue la flÃ¨che.
+     * @param environment L'environnement dans lequel évolue la flèche.
      */
 	public void tick(Environment environment) {
 		super.tick(environment);
 	}
 
     /**
-     * MÃ©thode invoquÃ©e lorsqu'une entitÃ© est touchÃ©e par la flÃ¨che.
+     * Méthode invoquée lorsqu'une entité est touchée par la flèche.
      *
-     * @param livingEntity L'entitÃ© touchÃ©e par la flÃ¨che.
-     * @return Vrai si l'entitÃ© a Ã©tÃ© touchÃ©e et endommagÃ©e, faux sinon.
+     * @param livingEntity L'entité touchée par la flèche.
+     * @return Vrai si l'entité a été touchée et endommagée, faux sinon.
      */
     @Override
     protected boolean onHit(LivingEntity livingEntity) {
@@ -64,9 +64,9 @@ public class Arrow extends Projectile {
 	}
 
     /**
-     * Renvoie l'image correspondante Ã  la flÃ¨che en fonction de sa direction.
+     * Renvoie l'image correspondante à la flèche en fonction de sa direction.
      *
-     * @return L'image de la flÃ¨che.
+     * @return L'image de la flèche.
      */
     public Image getImage() {
         return vx > 0 ? imageRight : imageLeft;

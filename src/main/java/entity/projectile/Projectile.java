@@ -2,6 +2,7 @@ package main.java.entity.projectile;
 
 import main.java.Environment;
 import main.java.entity.LivingEntity;
+import main.java.entity.MonsterUpgraded;
 import main.java.entity.PhysicalEntity;
 
 /**
@@ -39,10 +40,20 @@ public class Projectile extends PhysicalEntity {
             if (environment.getEntity(i) instanceof LivingEntity livingEntity) {
                 if (!owner.getClass().equals(livingEntity.getClass())) {
                     if (x < livingEntity.getX() + livingEntity.getWidth() && x + w > livingEntity.getX() && y < livingEntity.getY() + livingEntity.getHeight() && y + h > livingEntity.getY()) {
-                        if (onHit(livingEntity)) {
-                            destroy();
-                            break;
+                        if (livingEntity instanceof MonsterUpgraded) {
+                        	if (!((MonsterUpgraded)livingEntity).isDodge()) {
+                        		if (onHit(livingEntity)) {
+                                    destroy();
+                                    break;
+                                }
+                        	}
+                        }else {
+                        	if (onHit(livingEntity)) {
+                                destroy();
+                                break;
+                            }
                         }
+                    	
                     }
                 }
             }

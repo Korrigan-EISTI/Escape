@@ -4,8 +4,8 @@ import javafx.scene.image.Image;
 import main.java.Environment;
 
 /**
- * Classe reprÃ©sentant une entitÃ© vivante.
- * Une entitÃ© vivante est une entitÃ© physique avec une quantitÃ© de vie.
+ * Classe représentant une entité vivante.
+ * Une entité vivante est une entité physique avec une quantité de vie.
  */
 public class LivingEntity extends PhysicalEntity {
 
@@ -17,9 +17,9 @@ public class LivingEntity extends PhysicalEntity {
 	/**
 	 * Constructeur de la classe LivingEntity.
 	 *
-	 * @param x     La coordonnÃ©e en abscisse de l'entitÃ© vivante.
-	 * @param y     La coordonnÃ©e en ordonnÃ©e de l'entitÃ© vivante.
-	 * @param life  La quantitÃ© de vie de l'entitÃ© vivante.
+	 * @param x     La coordonnée en abscisse de l'entité vivante.
+	 * @param y     La coordonnée en ordonnée de l'entité vivante.
+	 * @param life  La quantité de vie de l'entité vivante.
 	 */
     public LivingEntity(double x, double y, double life, int size_multiplicator) {
         super(x, y, 0, 0, (double) size_multiplicator*20/24, (double) size_multiplicator*20/24);
@@ -28,63 +28,63 @@ public class LivingEntity extends PhysicalEntity {
     }
 
     /**
-     * Renvoie la quantitÃ© maximale de vie de l'entitÃ© vivante.
+     * Renvoie la quantité maximale de vie de l'entité vivante.
      *
-     * @return La quantitÃ© maximale de vie.
+     * @return La quantité maximale de vie.
      */
     public double getMaxLife() {
         return maxLife;
     }
 
     /**
-     * DÃ©finit la quantitÃ© maximale de vie de l'entitÃ© vivante.
+     * Définit la quantité maximale de vie de l'entité vivante.
      *
-     * @param maxLife La quantitÃ© maximale de vie Ã  dÃ©finir.
+     * @param maxLife La quantité maximale de vie à définir.
      */
     public void setMaxLife(double maxLife) {
         this.maxLife = maxLife;
     }
 
     /**
-     * Renvoie la quantitÃ© de vie actuelle de l'entitÃ© vivante.
+     * Renvoie la quantité de vie actuelle de l'entité vivante.
      *
-     * @return La quantitÃ© de vie actuelle.
+     * @return La quantité de vie actuelle.
      */
     public double getLife() {
         return life;
     }
 
     /**
-     * DÃ©finit la quantitÃ© de vie de l'entitÃ© vivante.
+     * Définit la quantité de vie de l'entité vivante.
      *
-     * @param life La quantitÃ© de vie Ã  dÃ©finir.
+     * @param life La quantité de vie à définir.
      */
     public void setLife(double life) {
         this.life = life;
     }
 
     /**
-     * Inflige des dÃ©gÃ¢ts Ã  l'entitÃ© vivante en rÃ©duisant sa quantitÃ© de vie.
+     * Inflige des dégâts à l'entité vivante en réduisant sa quantité de vie.
      *
-     * @param d Les dÃ©gÃ¢ts Ã  infliger.
+     * @param d Les dégâts à infliger.
      */
     public void damage(double d) {
         life -= d;
     }
 
     /**
-     * Soigne l'entitÃ© vivante en augmentant sa quantitÃ© de vie.
+     * Soigne l'entité vivante en augmentant sa quantité de vie.
      *
-     * @param d La quantitÃ© de vie Ã  ajouter.
+     * @param d La quantité de vie à ajouter.
      */
     public void heal(double d) {
         setLife(Math.min(life + d, maxLife));
     }
 
     /**
-     * Renvoie l'image associÃ©e Ã  l'entitÃ© vivante.
+     * Renvoie l'image associée à l'entité vivante.
      *
-     * @return L'image de l'entitÃ© vivante.
+     * @return L'image de l'entité vivante.
      */
     @Override
     public Image getImage() {
@@ -92,7 +92,7 @@ public class LivingEntity extends PhysicalEntity {
     }
 
     /**
-     * Met Ã  jour l'Ã©tat de l'entitÃ© vivante Ã  chaque itÃ©ration du jeu.
+     * Met à jour l'état de l'entité vivante à chaque itération du jeu.
      *
      * @param environment L'environnement du jeu.
      */

@@ -7,7 +7,7 @@ import main.java.entity.MonsterUpgraded;
 import main.java.entity.NonPlayableCharacter;
 
 /**
- * Cette classe reprÃ©sente une flÃ¨che amÃ©liorÃ©e.
+ * Cette classe représente une flèche améliorée.
  */
 public class ArrowUpgraded extends Projectile {
 
