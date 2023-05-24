@@ -180,7 +180,7 @@ public class TakeTheChest extends Application {
 		Text score_display = new Text("Score : " + score.getText());
 		score_display.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
 		
-		Text chrono_display = new Text("Temps joué : " + String.valueOf((int)(TIME_TO_FINISH_THE_GAME - (chrono.getSeconds()/60))) + " secondes.");
+		Text chrono_display = new Text("Temps joué : " + String.valueOf((int)(TIME_TO_FINISH_THE_GAME - (chrono.getRemainingTicks()/60))) + " secondes.");
 		chrono_display.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
 		
 		VBox img_and_perf = new VBox(imgView,score_display,chrono_display);
@@ -229,7 +229,7 @@ public class TakeTheChest extends Application {
      */
 	private void victory() {
 		
-		environment.getPlayer().addScore(environment.getPlayer().getLife()*50 + (chrono.getSeconds()/60));
+		environment.getPlayer().addScore(environment.getPlayer().getLife()*50 + (chrono.getRemainingTicks()/60));
 		score.setText(String.valueOf((int)environment.getPlayer().getScore()));
 		dead = true;
 		
@@ -239,7 +239,7 @@ public class TakeTheChest extends Application {
 		Text score_display = new Text("Score : " + score.getText());
 		score_display.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
 		
-		Text chrono_display = new Text("Temps joué : " + String.valueOf((int)(TIME_TO_FINISH_THE_GAME - (chrono.getSeconds()/60))) + " secondes.");
+		Text chrono_display = new Text("Temps joué : " + String.valueOf((int)(TIME_TO_FINISH_THE_GAME - (chrono.getRemainingTicks()/60))) + " secondes.");
 		chrono_display.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
 		
 		VBox img_and_perf = new VBox(imgView,score_display,chrono_display);

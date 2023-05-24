@@ -52,7 +52,7 @@ public class Environment {
      */
     public Environment(){
     	
-    	player = new Player(9,51);
+    	player = new Player(9, 51);
     	gameProgression = Progress.START;
     	
         entities = new ArrayList<>();
@@ -179,7 +179,7 @@ public class Environment {
     	addedEntities.add(new WallPotion(111, 33));
     	addedEntities.add(new HealPotion(190, 53));
     	addedEntities.add(new BowUpgraded(189, 53));
-    	addedEntities.add(new GG(178, 26));
+    	addedEntities.add(new GG(138, 22));
     	addedEntities.add(new Beer(179, 26));
     }
     

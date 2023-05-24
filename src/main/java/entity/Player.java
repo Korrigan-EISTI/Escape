@@ -89,6 +89,9 @@ public class Player extends LivingEntity {
             if(block==15 && hasKey){
                 environment.setGameProgression(Environment.Progress.POTATO);
             }
+            if(block==16){
+                environment.getPlayer().setLife(0);
+            }
         }
         if (climbing) {
             vx = 0;

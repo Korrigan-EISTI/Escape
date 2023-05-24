@@ -53,8 +53,6 @@ public class BlockProperties {
      * @return Le nombre de proprietes de blocs.
      */
     public int size(){
-
-    
         return properties.size();
     }
 }

@@ -2,20 +2,20 @@ package main.java;
 
 public class Timer {
 	
-	private double seconds;
+	private int remaining_ticks;
 	private boolean finished;
 	
-	public Timer(int ms) {
-		this.setSeconds(ms*60);
+	public Timer(int seconds) {
+		this.setRemainingTicks(seconds*60);
 		this.setFinished(false);
 	}
 
-	public double getSeconds() {
-		return seconds;
+	public int getRemainingTicks() {
+		return remaining_ticks;
 	}
 
-	public void setSeconds(double seconds) {
-		this.seconds = seconds;
+	public void setRemainingTicks(int seconds) {
+		this.remaining_ticks = seconds;
 	}
 
 	public boolean isFinished() {
@@ -28,14 +28,14 @@ public class Timer {
 	
 	@Override
 	public String toString() {
-		return "Temps restant : "+String.valueOf((int) (this.getSeconds()/60))+" secondes.";
+		return "Temps restant : "+String.valueOf((int) (this.getRemainingTicks()/60))+" secondes.";
 	}
 
 	/**
      * Met a jour le timer.
      */
     public void tick() {
-        if(this.seconds <= 0) this.setFinished(true);
-        else this.setSeconds(this.getSeconds()-1);
+        if(this.remaining_ticks <= 0) this.setFinished(true);
+        else this.setRemainingTicks(this.getRemainingTicks()-1);
     }
 }

@@ -72,7 +72,7 @@ public class Renderer {
         for (int x = start_x; x < end_x; x++) {
             for (int y = start_y; y < end_y; y++) {
                 short block = environment.getBlock(x, y);
-                if (block_images[block]!=null) {
+                if (block_images[block]!=null) { 
                     drawImage(block_images[block],camera,x,y,1,1);
                 }
             }
