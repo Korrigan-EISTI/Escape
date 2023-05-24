@@ -30,6 +30,7 @@ import javafx.util.Duration;
  * @version 1.0
  */
 public class TakeTheChest extends Application {
+	
     private Canvas canvas;
     private boolean dead;
     private Camera camera;
@@ -39,8 +40,12 @@ public class TakeTheChest extends Application {
     private Stage stage;
     private Inventory inventory;
     private Timeline time;
+    
     private Text score;
-    private HBox score_hbox;
+    private Timer chrono;
+    
+    private Text chrono_display;
+    private static final int TIME_TO_FINISH_THE_GAME = 300;
 
     /**
      * Le point d'entrée principal de l'application.
@@ -77,13 +82,19 @@ public class TakeTheChest extends Application {
 		environment.generateMonsters();
 		environment.generateItems();
 		
+		chrono = new Timer(TIME_TO_FINISH_THE_GAME);
+		chrono_display = new Text(chrono.toString());
+		chrono_display.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+		
 		score = new Text();
 		score.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
-		score_hbox = new HBox(score);
-		score_hbox.setMaxWidth(scene.getWidth());
-		score_hbox.setPrefHeight(25);
-		score_hbox.setAlignment(Pos.CENTER);
-        root.setTop(score_hbox);
+		
+		HBox top_hbox = new HBox(score,new Text("||"),chrono_display);
+		top_hbox.setMaxWidth(scene.getWidth());
+		top_hbox.setPrefHeight(25);
+		top_hbox.setAlignment(Pos.CENTER);
+		top_hbox.setSpacing(50);
+        root.setTop(top_hbox);
 
         inventory = new Inventory();
         inventory.getHbox().setPrefWidth(scene.getWidth());
@@ -118,6 +129,9 @@ public class TakeTheChest extends Application {
 	 */
 	
 	private void tick(ActionEvent actionEvent) {
+		
+		chrono.tick();
+		chrono_display.setText(chrono.toString());
 
 		score.setText(String.valueOf((int)environment.getPlayer().getScore()));
 		
@@ -145,7 +159,7 @@ public class TakeTheChest extends Application {
 		if (environment.getPlayer().canWalkThroughMagicWalls()) {
 			inventory.getSlot3().setImage(new Image("file:src/main/resources/inventory/inventory_wall_potion_used.png"));
 		}
-		if((environment.getPlayer().getLife()<=0.1 && !dead) || environment.getPlayer().getY()<0) {
+		if((environment.getPlayer().getLife()<=0.1 && !dead) || environment.getPlayer().getY()<0 || chrono.isFinished()) { //Conditions de défaites
 			time.stop();
 			gameOver();
 		}
@@ -157,18 +171,36 @@ public class TakeTheChest extends Application {
 	 * Affiche l'écran de fin de partie en cas de victoire.
 	 */
 	private void gameOver() {
+		
 		dead = true;
+		
 		BorderPane dead = new BorderPane();
 		ImageView imgView = new ImageView(new Image("file:src/main/resources/game_over.png", 500, 500, false, false));
-		dead.setCenter(imgView);
+		
+		Text score_display = new Text("Score : " + score.getText());
+		score_display.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+		
+		Text chrono_display = new Text("Temps joué : " + String.valueOf((int)(TIME_TO_FINISH_THE_GAME - (chrono.getSeconds()/60))) + " secondes.");
+		chrono_display.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+		
+		VBox img_and_perf = new VBox(imgView,score_display,chrono_display);
+		img_and_perf.setPrefWidth(750);
+		img_and_perf.setSpacing(40);
+		img_and_perf.setAlignment(Pos.CENTER);
+		
+		dead.setCenter(img_and_perf);
+		
 		Button quit = new Button ("Quitter");
+		quit.setStyle("-fx-font: 22 arial; -fx-base: #ce5e7e; -fx-background-radius:50; -fx-background-insets: 0;");
 		quit.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
 				System.exit(0);
 			}
 		});
-		Button relaunch = new Button ("Relancer");
+		
+		Button relaunch = new Button ("Rejouer");
+		relaunch.setStyle("-fx-font: 22 arial; -fx-base: #5eceae; -fx-background-radius:50; -fx-background-insets: 0;");
 		relaunch.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -176,13 +208,17 @@ public class TakeTheChest extends Application {
 				start(stage);
 			}
 		});
+		
 		HBox bottom = new HBox (quit, relaunch);
 		bottom.setAlignment(Pos.CENTER);
 		bottom.setPrefSize(750, 100);
+		bottom.setSpacing(20);
+		
 		dead.setBottom(bottom);
 		dead.setPrefSize(1000, 750);
 		Scene death = new Scene(dead, 1000, 750);
 		dead.setPrefSize(death.getWidth(), death.getHeight());
+		
 		stage.setScene(death);
 		stage.setTitle("Game Over");
 		stage.show();
@@ -193,7 +229,7 @@ public class TakeTheChest extends Application {
      */
 	private void victory() {
 		
-		environment.getPlayer().addScore(environment.getPlayer().getLife()*50);
+		environment.getPlayer().addScore(environment.getPlayer().getLife()*50 + (chrono.getSeconds()/60));
 		score.setText(String.valueOf((int)environment.getPlayer().getScore()));
 		dead = true;
 		
@@ -203,14 +239,18 @@ public class TakeTheChest extends Application {
 		Text score_display = new Text("Score : " + score.getText());
 		score_display.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
 		
-		VBox img_and_score = new VBox(imgView,score_display);
-		img_and_score.setPrefWidth(750);
-		img_and_score.setSpacing(50);
-		img_and_score.setAlignment(Pos.CENTER);
+		Text chrono_display = new Text("Temps joué : " + String.valueOf((int)(TIME_TO_FINISH_THE_GAME - (chrono.getSeconds()/60))) + " secondes.");
+		chrono_display.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
 		
-		winPane.setCenter(img_and_score);
+		VBox img_and_perf = new VBox(imgView,score_display,chrono_display);
+		img_and_perf.setPrefWidth(750);
+		img_and_perf.setSpacing(40);
+		img_and_perf.setAlignment(Pos.CENTER);
+		
+		winPane.setCenter(img_and_perf);
 		
 		Button quit = new Button ("Quitter");
+		quit.setStyle("-fx-font: 22 arial; -fx-base: #ce5e7e; -fx-background-radius:50; -fx-background-insets: 0;");
 		quit.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -218,7 +258,8 @@ public class TakeTheChest extends Application {
 			}
 		});
 		
-		Button relaunch = new Button ("Relancer");
+		Button relaunch = new Button ("Rejouer");
+		relaunch.setStyle("-fx-font: 22 arial; -fx-base: #5eceae; -fx-background-radius:50; -fx-background-insets: 0;");
 		relaunch.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -230,6 +271,7 @@ public class TakeTheChest extends Application {
 		HBox bottom = new HBox (quit, relaunch);
 		bottom.setAlignment(Pos.CENTER);
 		bottom.setPrefSize(750, 100);
+		bottom.setSpacing(20);
 		winPane.setBottom(bottom);
 		
 		Scene win = new Scene(winPane, 1000, 750);

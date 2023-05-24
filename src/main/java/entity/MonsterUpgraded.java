@@ -7,8 +7,10 @@ import main.java.Environment;
 import main.java.entity.projectile.ArrowUpgraded;
 
 public class MonsterUpgraded extends LivingEntity {
+	
 	private boolean dodge;
 	private int dodge_cooldown;
+	
 	/**
 	 * L'image du monstre amélioré.
 	 */
@@ -35,17 +37,17 @@ public class MonsterUpgraded extends LivingEntity {
     public void tick(Environment environment){
         super.tick(environment);
 
-        double vesqui = new Random().nextInt(2);
+        double dodge = new Random().nextInt(2);
         if(getLast_shot()<=0){
             setLast_shot(90);
             environment.addEntity(new ArrowUpgraded(x-w/2,y+2*h/3,-0.5,this));
             environment.addEntity(new ArrowUpgraded(x-w/2,y+h/3,-0.5,this));
         }
-        if (vesqui == 0 && dodge_cooldown == 0) {
+        if (dodge == 0 && dodge_cooldown == 0) {
         	this.dodge_cooldown = 30;
         	this.dodge = true;
         }
-        else if (vesqui == 1 && dodge_cooldown == 0){
+        else if (dodge == 1 && dodge_cooldown == 0){
         	this.dodge_cooldown = 30;
         	this.dodge = false;
         }else {
