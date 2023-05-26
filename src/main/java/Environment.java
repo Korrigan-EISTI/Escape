@@ -47,8 +47,8 @@ public class Environment {
     private Player player;
     private Progress gameProgression;
     
-    private static final int PLAYER_STARTING_X = 154; // Valeur idéale : 9
-    private static final int PLAYER_STARTING_Y = 49; // Valeur idéale : 51
+    private static final int PLAYER_STARTING_X = 9; // Valeur idéale : 9
+    private static final int PLAYER_STARTING_Y = 51; // Valeur idéale : 51
     
     /**
      * Constructeur de la classe Environment.
