@@ -55,6 +55,11 @@ public class Player extends LivingEntity {
      * Le score du joueur.
      */
     private double score;
+    
+    /**
+     * La valeur du bouclier du joueur. C'est-à-dire, le nombre de fleche qu'il peut encaisser sans prendre de degats.
+     */
+    private int shieldValue;
 
     /**
      * Initialise un nouvel objet Player avec les coordonnées spécifiées.
@@ -71,6 +76,7 @@ public class Player extends LivingEntity {
 		this.setBowIsUpgraded(false);
 		this.setCanWalkThroughMagicWalls(false);
 		this.setScore(0);
+		this.setShieldValue(-1);
     }
 
     /**
@@ -107,22 +113,22 @@ public class Player extends LivingEntity {
      */
     public void handleInput(Input input, Environment environment) {
 
-        if (input.keyPressed(KeyCode.RIGHT)) {
+        if (input.keyPressed(KeyCode.RIGHT) || input.keyPressed(KeyCode.D)) {
             vx += 0.07;
             this.image = Player.image_right;
         }
-        if (input.keyPressed(KeyCode.LEFT)) {
+        if (input.keyPressed(KeyCode.LEFT) || input.keyPressed(KeyCode.Q)) {
             vx -= 0.07;
             this.image = Player.image_left;
         }
-        if (input.keyPressed(KeyCode.UP)) {
+        if (input.keyPressed(KeyCode.UP) || input.keyPressed(KeyCode.Z)) {
             if (on_ground) {
                 vy = 0.35;
             } else if (climbing) {
                 vy = 0.2;
             }
         }
-        if (input.keyPressed(KeyCode.DOWN) && climbing) {
+        if (input.keyPressed(KeyCode.DOWN) || input.keyPressed(KeyCode.S) && climbing) {
             vy = -0.2;
         }
         if (allowToShoot) {
@@ -136,6 +142,18 @@ public class Player extends LivingEntity {
             	if (this.isBowUpgraded()) environment.addEntity(new ArrowUpgraded(x+w/2,y+2*h/3, 0.5,this));
             	else environment.addEntity(new Arrow(x+w/2,y+2*h/3, 0.5,this));
                 setLast_shot(30);
+            }
+            if(input.keyPressed(KeyCode.SPACE) && getLast_shot()<=0) {
+            	if(this.image == Player.image_left) {
+            		if (this.isBowUpgraded()) environment.addEntity(new ArrowUpgraded(x+w/2,y+2*h/3, -0.5,this));
+                	else environment.addEntity(new Arrow(x+w/2,y+2*h/3, -0.5,this));
+                    setLast_shot(30);
+            	}
+            	else {
+            		if (this.isBowUpgraded()) environment.addEntity(new ArrowUpgraded(x+w/2,y+2*h/3, 0.5,this));
+                	else environment.addEntity(new Arrow(x+w/2,y+2*h/3, 0.5,this));
+                    setLast_shot(30);
+            	}
             }
         }
         if (input.keyPressed(KeyCode.P)) {
@@ -279,5 +297,30 @@ public class Player extends LivingEntity {
      */
 	public void addScore(double d) {
 		this.score += d;
+	}
+
+	/**
+     * Renvoie la valeur du bouclier du joueur.
+	 *
+     */
+	public int getShieldValue() {
+		return shieldValue;
+	}
+
+	/**
+     * Définit la valeur du bouclier du joueur.
+     *
+     * @param shieldValue La valeur du bouclier à définir.
+     */
+	public void setShieldValue(int shieldValue) {
+		this.shieldValue = shieldValue;
+	}
+	
+	/**
+     * Permet d'affaiblir le bouclier du joueur.
+	 *
+     */
+	public void damageShield() {
+		if(this.getShieldValue()>0)this.setShieldValue(this.getShieldValue()-1);
 	}
 }

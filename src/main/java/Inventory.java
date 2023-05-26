@@ -10,6 +10,7 @@ public class Inventory {
 	private ImageView slot1 = new ImageView(new Image("file:src/main/resources/inventory/inventory.png"));
 	private ImageView slot2 = new ImageView(new Image("file:src/main/resources/inventory/inventory.png"));
 	private ImageView slot3 = new ImageView(new Image("file:src/main/resources/inventory/inventory.png"));
+	private ImageView slot4 = new ImageView(new Image("file:src/main/resources/inventory/inventory.png"));
     
 	/** 
 	 * Initialise une nouvelle instance de la classe Inventory.
@@ -22,7 +23,9 @@ public class Inventory {
         slot2.setFitWidth(50);
         slot3.setFitHeight(50);
         slot3.setFitWidth(50);
-        hbox = new HBox(slot1, slot2, slot3);
+        slot4.setFitHeight(50);
+        slot4.setFitWidth(50);
+        hbox = new HBox(slot1, slot2, slot3,slot4);
     }
 
     /**
@@ -95,5 +98,23 @@ public class Inventory {
      */
     public void setSlot3(ImageView slot3) {
         this.slot3 = slot3;
+    }
+    
+    /**
+     * Retourne l'ImageView du slot 4 de l'inventaire.
+     *
+     * @return l'ImageView du slot 4 de l'inventaire
+     */
+    public ImageView getSlot4() {
+        return slot4;
+    }
+
+    /**
+     * Definit l'ImageView du slot 4 de l'inventaire.
+     *
+     * @param slot4 l'ImageView du slot 4 de l'inventaire a definir
+     */
+    public void setSlot4(ImageView slot4) {
+        this.slot4 = slot4;
     }
 }

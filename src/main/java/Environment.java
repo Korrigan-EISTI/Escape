@@ -6,6 +6,7 @@ import main.java.item.BowUpgraded;
 import main.java.item.GG;
 import main.java.item.HealPotion;
 import main.java.item.Key;
+import main.java.item.Shield;
 import main.java.item.WallPotion;
 import main.java.entity.Monster;
 import main.java.entity.MonsterUpgraded;
@@ -46,13 +47,16 @@ public class Environment {
     private Player player;
     private Progress gameProgression;
     
+    private static final int PLAYER_STARTING_X = 154; // Valeur idéale : 9
+    private static final int PLAYER_STARTING_Y = 49; // Valeur idéale : 51
+    
     /**
      * Constructeur de la classe Environment.
      * Charge la carte a partir du fichier XML et initialise les parametres du jeu.
      */
     public Environment(){
     	
-    	player = new Player(9, 51);
+    	player = new Player(PLAYER_STARTING_X, PLAYER_STARTING_Y);
     	gameProgression = Progress.START;
     	
         entities = new ArrayList<>();
@@ -181,6 +185,7 @@ public class Environment {
     	addedEntities.add(new BowUpgraded(189, 53));
     	addedEntities.add(new GG(138, 22));
     	addedEntities.add(new Beer(179, 26));
+    	addedEntities.add(new Shield(167, 51));
     }
     
     /**

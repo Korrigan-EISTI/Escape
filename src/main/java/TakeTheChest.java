@@ -159,6 +159,20 @@ public class TakeTheChest extends Application {
 		if (environment.getPlayer().canWalkThroughMagicWalls()) {
 			inventory.getSlot3().setImage(new Image("file:src/main/resources/inventory/inventory_wall_potion_used.png"));
 		}
+		switch(environment.getPlayer().getShieldValue()) {
+			case(3) :
+				inventory.getSlot4().setImage(new Image("file:src/main/resources/inventory/inventory_shield_x3.png"));
+			break;
+			case(2) :
+				inventory.getSlot4().setImage(new Image("file:src/main/resources/inventory/inventory_shield_x2.png"));
+			break;
+			case(1) :
+				inventory.getSlot4().setImage(new Image("file:src/main/resources/inventory/inventory_shield_x1.png"));
+			break;
+			case(0) :
+				inventory.getSlot4().setImage(new Image("file:src/main/resources/inventory/inventory_shield_broken.png"));
+			break;
+		}
 		if((environment.getPlayer().getLife()<=0.1 && !dead) || environment.getPlayer().getY()<0 || chrono.isFinished()) { //Conditions de défaites
 			time.stop();
 			gameOver();
