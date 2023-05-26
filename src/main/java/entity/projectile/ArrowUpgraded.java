@@ -5,6 +5,7 @@ import main.java.Environment;
 import main.java.entity.LivingEntity;
 import main.java.entity.MonsterUpgraded;
 import main.java.entity.NonPlayableCharacter;
+import main.java.entity.Player;
 
 /**
  * Cette classe représente une flèche améliorée.
@@ -54,7 +55,8 @@ public class ArrowUpgraded extends Projectile {
     @Override
     protected boolean onHit(LivingEntity livingEntity) {
         if (!(livingEntity instanceof NonPlayableCharacter) || !(livingEntity instanceof MonsterUpgraded)) {
-            livingEntity.damage(2);
+        	if(livingEntity instanceof Player && ((Player)livingEntity).getShieldValue()>0) ((Player)livingEntity).damageShield();
+			else livingEntity.damage(2);
             destroy();
             return true;
         }
