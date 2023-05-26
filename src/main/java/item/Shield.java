@@ -4,26 +4,26 @@ import javafx.scene.image.Image;
 import main.java.Environment;
 
 /**
- * Cette classe représente une clé.
+ * Cette classe represente un bouclier.
  */
 public class Shield extends Item {
 
 	public static Image img = new Image("file:src/main/resources/items/shield.png");
 
     /**
-     * Constructeur de la classe Key.
+     * Constructeur de la classe Shield.
      *
-     * @param x La coordonnée X de la clé.
-     * @param y La coordonnée Y de la clé.
+     * @param x La coordonnee X du bouclier.
+     * @param y La coordonnee Y du bouclier.
      */
 	public Shield(double x, double y) {
 		super (x, y, 1, 1);
 	}
 
     /**
-     * Met à jour l'état de la clé à chaque tick.
+     * Met a jour l'etat du bouclier � chaque tick.
      *
-     * @param e L'environnement dans lequel se trouve la clé.
+     * @param e L'environnement dans lequel se trouve le bouclier.
      */
 	@Override
 	public void tick (Environment e) {
@@ -34,9 +34,9 @@ public class Shield extends Item {
 	}
 
     /**
-     * Renvoie l'image correspondante à la clé.
+     * Renvoie l'image correspondante au bouclier
      *
-     * @return L'image de la clé.
+     * @return L'image du bouclier.
      */
 	@Override
 	public Image getImage() {

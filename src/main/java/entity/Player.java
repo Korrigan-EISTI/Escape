@@ -128,7 +128,7 @@ public class Player extends LivingEntity {
                 vy = 0.2;
             }
         }
-        if (input.keyPressed(KeyCode.DOWN) || input.keyPressed(KeyCode.S) && climbing) {
+        if ((input.keyPressed(KeyCode.DOWN) || input.keyPressed(KeyCode.S)) && climbing) {
             vy = -0.2;
         }
         if (allowToShoot) {
